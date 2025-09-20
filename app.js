@@ -323,12 +323,18 @@ class Router {
   constructor(appState) {
     this.appState = appState;
     this.routes = {
-      '/': 'page-home',
-      '/about': 'page-about',
-      '/creator': 'page-creator',
-      '/profile': 'page-profile',
-      '/dashboard': 'page-dashboard',
-      '/read': 'page-reader'
+      this.routes = {
+  '/': 'home-template',
+  '/profile': 'profile-template',
+  '/creator': 'creator-template',
+  '/dashboard': 'dashboard-template',
+  '/library': 'library-template',
+  '/browse': 'browse-template',
+  '/community': 'community-template',
+  '/read': 'reader-template',
+  '/about': 'about-template',
+  '/404': 'notfound-template'
+};
     };
     this.init();
   }
