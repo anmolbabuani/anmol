@@ -3,465 +3,605 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anmol - Where New Worlds Are Written</title>
+    <title>Anmol Writer Studio - Where New Worlds Are Written</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div id="loading-screen" class="loading-screen">
-        <div class="loading-logo">
-            <div class="logo-circle">A</div>
-            <div class="loading-dots">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </div>
-
-    <!-- Navigation -->
-    <nav id="main-nav" class="main-nav">
-        <div class="nav-container">
-            <div class="nav-brand">
-                <div class="logo">A</div>
-                <span class="brand-name">Anmol</span>
+    <!-- Header -->
+    <header class="studio-header">
+        <div class="header-container">
+            <div class="header-left">
+                <div class="nav-brand">
+                    <div class="logo">A</div>
+                    <span class="brand-name">Anmol</span>
+                    <span class="studio-label">Writer Studio</span>
+                </div>
+                <div class="project-info">
+                    <h2 id="current-project-title">The Digital Dreamer</h2>
+                    <div class="auto-save-status">
+                        <i class="fas fa-check-circle"></i>
+                        <span id="auto-save-text">Saved 2 minutes ago</span>
+                    </div>
+                </div>
             </div>
             
-            <div class="nav-links">
-                <a href="#" data-route="/" class="nav-link active">Home</a>
-                <a href="#" data-route="/about" class="nav-link">About</a>
-                <a href="#" data-route="/creator" class="nav-link">Creator</a>
-                <div class="nav-auth" id="nav-auth">
-                    <button class="btn btn--outline btn--sm" id="login-btn">Sign In</button>
-                    <button class="btn btn--primary btn--sm" id="signup-btn">Sign Up</button>
-                </div>
-                <div class="nav-user hidden" id="nav-user">
-                    <a href="#" data-route="/profile" class="nav-link">
-                        <i class="fas fa-user"></i>
-                        <span id="user-name">Profile</span>
-                    </a>
-                    <a href="#" data-route="/dashboard" class="nav-link author-only hidden">
-                        <i class="fas fa-edit"></i>
-                        Dashboard
-                    </a>
-                    <button class="btn btn--outline btn--sm" id="logout-btn">Sign Out</button>
+            <div class="header-center">
+                <div class="word-count-display">
+                    <div class="word-count-item">
+                        <span class="count" id="chapter-word-count">3,680</span>
+                        <span class="label">Chapter</span>
+                    </div>
+                    <div class="word-count-item">
+                        <span class="count" id="total-word-count">45,000</span>
+                        <span class="label">Total</span>
+                    </div>
                 </div>
             </div>
-        </div>
-    </nav>
-
-    <!-- Main Content -->
-    <main id="app-content">
-        <!-- Homepage -->
-        <div id="page-home" class="page active">
-            <!-- Hero Section -->
-            <section class="hero">
-                <div class="hero-background"></div>
-                <div class="container">
-                    <div class="hero-content">
-                        <h1 class="hero-title">Where New Worlds Are Written</h1>
-                        <p class="hero-subtitle">The free platform for the next generation of authors and readers</p>
-                        <div class="hero-actions">
-                            <button class="btn btn--outline btn--lg" id="start-reading-btn">
-                                <i class="fas fa-book-open"></i>
-                                Start Reading
-                            </button>
-                            <button class="btn btn--primary btn--lg" id="publish-story-btn">
-                                <i class="fas fa-pen"></i>
-                                Publish Your Story
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Featured Novels -->
-            <section class="featured-novels">
-                <div class="container">
-                    <h2 class="section-title">Featured Novels</h2>
-                    <div class="novels-carousel" id="novels-carousel">
-                        <!-- Novels will be populated by JavaScript -->
-                    </div>
-                </div>
-            </section>
-
-            <!-- For Writers Section -->
-            <section class="for-writers">
-                <div class="container">
-                    <h2 class="section-title">For Writers</h2>
-                    <div class="features-grid">
-                        <div class="feature-card">
-                            <div class="feature-icon">
-                                <i class="fas fa-upload"></i>
-                            </div>
-                            <h3>Publish for Free</h3>
-                            <p>Share your stories with the world without any cost or hidden fees</p>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-icon">
-                                <i class="fas fa-copyright"></i>
-                            </div>
-                            <h3>Own Your Work</h3>
-                            <p>Retain full rights to your intellectual property and creative content</p>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-icon">
-                                <i class="fas fa-users"></i>
-                            </div>
-                            <h3>Connect with Readers</h3>
-                            <p>Build a community around your stories and engage with your audience</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Recently Updated -->
-            <section class="recently-updated">
-                <div class="container">
-                    <h2 class="section-title">Recently Updated</h2>
-                    <div class="updates-list" id="updates-list">
-                        <!-- Updates will be populated by JavaScript -->
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- About Page -->
-        <div id="page-about" class="page">
-            <section class="about-hero">
-                <div class="container">
-                    <h1>For the Creators</h1>
-                    <p class="mission-text">We believe every story deserves to be heard. Anmol provides a platform where writers can share their creativity without barriers, where readers can discover new worlds, and where communities form around the love of storytelling.</p>
-                </div>
-            </section>
-
-            <section class="creator-bio">
-                <div class="container">
-                    <div class="bio-grid">
-                        <div class="bio-portrait">
-                            <div class="portrait-placeholder">
-                                <i class="fas fa-user"></i>
-                            </div>
-                        </div>
-                        <div class="bio-content">
-                            <h2>A Note from Anmol</h2>
-                            <p>Hi there! I'm Anmol Babuani, the creator of this platform. As a developer and storyteller myself, I understand the challenges writers face in finding the right platform to share their work.</p>
-                            <p>Anmol was born from the belief that creativity shouldn't be constrained by paywalls or complex publishing processes. Here, you own your work, connect directly with readers, and become part of a community that values authentic storytelling.</p>
-                            <a href="#" data-route="/creator" class="btn btn--primary">
-                                Learn More About My Work
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- Creator Page -->
-        <div id="page-creator" class="page">
-            <section class="creator-hero">
-                <div class="container">
-                    <div class="creator-header">
-                        <div class="creator-portrait">
-                            <div class="portrait-placeholder">
-                                <i class="fas fa-code"></i>
-                            </div>
-                        </div>
-                        <div class="creator-info">
-                            <h1>Anmol Babuani</h1>
-                            <p class="creator-title">Developer, Creator, Storyteller</p>
-                            <div class="social-links">
-                                <a href="https://github.com" target="_blank" class="social-link">
-                                    <i class="fab fa-github"></i>
-                                    GitHub
-                                </a>
-                                <a href="https://linkedin.com" target="_blank" class="social-link">
-                                    <i class="fab fa-linkedin"></i>
-                                    LinkedIn
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="projects-section">
-                <div class="container">
-                    <h2 class="section-title">Projects</h2>
-                    <div class="projects-grid" id="projects-grid">
-                        <!-- Projects will be populated by JavaScript -->
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- Profile/Library Page -->
-        <div id="page-profile" class="page">
-            <section class="profile-header">
-                <div class="container">
-                    <div class="profile-info">
-                        <div class="profile-avatar">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div class="profile-details">
-                            <h1 id="profile-display-name">Your Profile</h1>
-                            <div class="profile-stats" id="profile-stats">
-                                <!-- Stats will be populated by JavaScript -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="library-section">
-                <div class="container">
-                    <div class="library-header">
-                        <h2>My Library</h2>
-                        <div class="filter-pills">
-                            <button class="pill active" data-filter="all">All</button>
-                            <button class="pill" data-filter="reading">Currently Reading</button>
-                            <button class="pill" data-filter="finished">Finished</button>
-                        </div>
-                    </div>
-                    <div class="library-grid" id="library-grid">
-                        <!-- Library items will be populated by JavaScript -->
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <!-- Author Dashboard -->
-        <div id="page-dashboard" class="page">
-            <div class="dashboard-layout">
-                <aside class="dashboard-sidebar">
-                    <div class="sidebar-nav">
-                        <button class="sidebar-btn active" data-tab="overview">
-                            <i class="fas fa-chart-line"></i>
-                            Overview
-                        </button>
-                        <button class="sidebar-btn" data-tab="novels">
-                            <i class="fas fa-book"></i>
-                            My Novels
-                        </button>
-                        <button class="sidebar-btn" data-tab="community">
-                            <i class="fas fa-comments"></i>
-                            Community
-                        </button>
-                        <button class="sidebar-btn" data-tab="settings">
-                            <i class="fas fa-cog"></i>
-                            Settings
-                        </button>
-                    </div>
-                </aside>
-
-                <main class="dashboard-main">
-                    <div id="dashboard-overview" class="dashboard-tab active">
-                        <h1>Welcome back, Author!</h1>
-                        <div class="stats-bar">
-                            <div class="stat-item">
-                                <span class="stat-number" id="total-views">0</span>
-                                <span class="stat-label">Total Views</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-number" id="total-followers">0</span>
-                                <span class="stat-label">Followers</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-number" id="total-chapters">0</span>
-                                <span class="stat-label">Chapters</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="dashboard-novels" class="dashboard-tab">
-                        <div class="tab-header">
-                            <h2>My Novels</h2>
-                            <button class="btn btn--primary" id="create-novel-btn">
-                                <i class="fas fa-plus"></i>
-                                Create New Novel
-                            </button>
-                        </div>
-                        <div class="novels-list" id="author-novels-list">
-                            <!-- Author's novels will be populated by JavaScript -->
-                        </div>
-                    </div>
-
-                    <div id="dashboard-community" class="dashboard-tab">
-                        <h2>Community</h2>
-                        <div class="comments-moderation" id="comments-moderation">
-                            <!-- Comments for moderation will be populated by JavaScript -->
-                        </div>
-                    </div>
-
-                    <div id="dashboard-settings" class="dashboard-tab">
-                        <h2>Settings</h2>
-                        <p>Account and preference settings coming soon...</p>
-                    </div>
-                </main>
-            </div>
-        </div>
-
-        <!-- Immersive Reader -->
-        <div id="page-reader" class="page">
-            <div class="reader-header" id="reader-header">
-                <div class="container">
-                    <button class="reader-back-btn" id="reader-back-btn">
-                        <i class="fas fa-arrow-left"></i>
+            
+            <div class="header-right">
+                <div class="quick-actions">
+                    <button class="btn btn--outline btn--sm" id="save-btn">
+                        <i class="fas fa-save"></i>
+                        Save
                     </button>
-                    <div class="reader-info">
-                        <span class="novel-title" id="reader-novel-title">Novel Title</span>
-                        <span class="chapter-title" id="reader-chapter-title">Chapter Title</span>
+                    <button class="btn btn--outline btn--sm" id="preview-btn">
+                        <i class="fas fa-eye"></i>
+                        Preview
+                    </button>
+                    <button class="btn btn--primary btn--sm" id="publish-btn">
+                        <i class="fas fa-upload"></i>
+                        Publish
+                    </button>
+                    <button class="btn btn--outline btn--sm" id="settings-btn">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                </div>
+                <div class="user-profile">
+                    <img src="https://via.placeholder.com/40x40/4A90E2/FFFFFF?text=SC" alt="Profile" class="profile-avatar">
+                    <span class="username">Sarah Chen</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Studio Layout -->
+    <main class="studio-main">
+        <!-- Left Sidebar - Project Navigation -->
+        <aside class="left-sidebar" id="left-sidebar">
+            <div class="sidebar-header">
+                <div class="project-selector">
+                    <select class="form-control" id="project-dropdown">
+                        <option value="novel1">The Digital Dreamer</option>
+                        <option value="new">+ Create New Project</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="section-header">
+                    <h3>Chapters</h3>
+                    <button class="btn btn--primary btn--sm" id="add-chapter-btn">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                <div class="chapter-list" id="chapter-list">
+                    <!-- Chapters will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="section-header">
+                    <h3>Structure</h3>
+                    <button class="toggle-btn" id="outline-toggle">
+                        <i class="fas fa-sitemap"></i>
+                    </button>
+                </div>
+                <div class="outline-view" id="outline-view">
+                    <div class="outline-item">Part I: Discovery</div>
+                    <div class="outline-item">Part II: Revelation</div>
+                    <div class="outline-item">Part III: Revolution</div>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="section-header">
+                    <h3>Writing Goals</h3>
+                </div>
+                <div class="goals-display">
+                    <div class="goal-item">
+                        <div class="goal-progress">
+                            <div class="goal-bar">
+                                <div class="goal-fill" style="width: 65%"></div>
+                            </div>
+                            <span class="goal-text">650 / 1000 words today</span>
+                        </div>
                     </div>
-                    <div class="reader-controls">
-                        <button class="reader-btn" id="focus-mode-btn" title="Focus Mode">
+                    <div class="goal-item">
+                        <div class="streak-display">
+                            <i class="fas fa-fire"></i>
+                            <span>12 day streak</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <button class="search-btn" id="search-btn">
+                    <i class="fas fa-search"></i>
+                    Search in project
+                </button>
+            </div>
+        </aside>
+
+        <!-- Center Panel - Main Editor -->
+        <div class="center-panel" id="center-panel">
+            <div class="editor-header">
+                <div class="chapter-title-section">
+                    <input type="text" class="chapter-title-input" id="chapter-title" placeholder="Chapter Title" value="Digital Revolution">
+                    <div class="chapter-meta">
+                        <span class="chapter-number">Chapter 14</span>
+                        <span class="reading-time">~12 min read</span>
+                    </div>
+                </div>
+                
+                <div class="editor-tools">
+                    <div class="formatting-toolbar">
+                        <button class="tool-btn" title="Bold" data-format="bold">
+                            <i class="fas fa-bold"></i>
+                        </button>
+                        <button class="tool-btn" title="Italic" data-format="italic">
+                            <i class="fas fa-italic"></i>
+                        </button>
+                        <button class="tool-btn" title="Underline" data-format="underline">
+                            <i class="fas fa-underline"></i>
+                        </button>
+                        <div class="toolbar-separator"></div>
+                        <button class="tool-btn" title="Focus Mode" id="focus-mode-btn">
                             <i class="fas fa-expand"></i>
                         </button>
-                        <button class="reader-btn" id="settings-btn" title="Settings">
-                            <i class="fas fa-cog"></i>
+                        <button class="tool-btn" title="Typewriter Mode" id="typewriter-mode-btn">
+                            <i class="fas fa-keyboard"></i>
                         </button>
-                    </div>
-                </div>
-                <div class="progress-bar">
-                    <div class="progress-fill" id="reading-progress"></div>
-                </div>
-            </div>
-
-            <div class="reader-content">
-                <div class="reading-pane" id="reading-pane">
-                    <div class="chapter-content" id="chapter-content">
-                        <!-- Chapter content will be populated by JavaScript -->
-                    </div>
-                </div>
-
-                <div class="chapter-navigation">
-                    <button class="nav-btn" id="prev-chapter-btn">
-                        <i class="fas fa-chevron-left"></i>
-                        Previous
-                    </button>
-                    <button class="nav-btn" id="next-chapter-btn">
-                        Next
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
-
-                <div class="engagement-section">
-                    <div class="engagement-actions">
-                        <button class="like-btn" id="chapter-like-btn">
-                            <i class="fas fa-heart"></i>
-                            <span id="like-count">0</span>
-                        </button>
-                    </div>
-
-                    <div class="comments-section">
-                        <h3>Comments</h3>
-                        <div class="comment-form">
-                            <textarea placeholder="Share your thoughts..." id="comment-input"></textarea>
-                            <button class="btn btn--primary" id="submit-comment-btn">Comment</button>
-                        </div>
-                        <div class="comments-list" id="comments-list">
-                            <!-- Comments will be populated by JavaScript -->
-                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Reader Settings Modal -->
-            <div class="modal hidden" id="reader-settings-modal">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h3>Reader Settings</h3>
-                        <button class="modal-close" id="close-settings-modal">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="setting-group">
-                            <label>Font Size</label>
-                            <div class="font-size-controls">
-                                <button class="btn btn--outline btn--sm" id="decrease-font">A-</button>
-                                <span id="font-size-display">16px</span>
-                                <button class="btn btn--outline btn--sm" id="increase-font">A+</button>
-                            </div>
-                        </div>
-                        <div class="setting-group">
-                            <label>Background</label>
-                            <div class="background-options">
-                                <button class="bg-option active" data-bg="dark">Dark</button>
-                                <button class="bg-option" data-bg="light">Light</button>
-                                <button class="bg-option" data-bg="sepia">Sepia</button>
-                            </div>
-                        </div>
-                    </div>
+            <div class="editor-container">
+                <div class="main-editor" id="main-editor" contenteditable="true">
+                    <p>The resistance had grown beyond Maya's wildest expectations. What started as a small group of hackers and dreamers had become a global movement. Across every major city, people were waking up—literally and figuratively—to the truth about the dream manipulation conspiracy.</p>
+                    
+                    <p>Maya stood on the rooftop of the abandoned server farm that had become their headquarters, watching the sunrise paint Neo-Tokyo in shades of gold and crimson. Jake joined her, his arm settling around her shoulders.</p>
+                    
+                    <p>"The neural network is completely dismantled," he reported. "Dr. Vasquez confirmed it—no more dream harvesting, no more mind control. The corporate overlords are scrambling to cover their tracks, but it's too late. The truth is out there."</p>
+                    
+                    <p>Maya nodded, but her expression remained thoughtful. "This is just the beginning, you know. Now that people understand the technology exists, there will be others who try to exploit it. We need to stay vigilant."</p>
+                    
+                    <p>"Then we will," Jake said firmly. "The Digital Dream Defense Network isn't going anywhere. We've proven that regular people can fight back against corporate tyranny when they work together."</p>
                 </div>
+            </div>
+
+            <div class="chapter-notes">
+                <div class="notes-header">
+                    <h4>Chapter Notes</h4>
+                    <button class="toggle-btn" id="notes-toggle">
+                        <i class="fas fa-chevron-up"></i>
+                    </button>
+                </div>
+                <textarea class="form-control" id="chapter-notes-input" placeholder="Add notes about this chapter...">Climax chapter - resolution of the main conflict. Show the growth of the resistance and hint at future challenges. Strong ending with hope.</textarea>
             </div>
         </div>
 
-        <!-- 404 Page -->
-        <div id="page-404" class="page">
-            <div class="error-page">
-                <div class="container">
-                    <div class="error-content">
-                        <h1 class="error-code">404</h1>
-                        <h2>Page Not Found</h2>
-                        <p>The page you're looking for doesn't exist or has been moved.</p>
-                        <a href="#" data-route="/" class="btn btn--primary">Go Home</a>
+        <!-- Right Sidebar - Writing Tools -->
+        <aside class="right-sidebar" id="right-sidebar">
+            <div class="sidebar-tabs">
+                <button class="tab-btn active" data-tab="publishing">
+                    <i class="fas fa-upload"></i>
+                    Publish
+                </button>
+                <button class="tab-btn" data-tab="style">
+                    <i class="fas fa-palette"></i>
+                    Style
+                </button>
+                <button class="tab-btn" data-tab="analytics">
+                    <i class="fas fa-chart-line"></i>
+                    Analytics
+                </button>
+                <button class="tab-btn" data-tab="export">
+                    <i class="fas fa-download"></i>
+                    Export
+                </button>
+            </div>
+
+            <!-- Publishing Panel -->
+            <div class="tab-content active" id="publishing-tab">
+                <div class="tab-section">
+                    <h4>Novel Metadata</h4>
+                    <div class="form-group">
+                        <label class="form-label">Title</label>
+                        <input type="text" class="form-control" value="The Digital Dreamer">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Genre</label>
+                        <select class="form-control">
+                            <option>Cyberpunk</option>
+                            <option>Sci-Fi</option>
+                            <option>Thriller</option>
+                            <option>Romance</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Tags</label>
+                        <div class="tag-input">
+                            <span class="tag">AI <i class="fas fa-times"></i></span>
+                            <span class="tag">Dreams <i class="fas fa-times"></i></span>
+                            <span class="tag">Hacking <i class="fas fa-times"></i></span>
+                            <input type="text" placeholder="Add tag...">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-section">
+                    <h4>Cover Art</h4>
+                    <div class="cover-upload">
+                        <div class="cover-preview">
+                            <img src="https://via.placeholder.com/150x225/BF40BF/FFFFFF?text=The+Digital+Dreamer" alt="Cover">
+                        </div>
+                        <button class="btn btn--outline btn--sm">
+                            <i class="fas fa-upload"></i>
+                            Upload New
+                        </button>
+                    </div>
+                </div>
+
+                <div class="tab-section">
+                    <h4>Publishing Status</h4>
+                    <div class="status-info">
+                        <div class="status-item">
+                            <span class="status-label">Current Chapter</span>
+                            <span class="status--info">Draft</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label">Published Chapters</span>
+                            <span class="status-value">13 of 15</span>
+                        </div>
+                    </div>
+                    <button class="btn btn--primary btn--full-width" id="schedule-publish-btn">
+                        Schedule for Publishing
+                    </button>
+                </div>
+            </div>
+
+            <!-- Style Guide Panel -->
+            <div class="tab-content" id="style-tab">
+                <div class="tab-section">
+                    <h4>Characters</h4>
+                    <div class="character-list">
+                        <div class="character-item">
+                            <strong>Maya Rodriguez</strong>
+                            <p>Protagonist, 28, hacker and dream architect</p>
+                        </div>
+                        <div class="character-item">
+                            <strong>Jake Morrison</strong>
+                            <p>Supporting, former military cybersecurity expert</p>
+                        </div>
+                        <div class="character-item">
+                            <strong>Dr. Elena Vasquez</strong>
+                            <p>Ally, neuroscientist studying consciousness</p>
+                        </div>
+                    </div>
+                    <button class="btn btn--outline btn--sm">
+                        <i class="fas fa-plus"></i>
+                        Add Character
+                    </button>
+                </div>
+
+                <div class="tab-section">
+                    <h4>World Building</h4>
+                    <div class="worldbuilding-list">
+                        <div class="worldbuilding-item">
+                            <strong>Neo-Tokyo 2087</strong>
+                            <p>Massive cyberpunk metropolis with towering arcologies</p>
+                        </div>
+                        <div class="worldbuilding-item">
+                            <strong>Dream-Diving Technology</strong>
+                            <p>Neural interfaces that allow users to enter dreams</p>
+                        </div>
+                    </div>
+                    <button class="btn btn--outline btn--sm">
+                        <i class="fas fa-plus"></i>
+                        Add Element
+                    </button>
+                </div>
+            </div>
+
+            <!-- Analytics Panel -->
+            <div class="tab-content" id="analytics-tab">
+                <div class="tab-section">
+                    <h4>Reading Stats</h4>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">12,456</div>
+                            <div class="stat-label">Total Views</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">4.7</div>
+                            <div class="stat-label">Avg Rating</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">234</div>
+                            <div class="stat-label">Comments</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">68%</div>
+                            <div class="stat-label">Completion</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-section">
+                    <h4>Recent Comments</h4>
+                    <div class="recent-comments">
+                        <div class="comment-preview">
+                            <strong>CyberReader</strong>
+                            <p>"The opening is so atmospheric! I can really feel the cyberpunk setting."</p>
+                            <span class="comment-time">2 hours ago</span>
+                        </div>
+                        <div class="comment-preview">
+                            <strong>DreamHacker</strong>
+                            <p>"Plot twist! I didn't expect Maya to discover she wasn't alone."</p>
+                            <span class="comment-time">1 day ago</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+
+            <!-- Export Panel -->
+            <div class="tab-content" id="export-tab">
+                <div class="tab-section">
+                    <h4>Export Options</h4>
+                    <div class="export-options">
+                        <button class="btn btn--outline btn--full-width">
+                            <i class="fas fa-file-pdf"></i>
+                            Export as PDF
+                        </button>
+                        <button class="btn btn--outline btn--full-width">
+                            <i class="fas fa-book"></i>
+                            Export as EPUB
+                        </button>
+                        <button class="btn btn--outline btn--full-width">
+                            <i class="fas fa-file-word"></i>
+                            Export as Word
+                        </button>
+                    </div>
+                </div>
+
+                <div class="tab-section">
+                    <h4>Beta Readers</h4>
+                    <div class="beta-readers">
+                        <div class="beta-reader-item">
+                            <img src="https://via.placeholder.com/30x30/FF6B9D/FFFFFF?text=BL" alt="Beta Reader">
+                            <div class="beta-reader-info">
+                                <strong>BookLover2024</strong>
+                                <span>13 chapters read</span>
+                            </div>
+                            <span class="status--success">Active</span>
+                        </div>
+                        <div class="beta-reader-item">
+                            <img src="https://via.placeholder.com/30x30/32CD32/FFFFFF?text=SF" alt="Beta Reader">
+                            <div class="beta-reader-info">
+                                <strong>SciFiFan42</strong>
+                                <span>10 chapters read</span>
+                            </div>
+                            <span class="status--success">Active</span>
+                        </div>
+                    </div>
+                    <button class="btn btn--outline btn--sm">
+                        <i class="fas fa-plus"></i>
+                        Invite Beta Reader
+                    </button>
+                </div>
+            </div>
+        </aside>
     </main>
 
-    <!-- Footer -->
-    <footer class="main-footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <div class="logo">A</div>
-                    <span>Anmol</span>
-                </div>
-                <div class="footer-links">
-                    <a href="#" data-route="/about">About</a>
-                    <a href="#" data-route="/creator">Creator</a>
-                    <a href="#" target="_blank">Privacy</a>
-                    <a href="#" target="_blank">Terms</a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Anmol Platform. Made with ❤️ for creators.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Auth Modal -->
-    <div class="modal hidden" id="auth-modal">
-        <div class="modal-content">
+    <!-- Novel Creation Wizard Modal -->
+    <div class="modal hidden" id="novel-wizard-modal">
+        <div class="modal-content large">
             <div class="modal-header">
-                <h3 id="auth-modal-title">Sign In</h3>
-                <button class="modal-close" id="close-auth-modal">
+                <h3 id="wizard-title">Create New Novel</h3>
+                <button class="modal-close" id="close-wizard-modal">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
             <div class="modal-body">
-                <form id="auth-form">
-                    <div class="form-group">
-                        <label class="form-label">Display Name</label>
-                        <input type="text" class="form-control" id="auth-display-name" required>
+                <div class="wizard-steps">
+                    <div class="step active">
+                        <span class="step-number">1</span>
+                        <span class="step-title">Basic Info</span>
                     </div>
+                    <div class="step">
+                        <span class="step-number">2</span>
+                        <span class="step-title">Genre & Tags</span>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">3</span>
+                        <span class="step-title">Cover & Description</span>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">4</span>
+                        <span class="step-title">Settings</span>
+                    </div>
+                </div>
+
+                <div class="wizard-content">
+                    <div class="wizard-step active" id="step-1">
+                        <h4>Tell us about your novel</h4>
+                        <div class="form-group">
+                            <label class="form-label">Novel Title *</label>
+                            <input type="text" class="form-control" placeholder="Enter your novel's title">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Brief Description</label>
+                            <textarea class="form-control" rows="3" placeholder="What's your novel about?"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Target Audience</label>
+                            <select class="form-control">
+                                <option>Young Adult</option>
+                                <option>Adult</option>
+                                <option>Teen</option>
+                                <option>All Ages</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="wizard-step" id="step-2">
+                        <h4>Choose your genre and tags</h4>
+                        <div class="form-group">
+                            <label class="form-label">Primary Genre *</label>
+                            <select class="form-control">
+                                <option>Fantasy</option>
+                                <option>Science Fiction</option>
+                                <option>Romance</option>
+                                <option>Mystery</option>
+                                <option>Thriller</option>
+                                <option>Horror</option>
+                                <option>Literary Fiction</option>
+                                <option>Historical Fiction</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Tags</label>
+                            <div class="tag-suggestions">
+                                <button class="tag-suggestion">Action</button>
+                                <button class="tag-suggestion">Adventure</button>
+                                <button class="tag-suggestion">Magic</button>
+                                <button class="tag-suggestion">Technology</button>
+                                <button class="tag-suggestion">Love</button>
+                                <button class="tag-suggestion">Mystery</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Content Warnings</label>
+                            <div class="checkbox-group">
+                                <label><input type="checkbox"> Violence</label>
+                                <label><input type="checkbox"> Strong Language</label>
+                                <label><input type="checkbox"> Mature Themes</label>
+                                <label><input type="checkbox"> Sexual Content</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="wizard-step" id="step-3">
+                        <h4>Cover art and full description</h4>
+                        <div class="form-group">
+                            <label class="form-label">Cover Art</label>
+                            <div class="cover-upload-area">
+                                <div class="upload-placeholder">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <p>Drag and drop your cover image here</p>
+                                    <button class="btn btn--outline">Choose File</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Full Description</label>
+                            <textarea class="form-control" rows="6" placeholder="Write a compelling description that will draw readers in..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="wizard-step" id="step-4">
+                        <h4>Publishing settings</h4>
+                        <div class="form-group">
+                            <label class="form-label">Publishing Schedule</label>
+                            <select class="form-control">
+                                <option>Publish immediately</option>
+                                <option>Save as draft</option>
+                                <option>Schedule for later</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Chapter Structure</label>
+                            <input type="number" class="form-control" placeholder="Estimated number of chapters" min="1">
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox"> Allow reader comments
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox"> Enable beta reader program
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wizard-actions">
+                    <button class="btn btn--outline" id="wizard-prev" disabled>Previous</button>
+                    <button class="btn btn--primary" id="wizard-next">Next</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div class="modal hidden" id="settings-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Studio Settings</h3>
+                <button class="modal-close" id="close-settings-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-group">
+                    <h4>Editor Preferences</h4>
                     <div class="form-group">
-                        <label class="form-label">Email</label>
-                        <input type="email" class="form-control" id="auth-email" required>
+                        <label>
+                            <input type="checkbox" checked> Auto-save every 2 minutes
+                        </label>
                     </div>
                     <div class="form-group">
                         <label>
-                            <input type="checkbox" id="is-author-checkbox"> I am an author
+                            <input type="checkbox"> Enable typewriter sounds
                         </label>
                     </div>
-                    <button type="submit" class="btn btn--primary btn--full-width" id="auth-submit-btn">
-                        Sign In
-                    </button>
-                </form>
+                    <div class="form-group">
+                        <label class="form-label">Font Size</label>
+                        <div class="font-size-controls">
+                            <button class="btn btn--outline btn--sm">A-</button>
+                            <span>16px</span>
+                            <button class="btn btn--outline btn--sm">A+</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="setting-group">
+                    <h4>Writing Goals</h4>
+                    <div class="form-group">
+                        <label class="form-label">Daily Word Target</label>
+                        <input type="number" class="form-control" value="1000">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Monthly Target</label>
+                        <input type="number" class="form-control" value="25000">
+                    </div>
+                </div>
+                <div class="setting-group">
+                    <h4>Notifications</h4>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" checked> Writing reminder notifications
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" checked> Reader comment notifications
+                        </label>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
