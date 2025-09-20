@@ -346,36 +346,10 @@ class Router {
 
   navigate(path, pushState = true) {
     let route = path;
-    
-    // Handle reader route with parameters
-    if (path.startsWith('/read/')) {
-      const pathParts = path.split('/');
-      if (pathParts.length >= 4) {
-        route = '/read';
-        this.appState.currentNovelId = pathParts[2];
-        this.appState.currentChapterId = pathParts[3];
-      }
-    }
-
-    // Check if route exists
-    if (!this.routes[route]) {
-      route = '/404';
-    }
-
-    // Check authentication requirements
-    if ((route === '/profile' || route === '/dashboard') && !this.appState.currentUser) {
-      this.showAuthModal();
-      return;
-    }
-
-    if (route === '/dashboard' && this.appState.currentUser && !this.appState.currentUser.isAuthor) {
-      route = '/profile';
-    }
-
+    if (!this.routes[route]) route = '/404';
     this.appState.currentRoute = route;
     this.render();
   }
-
   render() {
   const templateId = this.routes[this.appState.currentRoute] || 'home-template';
   const template = document.getElementById(templateId);
