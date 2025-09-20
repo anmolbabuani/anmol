@@ -1,1 +1,337 @@
+<!DOCTYPE html>
+<html lang="en" data-color-scheme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Hub - Anmol</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <div class="logo">A</div>
+                <span class="brand-name">Anmol</span>
+            </div>
+            
+            <div class="nav-links">
+                <a href="#" class="nav-link">Home</a>
+                <a href="#" class="nav-link active">Community</a>
+                <a href="#" class="nav-link">Library</a>
+                <div class="nav-user">
+                    <div class="user-profile">
+                        <img src="https://via.placeholder.com/40x40/FF6B9D/FFFFFF?text=BL" alt="BookLover2024" class="user-avatar">
+                        <span class="user-name">BookLover2024</span>
+                        <span class="user-level">Avid Reader</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
 
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">Join the Conversation</h1>
+                    <div class="community-stats">
+                        <div class="stat-card">
+                            <span class="stat-number" data-count="15847">15,847</span>
+                            <span class="stat-label">Members</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number" data-count="342">342</span>
+                            <span class="stat-label">Active Discussions</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number" data-count="89">89</span>
+                            <span class="stat-label">Novels Discussed Today</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number" data-count="1253">1,253</span>
+                            <span class="stat-label">Online Now</span>
+                        </div>
+                    </div>
+                    
+                    <div class="hero-actions">
+                        <button class="btn btn--primary" id="start-discussion-btn">
+                            <i class="fas fa-plus"></i>
+                            Start Discussion
+                        </button>
+                        <button class="btn btn--outline" id="join-challenge-btn">
+                            <i class="fas fa-trophy"></i>
+                            Join Reading Challenge
+                        </button>
+                        <button class="btn btn--outline" id="browse-topics-btn">
+                            <i class="fas fa-search"></i>
+                            Browse Topics
+                        </button>
+                    </div>
+
+                    <div class="trending-topics">
+                        <div class="trending-label">Trending:</div>
+                        <div class="topic-tags">
+                            <span class="topic-tag">#CyberpunkSeptember</span>
+                            <span class="topic-tag">#NewAuthors2024</span>
+                            <span class="topic-tag">#RomanceReads</span>
+                            <span class="topic-tag">#WritingTips</span>
+                            <span class="topic-tag">#BookClubPicks</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Navigation Tabs -->
+        <div class="tab-navigation">
+            <div class="container">
+                <nav class="tab-nav">
+                    <button class="tab-btn active" data-tab="discussions">
+                        <i class="fas fa-comments"></i>
+                        Discussions
+                    </button>
+                    <button class="tab-btn" data-tab="challenges">
+                        <i class="fas fa-trophy"></i>
+                        Reading Challenges
+                    </button>
+                    <button class="tab-btn" data-tab="authors">
+                        <i class="fas fa-pen-nib"></i>
+                        Author Corner
+                    </button>
+                    <button class="tab-btn" data-tab="bookclubs">
+                        <i class="fas fa-users"></i>
+                        Book Clubs
+                    </button>
+                    <button class="tab-btn" data-tab="recommendations">
+                        <i class="fas fa-star"></i>
+                        Recommendations
+                    </button>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Content Container -->
+        <div class="content-container">
+            <div class="container">
+                <div class="content-layout">
+                    <!-- Main Content Area -->
+                    <div class="main-content-area">
+                        
+                        <!-- Discussions Tab -->
+                        <div id="discussions-tab" class="tab-content active">
+                            <div class="section-header">
+                                <h2>Discussions</h2>
+                                <div class="section-actions">
+                                    <div class="search-bar">
+                                        <i class="fas fa-search"></i>
+                                        <input type="text" placeholder="Search discussions..." id="discussion-search">
+                                    </div>
+                                    <button class="btn btn--primary" id="new-discussion-btn">
+                                        <i class="fas fa-plus"></i>
+                                        New Discussion
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="discussion-categories">
+                                <button class="category-pill active" data-category="all">All</button>
+                                <button class="category-pill" data-category="novel-discussion">Novel Discussion</button>
+                                <button class="category-pill" data-category="recommendations">Recommendations</button>
+                                <button class="category-pill" data-category="writing-tips">Writing Tips</button>
+                                <button class="category-pill" data-category="author-ama">Author AMA</button>
+                            </div>
+
+                            <div class="discussions-list" id="discussions-list">
+                                <!-- Discussions will be populated by JavaScript -->
+                            </div>
+                        </div>
+
+                        <!-- Reading Challenges Tab -->
+                        <div id="challenges-tab" class="tab-content">
+                            <div class="section-header">
+                                <h2>Reading Challenges</h2>
+                                <button class="btn btn--primary" id="create-challenge-btn">
+                                    <i class="fas fa-plus"></i>
+                                    Create Challenge
+                                </button>
+                            </div>
+
+                            <div class="challenges-grid" id="challenges-grid">
+                                <!-- Challenges will be populated by JavaScript -->
+                            </div>
+                        </div>
+
+                        <!-- Author Corner Tab -->
+                        <div id="authors-tab" class="tab-content">
+                            <div class="section-header">
+                                <h2>Author Corner</h2>
+                                <div class="section-tabs">
+                                    <button class="sub-tab-btn active" data-subtab="spotlight">Spotlight</button>
+                                    <button class="sub-tab-btn" data-subtab="amas">AMAs</button>
+                                    <button class="sub-tab-btn" data-subtab="tips">Writing Tips</button>
+                                    <button class="sub-tab-btn" data-subtab="beta">Beta Readers</button>
+                                </div>
+                            </div>
+
+                            <div id="author-content">
+                                <!-- Author content will be populated by JavaScript -->
+                            </div>
+                        </div>
+
+                        <!-- Book Clubs Tab -->
+                        <div id="bookclubs-tab" class="tab-content">
+                            <div class="section-header">
+                                <h2>Book Clubs</h2>
+                                <button class="btn btn--primary" id="create-club-btn">
+                                    <i class="fas fa-plus"></i>
+                                    Create Club
+                                </button>
+                            </div>
+
+                            <div class="clubs-grid" id="clubs-grid">
+                                <!-- Book clubs will be populated by JavaScript -->
+                            </div>
+                        </div>
+
+                        <!-- Recommendations Tab -->
+                        <div id="recommendations-tab" class="tab-content">
+                            <div class="section-header">
+                                <h2>Community Recommendations</h2>
+                                <button class="btn btn--outline" id="create-list-btn">
+                                    <i class="fas fa-list"></i>
+                                    Create List
+                                </button>
+                            </div>
+
+                            <div class="recommendations-content" id="recommendations-content">
+                                <!-- Recommendations will be populated by JavaScript -->
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Sidebar -->
+                    <aside class="sidebar">
+                        <!-- User Profile Card -->
+                        <div class="profile-card">
+                            <div class="profile-header">
+                                <img src="https://via.placeholder.com/60x60/FF6B9D/FFFFFF?text=BL" alt="BookLover2024" class="profile-avatar">
+                                <div class="profile-info">
+                                    <h3>BookLover2024</h3>
+                                    <span class="profile-level">Avid Reader</span>
+                                    <div class="profile-points">
+                                        <i class="fas fa-star"></i>
+                                        2,340 points
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="profile-stats">
+                                <div class="stat">
+                                    <span class="stat-value">45</span>
+                                    <span class="stat-name">Day Streak</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-value">3</span>
+                                    <span class="stat-name">Challenges</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-value">23</span>
+                                    <span class="stat-name">Following</span>
+                                </div>
+                            </div>
+                            <div class="profile-badges">
+                                <div class="badge" title="First Post"><i class="fas fa-comment"></i></div>
+                                <div class="badge" title="Challenge Completer"><i class="fas fa-trophy"></i></div>
+                                <div class="badge" title="Helpful Contributor"><i class="fas fa-thumbs-up"></i></div>
+                            </div>
+                        </div>
+
+                        <!-- Active Users -->
+                        <div class="widget-card">
+                            <h3>Active Users</h3>
+                            <div class="active-users-list" id="active-users-list">
+                                <!-- Active users will be populated by JavaScript -->
+                            </div>
+                        </div>
+
+                        <!-- Upcoming Events -->
+                        <div class="widget-card">
+                            <h3>Upcoming Events</h3>
+                            <div class="events-list" id="events-list">
+                                <!-- Events will be populated by JavaScript -->
+                            </div>
+                        </div>
+
+                        <!-- Trending Novels -->
+                        <div class="widget-card">
+                            <h3>Trending in Community</h3>
+                            <div class="trending-novels" id="trending-novels">
+                                <!-- Trending novels will be populated by JavaScript -->
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- New Discussion Modal -->
+    <div class="modal hidden" id="new-discussion-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Start a New Discussion</h3>
+                <button class="modal-close" id="close-discussion-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="new-discussion-form">
+                    <div class="form-group">
+                        <label class="form-label">Title</label>
+                        <input type="text" class="form-control" id="discussion-title" placeholder="What's on your mind?" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Category</label>
+                        <select class="form-control" id="discussion-category" required>
+                            <option value="">Choose a category</option>
+                            <option value="novel-discussion">Novel Discussion</option>
+                            <option value="recommendations">Recommendations</option>
+                            <option value="writing-tips">Writing Tips</option>
+                            <option value="general">General Chat</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Content</label>
+                        <textarea class="form-control" id="discussion-content" rows="6" placeholder="Share your thoughts..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Tags (optional)</label>
+                        <input type="text" class="form-control" id="discussion-tags" placeholder="e.g. cyberpunk, romance, writing">
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn--outline" id="cancel-discussion">Cancel</button>
+                        <button type="submit" class="btn btn--primary">Post Discussion</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Achievement Toast -->
+    <div class="achievement-toast hidden" id="achievement-toast">
+        <div class="achievement-icon">
+            <i class="fas fa-trophy"></i>
+        </div>
+        <div class="achievement-content">
+            <h4>Achievement Unlocked!</h4>
+            <p id="achievement-text"></p>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
