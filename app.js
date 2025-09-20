@@ -377,11 +377,15 @@ class Router {
   }
 
   render() {
-    // Hide all pages
-    document.querySelectorAll('.page').forEach(page => {
-      page.classList.remove('active');
-    });
-
+  const templateId = this.routes[this.appState.currentRoute] || 'home-template';
+  const template = document.getElementById(templateId);
+  const appRoot = document.getElementById('app-root');
+  if (template && appRoot) {
+    appRoot.innerHTML = '';
+    appRoot.appendChild(template.content.cloneNode(true));
+  }
+  // Optional: Call page hooks if needed
+}
     // Show current page
     let pageId = this.routes[this.appState.currentRoute] || 'page-404';
     const currentPage = document.getElementById(pageId);
