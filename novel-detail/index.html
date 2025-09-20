@@ -1,1 +1,429 @@
+<!DOCTYPE html>
+<html lang="en" data-color-scheme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Digital Dreamer - Sarah Chen | Anmol</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <div class="logo">A</div>
+                <span class="brand-name">Anmol</span>
+            </div>
+            <div class="nav-links">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Browse
+                </a>
+                <button class="btn btn--outline btn--sm" id="add-library-btn">
+                    <i class="fas fa-plus"></i>
+                    Add to Library
+                </button>
+                <button class="btn btn--primary btn--sm" id="start-reading-btn">
+                    <i class="fas fa-book-open"></i>
+                    Start Reading
+                </button>
+            </div>
+        </div>
+    </nav>
 
+    <main class="novel-detail">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="novel-cover-container">
+                        <img src="https://via.placeholder.com/400x600/BF40BF/FFFFFF?text=The+Digital+Dreamer" alt="The Digital Dreamer Cover" class="novel-cover">
+                        <div class="cover-overlay">
+                            <button class="cover-action-btn" id="preview-btn">
+                                <i class="fas fa-eye"></i>
+                                Preview
+                            </button>
+                        </div>
+                    </div>
+                    <div class="novel-info">
+                        <div class="genre-tag">Cyberpunk</div>
+                        <h1 class="novel-title">The Digital Dreamer</h1>
+                        <div class="author-link">
+                            <i class="fas fa-user"></i>
+                            <span>by Sarah Chen</span>
+                        </div>
+                        
+                        <div class="rating-section">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span class="rating-number">4.7</span>
+                            </div>
+                            <span class="rating-count">(1,547 ratings)</span>
+                        </div>
+
+                        <div class="novel-stats">
+                            <div class="stat-item">
+                                <i class="fas fa-eye"></i>
+                                <span class="stat-number">12.5K</span>
+                                <span class="stat-label">Views</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-heart"></i>
+                                <span class="stat-number">892</span>
+                                <span class="stat-label">Likes</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-list"></i>
+                                <span class="stat-number">15</span>
+                                <span class="stat-label">Chapters</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-clock"></i>
+                                <span class="stat-number">3h</span>
+                                <span class="stat-label">Read Time</span>
+                            </div>
+                        </div>
+
+                        <div class="progress-section">
+                            <div class="progress-info">
+                                <span>Your Progress: Chapter 2 of 15 (13%)</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 13%"></div>
+                            </div>
+                        </div>
+
+                        <div class="action-buttons">
+                            <button class="btn btn--primary btn--lg" id="continue-reading-btn">
+                                <i class="fas fa-play"></i>
+                                Continue Reading
+                            </button>
+                            <button class="btn btn--outline btn--lg" id="library-heart-btn">
+                                <i class="fas fa-heart"></i>
+                                Add to Library
+                            </button>
+                        </div>
+
+                        <div class="secondary-actions">
+                            <button class="action-btn" id="share-btn">
+                                <i class="fas fa-share"></i>
+                                Share
+                            </button>
+                            <button class="action-btn" id="follow-author-btn">
+                                <i class="fas fa-user-plus"></i>
+                                Follow Author
+                            </button>
+                            <button class="action-btn">
+                                <i class="fas fa-flag"></i>
+                                Report
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Novel Information Section -->
+        <section class="novel-info-section">
+            <div class="container">
+                <div class="section-grid">
+                    <div class="main-content">
+                        <div class="info-card">
+                            <h2>About This Novel</h2>
+                            <div class="description-content">
+                                <p id="description-text">In the neon-lit streets of Neo-Tokyo 2087, Maya Rodriguez isn't just any hacker—she's a dream architect. By day, she codes security protocols for mega-corporations. By night, she delves into the forbidden art of neural interface programming, developing technology that can bridge the gap between digital reality and human consciousness.</p>
+                                <div id="full-description" class="hidden">
+                                    <p>When Maya discovers a way to enter and navigate human dreams through virtual reality, she believes she's found the ultimate frontier of human experience. But her first dream-dive reveals a chilling truth: she's not the first to discover this technology. A shadowy organization has been using dream-hacking to manipulate people's subconscious minds, planting thoughts, stealing memories, and controlling behavior on a massive scale.</p>
+                                    <p>Now Maya must navigate a labyrinth of digital dreams and virtual nightmares to expose the conspiracy before it's too late. With the help of her partner Jake, a former military cybersecurity expert, and Dr. Elena Vasquez, a neuroscientist studying consciousness, Maya races against time to prevent the complete subjugation of human free will.</p>
+                                    <p>The Digital Dreamer is a thrilling cyberpunk adventure that explores the boundaries between technology and consciousness, reality and simulation, freedom and control. In a world where your dreams are no longer private, who can you trust?</p>
+                                </div>
+                                <button class="read-more-btn" id="read-more-btn">Read More</button>
+                            </div>
+
+                            <div class="novel-tags">
+                                <div class="tag">AI</div>
+                                <div class="tag">Dreams</div>
+                                <div class="tag">Hacking</div>
+                                <div class="tag">Technology</div>
+                                <div class="tag">Future</div>
+                                <div class="tag">Neural Interface</div>
+                                <div class="tag">Conspiracy</div>
+                                <div class="tag">Virtual Reality</div>
+                            </div>
+
+                            <div class="content-warnings">
+                                <h4><i class="fas fa-exclamation-triangle"></i> Content Warnings</h4>
+                                <div class="warning-tags">
+                                    <span class="warning-tag">Violence</span>
+                                    <span class="warning-tag">Strong Language</span>
+                                    <span class="warning-tag">Mature Themes</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-content">
+                        <div class="info-card">
+                            <h3>Novel Details</h3>
+                            <div class="detail-list">
+                                <div class="detail-item">
+                                    <span class="detail-label">Status:</span>
+                                    <span class="detail-value status-ongoing">Ongoing</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Language:</span>
+                                    <span class="detail-value">English</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Difficulty:</span>
+                                    <span class="detail-value">Intermediate</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Word Count:</span>
+                                    <span class="detail-value">45,000 words</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Published:</span>
+                                    <span class="detail-value">August 15, 2024</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Last Updated:</span>
+                                    <span class="detail-value">September 20, 2024</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chapters Section -->
+        <section class="chapters-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Chapters</h2>
+                    <div class="chapter-controls">
+                        <button class="btn btn--outline btn--sm" id="expand-all-btn">
+                            <i class="fas fa-expand-alt"></i>
+                            Expand All
+                        </button>
+                        <button class="btn btn--primary btn--sm" id="continue-from-current-btn">
+                            <i class="fas fa-play"></i>
+                            Continue from Chapter 3
+                        </button>
+                    </div>
+                </div>
+                <div class="chapters-list" id="chapters-list">
+                    <!-- Chapters will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Author Section -->
+        <section class="author-section">
+            <div class="container">
+                <div class="author-card">
+                    <div class="author-header">
+                        <img src="https://via.placeholder.com/100x100/4A90E2/FFFFFF?text=SC" alt="Sarah Chen" class="author-avatar">
+                        <div class="author-info">
+                            <h3>Sarah Chen</h3>
+                            <div class="author-stats">
+                                <span><strong>1</strong> Novel</span>
+                                <span><strong>2,341</strong> Followers</span>
+                                <span><strong>12.5K</strong> Total Views</span>
+                            </div>
+                            <button class="btn btn--primary btn--sm" id="follow-author-main-btn">
+                                <i class="fas fa-user-plus"></i>
+                                Follow Author
+                            </button>
+                        </div>
+                    </div>
+                    <div class="author-bio">
+                        <p>Sarah Chen is a software engineer turned novelist who brings her deep understanding of technology to her cyberpunk fiction. Based in San Francisco, she has worked for major tech companies and uses her insider knowledge to create authentic, thrilling stories about our digital future. The Digital Dreamer is her debut novel, but she has several more cyberpunk adventures planned.</p>
+                    </div>
+                    <div class="author-social">
+                        <a href="#" target="_blank" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                            @sarahchen_writes
+                        </a>
+                        <a href="#" target="_blank" class="social-link">
+                            <i class="fas fa-globe"></i>
+                            sarahchenauthor.com
+                        </a>
+                        <a href="#" target="_blank" class="social-link">
+                            <i class="fab fa-goodreads"></i>
+                            Goodreads
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reviews Section -->
+        <section class="reviews-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Reviews & Ratings</h2>
+                    <button class="btn btn--primary" id="write-review-btn">
+                        <i class="fas fa-pen"></i>
+                        Write a Review
+                    </button>
+                </div>
+                
+                <div class="reviews-grid">
+                    <div class="rating-breakdown">
+                        <div class="overall-rating">
+                            <div class="rating-number">4.7</div>
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <div class="rating-total">1,547 ratings</div>
+                        </div>
+                        <div class="rating-chart-container" style="position: relative; height: 200px;">
+                            <canvas id="rating-chart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="reviews-list">
+                        <div class="reviews-filters">
+                            <button class="filter-btn active" data-filter="all">All Reviews</button>
+                            <button class="filter-btn" data-filter="5">5 Stars</button>
+                            <button class="filter-btn" data-filter="4">4 Stars</button>
+                            <button class="filter-btn" data-filter="recent">Most Recent</button>
+                        </div>
+
+                        <div id="reviews-container">
+                            <!-- Reviews will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comments Section -->
+        <section class="comments-section">
+            <div class="container">
+                <h2>Community Discussion</h2>
+                
+                <div class="comment-form-container">
+                    <div class="comment-form">
+                        <textarea id="comment-input" placeholder="Join the discussion about this novel..." rows="3"></textarea>
+                        <div class="comment-form-actions">
+                            <div class="form-options">
+                                <label class="spoiler-checkbox">
+                                    <input type="checkbox" id="spoiler-warning">
+                                    <span>Contains spoilers</span>
+                                </label>
+                            </div>
+                            <button class="btn btn--primary" id="post-comment-btn">
+                                <i class="fas fa-comment"></i>
+                                Post Comment
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comments-list" id="comments-container">
+                    <!-- Comments will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Related Novels Section -->
+        <section class="related-section">
+            <div class="container">
+                <h2>Readers Also Enjoyed</h2>
+                <div class="related-novels-grid" id="related-novels">
+                    <!-- Related novels will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Write Review Modal -->
+    <div class="modal hidden" id="review-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Write a Review</h3>
+                <button class="modal-close" id="close-review-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="review-form">
+                    <div class="rating-input">
+                        <label>Your Rating:</label>
+                        <div class="star-rating" id="star-rating">
+                            <i class="fas fa-star" data-rating="1"></i>
+                            <i class="fas fa-star" data-rating="2"></i>
+                            <i class="fas fa-star" data-rating="3"></i>
+                            <i class="fas fa-star" data-rating="4"></i>
+                            <i class="fas fa-star" data-rating="5"></i>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Review Title</label>
+                        <input type="text" class="form-control" id="review-title" placeholder="Sum up your thoughts">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Your Review</label>
+                        <textarea class="form-control" id="review-content" rows="5" placeholder="Share your thoughts about this novel..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn--primary btn--full-width">
+                        Submit Review
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Share Modal -->
+    <div class="modal hidden" id="share-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Share This Novel</h3>
+                <button class="modal-close" id="close-share-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="share-options">
+                    <button class="share-option" data-platform="twitter">
+                        <i class="fab fa-twitter"></i>
+                        Twitter
+                    </button>
+                    <button class="share-option" data-platform="facebook">
+                        <i class="fab fa-facebook"></i>
+                        Facebook
+                    </button>
+                    <button class="share-option" data-platform="reddit">
+                        <i class="fab fa-reddit"></i>
+                        Reddit
+                    </button>
+                    <button class="share-option" data-platform="copy">
+                        <i class="fas fa-link"></i>
+                        Copy Link
+                    </button>
+                </div>
+                <div class="share-url">
+                    <input type="text" id="share-url-input" value="https://anmol.com/novel/the-digital-dreamer" readonly>
+                    <button class="btn btn--outline" id="copy-url-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
