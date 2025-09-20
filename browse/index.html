@@ -1,1 +1,332 @@
+<!DOCTYPE html>
+<html lang="en" data-color-scheme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover - Anmol Platform</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <div class="logo">A</div>
+                <span class="brand-name">Anmol</span>
+            </div>
+            
+            <div class="nav-links">
+                <a href="#" class="nav-link">Home</a>
+                <a href="#" class="nav-link active">Browse</a>
+                <a href="#" class="nav-link">Library</a>
+                <div class="nav-auth">
+                    <button class="btn btn--outline btn--sm">Sign In</button>
+                    <button class="btn btn--primary btn--sm">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </nav>
 
+    <!-- Main Content -->
+    <main class="browse-page">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-background"></div>
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">Discover Your Next Adventure</h1>
+                    <p class="hero-subtitle">Explore thousands of captivating stories from talented authors around the world</p>
+                    
+                    <!-- Search Bar -->
+                    <div class="search-container">
+                        <div class="search-bar">
+                            <i class="fas fa-search search-icon"></i>
+                            <input type="text" 
+                                   id="search-input" 
+                                   class="search-input" 
+                                   placeholder="Search novels, authors, or genres...">
+                            <button class="search-clear" id="search-clear">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="search-suggestions" id="search-suggestions"></div>
+                    </div>
+                    
+                    <!-- Trending Keywords -->
+                    <div class="trending-keywords">
+                        <span class="trending-label">Trending:</span>
+                        <div class="keyword-pills" id="keyword-pills"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Browse Content -->
+        <section class="browse-content">
+            <div class="container">
+                <div class="browse-layout">
+                    <!-- Sidebar Filters (Desktop) -->
+                    <aside class="filters-sidebar" id="filters-sidebar">
+                        <div class="filters-header">
+                            <h3>Filters</h3>
+                            <button class="clear-filters-btn" id="clear-filters">
+                                Clear All
+                            </button>
+                        </div>
+
+                        <!-- Sort Options -->
+                        <div class="filter-group">
+                            <h4 class="filter-title">Sort By</h4>
+                            <div class="filter-options">
+                                <label class="filter-option">
+                                    <input type="radio" name="sort" value="popular" checked>
+                                    <span class="checkmark"></span>
+                                    Most Popular
+                                </label>
+                                <label class="filter-option">
+                                    <input type="radio" name="sort" value="recent">
+                                    <span class="checkmark"></span>
+                                    Recently Updated
+                                </label>
+                                <label class="filter-option">
+                                    <input type="radio" name="sort" value="rating">
+                                    <span class="checkmark"></span>
+                                    Highest Rated
+                                </label>
+                                <label class="filter-option">
+                                    <input type="radio" name="sort" value="newest">
+                                    <span class="checkmark"></span>
+                                    Newest
+                                </label>
+                                <label class="filter-option">
+                                    <input type="radio" name="sort" value="alphabetical">
+                                    <span class="checkmark"></span>
+                                    A-Z
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Genre Filters -->
+                        <div class="filter-group">
+                            <h4 class="filter-title">Genres</h4>
+                            <div class="filter-options" id="genre-filters"></div>
+                        </div>
+
+                        <!-- Status Filters -->
+                        <div class="filter-group">
+                            <h4 class="filter-title">Status</h4>
+                            <div class="filter-options">
+                                <label class="filter-option">
+                                    <input type="checkbox" value="completed">
+                                    <span class="checkmark"></span>
+                                    Completed
+                                </label>
+                                <label class="filter-option">
+                                    <input type="checkbox" value="ongoing">
+                                    <span class="checkmark"></span>
+                                    Ongoing
+                                </label>
+                                <label class="filter-option">
+                                    <input type="checkbox" value="updated">
+                                    <span class="checkmark"></span>
+                                    Recently Updated
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Length Filters -->
+                        <div class="filter-group">
+                            <h4 class="filter-title">Length</h4>
+                            <div class="filter-options">
+                                <label class="filter-option">
+                                    <input type="checkbox" value="short">
+                                    <span class="checkmark"></span>
+                                    Short Story (< 2 hrs)
+                                </label>
+                                <label class="filter-option">
+                                    <input type="checkbox" value="novella">
+                                    <span class="checkmark"></span>
+                                    Novella (2-5 hrs)
+                                </label>
+                                <label class="filter-option">
+                                    <input type="checkbox" value="novel">
+                                    <span class="checkmark"></span>
+                                    Novel (5+ hrs)
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Difficulty Filters -->
+                        <div class="filter-group">
+                            <h4 class="filter-title">Reading Level</h4>
+                            <div class="filter-options">
+                                <label class="filter-option">
+                                    <input type="checkbox" value="beginner">
+                                    <span class="checkmark"></span>
+                                    Beginner
+                                </label>
+                                <label class="filter-option">
+                                    <input type="checkbox" value="intermediate">
+                                    <span class="checkmark"></span>
+                                    Intermediate
+                                </label>
+                                <label class="filter-option">
+                                    <input type="checkbox" value="advanced">
+                                    <span class="checkmark"></span>
+                                    Advanced
+                                </label>
+                            </div>
+                        </div>
+                    </aside>
+
+                    <!-- Main Content Area -->
+                    <div class="browse-main">
+                        <!-- Toolbar -->
+                        <div class="browse-toolbar">
+                            <div class="toolbar-left">
+                                <button class="filter-toggle" id="filter-toggle">
+                                    <i class="fas fa-filter"></i>
+                                    Filters
+                                </button>
+                                <div class="results-count">
+                                    <span id="results-count">0</span> novels found
+                                </div>
+                            </div>
+                            
+                            <div class="toolbar-right">
+                                <button class="advanced-search-toggle" id="advanced-search-toggle">
+                                    <i class="fas fa-cog"></i>
+                                    Advanced Search
+                                </button>
+                                <div class="view-options">
+                                    <button class="view-btn active" data-view="grid">
+                                        <i class="fas fa-th"></i>
+                                    </button>
+                                    <button class="view-btn" data-view="list">
+                                        <i class="fas fa-list"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Advanced Search Panel -->
+                        <div class="advanced-search-panel hidden" id="advanced-search-panel">
+                            <div class="advanced-search-content">
+                                <div class="search-row">
+                                    <input type="text" placeholder="Title contains..." id="title-search">
+                                    <input type="text" placeholder="Author name..." id="author-search">
+                                </div>
+                                <div class="search-row">
+                                    <input type="text" placeholder="Tags..." id="tags-search">
+                                    <select id="word-count-range">
+                                        <option value="">Word Count</option>
+                                        <option value="0-25000">Under 25K</option>
+                                        <option value="25000-50000">25K - 50K</option>
+                                        <option value="50000-100000">50K - 100K</option>
+                                        <option value="100000+">Over 100K</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Loading State -->
+                        <div class="loading-skeleton hidden" id="loading-skeleton">
+                            <div class="skeleton-grid">
+                                <div class="skeleton-card" data-repeat="8"></div>
+                            </div>
+                        </div>
+
+                        <!-- Novels Grid -->
+                        <div class="novels-grid" id="novels-grid"></div>
+
+                        <!-- Empty State -->
+                        <div class="empty-state hidden" id="empty-state">
+                            <div class="empty-content">
+                                <div class="empty-icon">
+                                    <i class="fas fa-search"></i>
+                                </div>
+                                <h3>No novels found</h3>
+                                <p>Try adjusting your filters or search terms to discover more stories.</p>
+                                <div class="empty-suggestions">
+                                    <h4>Popular searches:</h4>
+                                    <div class="suggestion-pills" id="suggestion-pills"></div>
+                                </div>
+                                <button class="btn btn--primary" id="clear-all-filters">
+                                    Clear All Filters
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Pagination -->
+                        <div class="pagination-container" id="pagination-container">
+                            <div class="pagination">
+                                <button class="pagination-btn" id="prev-page" disabled>
+                                    <i class="fas fa-chevron-left"></i>
+                                    Previous
+                                </button>
+                                
+                                <div class="page-numbers" id="page-numbers"></div>
+                                
+                                <button class="pagination-btn" id="next-page">
+                                    Next
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                            </div>
+                            
+                            <div class="items-per-page">
+                                <label>
+                                    Items per page:
+                                    <select id="items-per-page">
+                                        <option value="12">12</option>
+                                        <option value="24" selected>24</option>
+                                        <option value="48">48</option>
+                                    </select>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Mobile Filter Modal -->
+    <div class="modal hidden" id="filter-modal">
+        <div class="modal-content filter-modal-content">
+            <div class="modal-header">
+                <h3>Filters</h3>
+                <button class="modal-close" id="close-filter-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="mobile-filters">
+                <!-- Filters will be duplicated here for mobile -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn--outline" id="clear-mobile-filters">Clear All</button>
+                <button class="btn btn--primary" id="apply-mobile-filters">Apply Filters</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Novel Detail Modal (Quick Preview) -->
+    <div class="modal hidden" id="novel-modal">
+        <div class="modal-content novel-modal-content">
+            <div class="modal-header">
+                <button class="modal-close" id="close-novel-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="novel-detail" id="novel-detail">
+                    <!-- Novel details will be populated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
