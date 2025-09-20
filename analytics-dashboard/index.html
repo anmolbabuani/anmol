@@ -1,1 +1,342 @@
+<!DOCTYPE html>
+<html lang="en" data-color-scheme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reader Dashboard - Anmol Platform</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <div class="logo">A</div>
+                <span class="brand-name">Anmol</span>
+            </div>
+            
+            <div class="nav-links">
+                <a href="#" class="nav-link active">
+                    <i class="fas fa-home"></i>
+                    Dashboard
+                </a>
+                <a href="#" class="nav-link">
+                    <i class="fas fa-search"></i>
+                    Browse
+                </a>
+                <a href="#" class="nav-link">
+                    <i class="fas fa-book"></i>
+                    Library
+                </a>
+                <a href="#" class="nav-link">
+                    <i class="fas fa-users"></i>
+                    Community
+                </a>
+                <div class="nav-user">
+                    <img src="https://via.placeholder.com/32x32/BF40BF/FFFFFF?text=BL" alt="User Avatar" class="nav-avatar">
+                    <span class="nav-username">BookLover2024</span>
+                </div>
+            </div>
+        </div>
+    </nav>
 
+    <!-- Main Dashboard -->
+    <main class="dashboard">
+        <!-- Welcome Header -->
+        <section class="welcome-section">
+            <div class="container">
+                <div class="welcome-header">
+                    <div class="welcome-content">
+                        <h1 class="welcome-title">
+                            <span class="greeting">Good evening</span>, BookLover2024! 
+                            <span class="level-badge">Avid Reader</span>
+                        </h1>
+                        <p class="welcome-subtitle">
+                            <i class="fas fa-fire streak-icon"></i>
+                            <span class="streak-text">45-day reading streak!</span>
+                            <span class="weather-suggestion">Perfect weather for cozy indoor reading!</span>
+                        </p>
+                    </div>
+                    <div class="daily-stats">
+                        <div class="stat-card">
+                            <div class="stat-value">2h 15m</div>
+                            <div class="stat-label">Today</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">8</div>
+                            <div class="stat-label">This Month</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">67</div>
+                            <div class="stat-label">Pages Today</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Grid -->
+        <section class="dashboard-content">
+            <div class="container">
+                <div class="dashboard-grid">
+                    <!-- Currently Reading (Priority Section) -->
+                    <div class="dashboard-card currently-reading-card">
+                        <div class="card-header">
+                            <h2 class="card-title">
+                                <i class="fas fa-book-open"></i>
+                                Currently Reading
+                            </h2>
+                        </div>
+                        <div class="card-content">
+                            <div class="current-book" id="current-book">
+                                <!-- Will be populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Reading Goals & Progress -->
+                    <div class="dashboard-card goals-card">
+                        <div class="card-header">
+                            <h2 class="card-title">
+                                <i class="fas fa-target"></i>
+                                Reading Goals
+                            </h2>
+                        </div>
+                        <div class="card-content">
+                            <div class="goals-grid" id="reading-goals">
+                                <!-- Will be populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Personalized Recommendations -->
+                    <div class="dashboard-card recommendations-card">
+                        <div class="card-header">
+                            <h2 class="card-title">
+                                <i class="fas fa-star"></i>
+                                Recommended for You
+                            </h2>
+                            <button class="see-all-btn">See All</button>
+                        </div>
+                        <div class="card-content">
+                            <div class="recommendations-carousel" id="recommendations">
+                                <!-- Will be populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Community Activity -->
+                    <div class="dashboard-card community-card">
+                        <div class="card-header">
+                            <h2 class="card-title">
+                                <i class="fas fa-comments"></i>
+                                Community Activity
+                            </h2>
+                            <button class="see-all-btn">View All</button>
+                        </div>
+                        <div class="card-content">
+                            <div class="activity-list" id="community-activity">
+                                <!-- Will be populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Reading Statistics -->
+                    <div class="dashboard-card stats-card">
+                        <div class="card-header">
+                            <h2 class="card-title">
+                                <i class="fas fa-chart-line"></i>
+                                Reading Analytics
+                            </h2>
+                        </div>
+                        <div class="card-content">
+                            <div class="stats-grid" id="reading-stats">
+                                <!-- Will be populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Author Updates -->
+                    <div class="dashboard-card authors-card">
+                        <div class="card-header">
+                            <h2 class="card-title">
+                                <i class="fas fa-feather-alt"></i>
+                                Author Updates
+                            </h2>
+                            <button class="see-all-btn">View All</button>
+                        </div>
+                        <div class="card-content">
+                            <div class="author-updates" id="author-updates">
+                                <!-- Will be populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Achievements & Badges -->
+                    <div class="dashboard-card achievements-card">
+                        <div class="card-header">
+                            <h2 class="card-title">
+                                <i class="fas fa-trophy"></i>
+                                Recent Achievements
+                            </h2>
+                            <button class="see-all-btn">View All</button>
+                        </div>
+                        <div class="card-content">
+                            <div class="achievements-grid" id="achievements">
+                                <!-- Will be populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="dashboard-card quick-actions-card">
+                        <div class="card-header">
+                            <h2 class="card-title">
+                                <i class="fas fa-bolt"></i>
+                                Quick Actions
+                            </h2>
+                        </div>
+                        <div class="card-content">
+                            <div class="quick-actions-grid" id="quick-actions">
+                                <!-- Will be populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Sidebar Navigation (Desktop) -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-section">
+            <h3 class="sidebar-title">My Library</h3>
+            <nav class="sidebar-nav">
+                <a href="#" class="sidebar-link">
+                    <i class="fas fa-book-open"></i>
+                    Currently Reading
+                </a>
+                <a href="#" class="sidebar-link">
+                    <i class="fas fa-bookmark"></i>
+                    Reading List
+                </a>
+                <a href="#" class="sidebar-link">
+                    <i class="fas fa-check-circle"></i>
+                    Completed Books
+                </a>
+                <a href="#" class="sidebar-link">
+                    <i class="fas fa-star"></i>
+                    My Reviews
+                </a>
+                <a href="#" class="sidebar-link">
+                    <i class="fas fa-quote-left"></i>
+                    Bookmarked Passages
+                </a>
+                <a href="#" class="sidebar-link">
+                    <i class="fas fa-sticky-note"></i>
+                    Reading Notes
+                </a>
+            </nav>
+        </div>
+        
+        <div class="sidebar-section">
+            <h3 class="sidebar-title">Community</h3>
+            <nav class="sidebar-nav">
+                <a href="#" class="sidebar-link">
+                    <i class="fas fa-comments"></i>
+                    Discussions
+                </a>
+                <a href="#" class="sidebar-link">
+                    <i class="fas fa-trophy"></i>
+                    Challenges
+                </a>
+                <a href="#" class="sidebar-link">
+                    <i class="fas fa-users"></i>
+                    Book Clubs
+                </a>
+                <a href="#" class="sidebar-link">
+                    <i class="fas fa-user-friends"></i>
+                    Following
+                </a>
+            </nav>
+        </div>
+        
+        <div class="sidebar-section">
+            <h3 class="sidebar-title">Settings</h3>
+            <nav class="sidebar-nav">
+                <a href="#" class="sidebar-link">
+                    <i class="fas fa-cog"></i>
+                    Reading Settings
+                </a>
+                <a href="#" class="sidebar-link">
+                    <i class="fas fa-chart-bar"></i>
+                    Statistics
+                </a>
+                <a href="#" class="sidebar-link">
+                    <i class="fas fa-bell"></i>
+                    Notifications
+                </a>
+            </nav>
+        </div>
+    </aside>
+
+    <!-- Bottom Navigation (Mobile) -->
+    <nav class="bottom-nav" id="bottom-nav">
+        <a href="#" class="bottom-nav-item active">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="#" class="bottom-nav-item">
+            <i class="fas fa-book"></i>
+            <span>Library</span>
+        </a>
+        <a href="#" class="bottom-nav-item">
+            <i class="fas fa-search"></i>
+            <span>Discover</span>
+        </a>
+        <a href="#" class="bottom-nav-item">
+            <i class="fas fa-users"></i>
+            <span>Community</span>
+        </a>
+        <a href="#" class="bottom-nav-item">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+        </a>
+    </nav>
+
+    <!-- Continue Reading Modal -->
+    <div class="modal hidden" id="continue-reading-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Continue Reading</h3>
+                <button class="modal-close" id="close-continue-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="continue-reading-options" id="continue-reading-options">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Achievement Notification -->
+    <div class="achievement-notification hidden" id="achievement-notification">
+        <div class="achievement-content">
+            <i class="fas fa-trophy achievement-icon"></i>
+            <div class="achievement-text">
+                <div class="achievement-title">Achievement Unlocked!</div>
+                <div class="achievement-description">Speed Reader</div>
+            </div>
+            <button class="achievement-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
