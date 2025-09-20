@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en" data-color-scheme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anmol - Where New Worlds Are Written</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-logo">
+            <div class="logo-circle">A</div>
+            <div class="loading-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="main-nav" class="main-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <div class="logo">A</div>
+                <span class="brand-name">Anmol</span>
+            </div>
+            
+            <div class="nav-links">
+                <a href="#" data-route="/" class="nav-link active">Home</a>
+                <a href="#" data-route="/about" class="nav-link">About</a>
+                <a href="#" data-route="/creator" class="nav-link">Creator</a>
+                <div class="nav-auth" id="nav-auth">
+                    <button class="btn btn--outline btn--sm" id="login-btn">Sign In</button>
+                    <button class="btn btn--primary btn--sm" id="signup-btn">Sign Up</button>
+                </div>
+                <div class="nav-user hidden" id="nav-user">
+                    <a href="#" data-route="/profile" class="nav-link">
+                        <i class="fas fa-user"></i>
+                        <span id="user-name">Profile</span>
+                    </a>
+                    <a href="#" data-route="/dashboard" class="nav-link author-only hidden">
+                        <i class="fas fa-edit"></i>
+                        Dashboard
+                    </a>
+                    <button class="btn btn--outline btn--sm" id="logout-btn">Sign Out</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="app-content">
+        <!-- Homepage -->
+        <div id="page-home" class="page active">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-background"></div>
+                <div class="container">
+                    <div class="hero-content">
+                        <h1 class="hero-title">Where New Worlds Are Written</h1>
+                        <p class="hero-subtitle">The free platform for the next generation of authors and readers</p>
+                        <div class="hero-actions">
+                            <button class="btn btn--outline btn--lg" id="start-reading-btn">
+                                <i class="fas fa-book-open"></i>
+                                Start Reading
+                            </button>
+                            <button class="btn btn--primary btn--lg" id="publish-story-btn">
+                                <i class="fas fa-pen"></i>
+                                Publish Your Story
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Featured Novels -->
+            <section class="featured-novels">
+                <div class="container">
+                    <h2 class="section-title">Featured Novels</h2>
+                    <div class="novels-carousel" id="novels-carousel">
+                        <!-- Novels will be populated by JavaScript -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- For Writers Section -->
+            <section class="for-writers">
+                <div class="container">
+                    <h2 class="section-title">For Writers</h2>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-upload"></i>
+                            </div>
+                            <h3>Publish for Free</h3>
+                            <p>Share your stories with the world without any cost or hidden fees</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-copyright"></i>
+                            </div>
+                            <h3>Own Your Work</h3>
+                            <p>Retain full rights to your intellectual property and creative content</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h3>Connect with Readers</h3>
+                            <p>Build a community around your stories and engage with your audience</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recently Updated -->
+            <section class="recently-updated">
+                <div class="container">
+                    <h2 class="section-title">Recently Updated</h2>
+                    <div class="updates-list" id="updates-list">
+                        <!-- Updates will be populated by JavaScript -->
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- About Page -->
+        <div id="page-about" class="page">
+            <section class="about-hero">
+                <div class="container">
+                    <h1>For the Creators</h1>
+                    <p class="mission-text">We believe every story deserves to be heard. Anmol provides a platform where writers can share their creativity without barriers, where readers can discover new worlds, and where communities form around the love of storytelling.</p>
+                </div>
+            </section>
+
+            <section class="creator-bio">
+                <div class="container">
+                    <div class="bio-grid">
+                        <div class="bio-portrait">
+                            <div class="portrait-placeholder">
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </div>
+                        <div class="bio-content">
+                            <h2>A Note from Anmol</h2>
+                            <p>Hi there! I'm Anmol Babuani, the creator of this platform. As a developer and storyteller myself, I understand the challenges writers face in finding the right platform to share their work.</p>
+                            <p>Anmol was born from the belief that creativity shouldn't be constrained by paywalls or complex publishing processes. Here, you own your work, connect directly with readers, and become part of a community that values authentic storytelling.</p>
+                            <a href="#" data-route="/creator" class="btn btn--primary">
+                                Learn More About My Work
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Creator Page -->
+        <div id="page-creator" class="page">
+            <section class="creator-hero">
+                <div class="container">
+                    <div class="creator-header">
+                        <div class="creator-portrait">
+                            <div class="portrait-placeholder">
+                                <i class="fas fa-code"></i>
+                            </div>
+                        </div>
+                        <div class="creator-info">
+                            <h1>Anmol Babuani</h1>
+                            <p class="creator-title">Developer, Creator, Storyteller</p>
+                            <div class="social-links">
+                                <a href="https://github.com" target="_blank" class="social-link">
+                                    <i class="fab fa-github"></i>
+                                    GitHub
+                                </a>
+                                <a href="https://linkedin.com" target="_blank" class="social-link">
+                                    <i class="fab fa-linkedin"></i>
+                                    LinkedIn
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="projects-section">
+                <div class="container">
+                    <h2 class="section-title">Projects</h2>
+                    <div class="projects-grid" id="projects-grid">
+                        <!-- Projects will be populated by JavaScript -->
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Profile/Library Page -->
+        <div id="page-profile" class="page">
+            <section class="profile-header">
+                <div class="container">
+                    <div class="profile-info">
+                        <div class="profile-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="profile-details">
+                            <h1 id="profile-display-name">Your Profile</h1>
+                            <div class="profile-stats" id="profile-stats">
+                                <!-- Stats will be populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="library-section">
+                <div class="container">
+                    <div class="library-header">
+                        <h2>My Library</h2>
+                        <div class="filter-pills">
+                            <button class="pill active" data-filter="all">All</button>
+                            <button class="pill" data-filter="reading">Currently Reading</button>
+                            <button class="pill" data-filter="finished">Finished</button>
+                        </div>
+                    </div>
+                    <div class="library-grid" id="library-grid">
+                        <!-- Library items will be populated by JavaScript -->
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Author Dashboard -->
+        <div id="page-dashboard" class="page">
+            <div class="dashboard-layout">
+                <aside class="dashboard-sidebar">
+                    <div class="sidebar-nav">
+                        <button class="sidebar-btn active" data-tab="overview">
+                            <i class="fas fa-chart-line"></i>
+                            Overview
+                        </button>
+                        <button class="sidebar-btn" data-tab="novels">
+                            <i class="fas fa-book"></i>
+                            My Novels
+                        </button>
+                        <button class="sidebar-btn" data-tab="community">
+                            <i class="fas fa-comments"></i>
+                            Community
+                        </button>
+                        <button class="sidebar-btn" data-tab="settings">
+                            <i class="fas fa-cog"></i>
+                            Settings
+                        </button>
+                    </div>
+                </aside>
+
+                <main class="dashboard-main">
+                    <div id="dashboard-overview" class="dashboard-tab active">
+                        <h1>Welcome back, Author!</h1>
+                        <div class="stats-bar">
+                            <div class="stat-item">
+                                <span class="stat-number" id="total-views">0</span>
+                                <span class="stat-label">Total Views</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number" id="total-followers">0</span>
+                                <span class="stat-label">Followers</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number" id="total-chapters">0</span>
+                                <span class="stat-label">Chapters</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="dashboard-novels" class="dashboard-tab">
+                        <div class="tab-header">
+                            <h2>My Novels</h2>
+                            <button class="btn btn--primary" id="create-novel-btn">
+                                <i class="fas fa-plus"></i>
+                                Create New Novel
+                            </button>
+                        </div>
+                        <div class="novels-list" id="author-novels-list">
+                            <!-- Author's novels will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <div id="dashboard-community" class="dashboard-tab">
+                        <h2>Community</h2>
+                        <div class="comments-moderation" id="comments-moderation">
+                            <!-- Comments for moderation will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <div id="dashboard-settings" class="dashboard-tab">
+                        <h2>Settings</h2>
+                        <p>Account and preference settings coming soon...</p>
+                    </div>
+                </main>
+            </div>
+        </div>
+
+        <!-- Immersive Reader -->
+        <div id="page-reader" class="page">
+            <div class="reader-header" id="reader-header">
+                <div class="container">
+                    <button class="reader-back-btn" id="reader-back-btn">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <div class="reader-info">
+                        <span class="novel-title" id="reader-novel-title">Novel Title</span>
+                        <span class="chapter-title" id="reader-chapter-title">Chapter Title</span>
+                    </div>
+                    <div class="reader-controls">
+                        <button class="reader-btn" id="focus-mode-btn" title="Focus Mode">
+                            <i class="fas fa-expand"></i>
+                        </button>
+                        <button class="reader-btn" id="settings-btn" title="Settings">
+                            <i class="fas fa-cog"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="reading-progress"></div>
+                </div>
+            </div>
+
+            <div class="reader-content">
+                <div class="reading-pane" id="reading-pane">
+                    <div class="chapter-content" id="chapter-content">
+                        <!-- Chapter content will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="chapter-navigation">
+                    <button class="nav-btn" id="prev-chapter-btn">
+                        <i class="fas fa-chevron-left"></i>
+                        Previous
+                    </button>
+                    <button class="nav-btn" id="next-chapter-btn">
+                        Next
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+
+                <div class="engagement-section">
+                    <div class="engagement-actions">
+                        <button class="like-btn" id="chapter-like-btn">
+                            <i class="fas fa-heart"></i>
+                            <span id="like-count">0</span>
+                        </button>
+                    </div>
+
+                    <div class="comments-section">
+                        <h3>Comments</h3>
+                        <div class="comment-form">
+                            <textarea placeholder="Share your thoughts..." id="comment-input"></textarea>
+                            <button class="btn btn--primary" id="submit-comment-btn">Comment</button>
+                        </div>
+                        <div class="comments-list" id="comments-list">
+                            <!-- Comments will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reader Settings Modal -->
+            <div class="modal hidden" id="reader-settings-modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Reader Settings</h3>
+                        <button class="modal-close" id="close-settings-modal">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="setting-group">
+                            <label>Font Size</label>
+                            <div class="font-size-controls">
+                                <button class="btn btn--outline btn--sm" id="decrease-font">A-</button>
+                                <span id="font-size-display">16px</span>
+                                <button class="btn btn--outline btn--sm" id="increase-font">A+</button>
+                            </div>
+                        </div>
+                        <div class="setting-group">
+                            <label>Background</label>
+                            <div class="background-options">
+                                <button class="bg-option active" data-bg="dark">Dark</button>
+                                <button class="bg-option" data-bg="light">Light</button>
+                                <button class="bg-option" data-bg="sepia">Sepia</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 404 Page -->
+        <div id="page-404" class="page">
+            <div class="error-page">
+                <div class="container">
+                    <div class="error-content">
+                        <h1 class="error-code">404</h1>
+                        <h2>Page Not Found</h2>
+                        <p>The page you're looking for doesn't exist or has been moved.</p>
+                        <a href="#" data-route="/" class="btn btn--primary">Go Home</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">A</div>
+                    <span>Anmol</span>
+                </div>
+                <div class="footer-links">
+                    <a href="#" data-route="/about">About</a>
+                    <a href="#" data-route="/creator">Creator</a>
+                    <a href="#" target="_blank">Privacy</a>
+                    <a href="#" target="_blank">Terms</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Anmol Platform. Made with ❤️ for creators.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Auth Modal -->
+    <div class="modal hidden" id="auth-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="auth-modal-title">Sign In</h3>
+                <button class="modal-close" id="close-auth-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="auth-form">
+                    <div class="form-group">
+                        <label class="form-label">Display Name</label>
+                        <input type="text" class="form-control" id="auth-display-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" id="auth-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="is-author-checkbox"> I am an author
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn--primary btn--full-width" id="auth-submit-btn">
+                        Sign In
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

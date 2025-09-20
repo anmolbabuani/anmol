@@ -1,0 +1,7 @@
+Category,Type,Complexity,SEO_Friendly,Clean_URLs,Features,Security,Scalability,Real_time,User_Preference,Battery_Savings,Eye_Strain,Trendy,Performance_Impact,Accessibility
+Routing,Hash-based,Low,No,No,,,,,,,,,,
+Routing,History API,Medium,Yes,Yes,,,,,,,,,,
+Auth,Firebase,Low,,,High,High,,,,,,,,
+Database,Firestore,Low,,,,,High,Yes,,,,,,
+Design,Dark Mode,,,,,,,,82%,Yes,Reduced,,,
+Design,Glassmorphism,,,,,,,,,,,Yes,Medium,Consider
