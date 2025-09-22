@@ -830,6 +830,20 @@ h1, h2, h3, h4, h5, h6 {
 
 .loading-dots span:nth-child(2) { animation-delay: 0.16s; }
 .loading-dots span:nth-child(3) { animation-delay: 0.32s; }
+#loading-screen {
+  background: linear-gradient(135deg, #BF40BF 0%, #4A90E2 100%);
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 2px;
+}
+
+.loader {
+  border: 8px solid #fff;
+  border-top: 8px solid #FFD700;
+  width: 70px;
+  height: 70px;
+  animation: spin 0.8s linear infinite;
+}
 
 @keyframes pulse {
   0%, 100% { transform: scale(1); }
