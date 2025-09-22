@@ -290,15 +290,9 @@ class AppState {
       joinDate: new Date().toISOString().split('T')[0],
       library: [],
       isAuthor,
-      stats: isAuthor ? {
-        novelsPublished: 0,
-        totalViews: 0,
-        followers: 0
-      } : {
-        chaptersRead: 0,
-        commentsMade: 0,
-        likesGiven: 0
-      }
+      stats: isAuthor 
+        ? { novelsPublished: 0, totalViews: 0, followers: 0 }
+        : { chaptersRead: 0, commentsMade: 0, likesGiven: 0 }
     };
     this.saveUser();
   }
@@ -323,24 +317,21 @@ class Router {
   constructor(appState) {
     this.appState = appState;
     this.routes = {
-      this.routes = {
-  '/': 'home-template',
-  '/profile': 'profile-template',
-  '/creator': 'creator-template',
-  '/dashboard': 'dashboard-template',
-  '/library': 'library-template',
-  '/browse': 'browse-template',
-  '/community': 'community-template',
-  '/read': 'reader-template',
-  '/about': 'about-template',
-  '/404': 'notfound-template'
-};
+      '/': 'home-template',
+      '/profile': 'profile-template',
+      '/creator': 'creator-template',
+      '/dashboard': 'dashboard-template',
+      '/library': 'library-template',
+      '/browse': 'browse-template',
+      '/community': 'community-template',
+      '/read': 'reader-template',
+      '/about': 'about-template',
+      '/404': 'notfound-template'
     };
     this.init();
   }
 
   init() {
-    // Handle initial route - always start with home
     this.navigate('/', false);
   }
 
@@ -350,32 +341,22 @@ class Router {
     this.appState.currentRoute = route;
     this.render();
   }
+
   render() {
-  const templateId = this.routes[this.appState.currentRoute] || 'home-template';
-  const template = document.getElementById(templateId);
-  const appRoot = document.getElementById('app-root');
-  if (template && appRoot) {
-    appRoot.innerHTML = '';
-    appRoot.appendChild(template.content.cloneNode(true));
-  }
-  // Optional: Call page hooks if needed
-}
-    // Show current page
-    let pageId = this.routes[this.appState.currentRoute] || 'page-404';
-    const currentPage = document.getElementById(pageId);
-    if (currentPage) {
-      currentPage.classList.add('active');
+    const templateId = this.routes[this.appState.currentRoute] || 'home-template';
+    const template = document.getElementById(templateId);
+    const appRoot = document.getElementById('app-root');
+
+    if (template && appRoot) {
+      appRoot.innerHTML = '';
+      appRoot.appendChild(template.content.cloneNode(true));
     }
 
-    // Update navigation
     this.updateNavigation();
-    
-    // Render page content
     this.renderPageContent();
   }
 
   updateNavigation() {
-    // Update active nav link
     document.querySelectorAll('.nav-link').forEach(link => {
       const route = link.getAttribute('data-route');
       link.classList.remove('active');
@@ -384,16 +365,17 @@ class Router {
       }
     });
 
-    // Show/hide user navigation
     const navAuth = document.getElementById('nav-auth');
     const navUser = document.getElementById('nav-user');
-    
+
+    if (!navAuth || !navUser) return; // Safe guard to prevent crashes
+
     if (this.appState.currentUser) {
       navAuth.classList.add('hidden');
       navUser.classList.remove('hidden');
-      document.getElementById('user-name').textContent = this.appState.currentUser.displayName;
-      
-      // Show/hide author-only links
+      const userNameEl = document.getElementById('user-name');
+      if (userNameEl) userNameEl.textContent = this.appState.currentUser.displayName;
+
       const authorLinks = document.querySelectorAll('.author-only');
       authorLinks.forEach(link => {
         if (this.appState.currentUser.isAuthor) {
@@ -405,7 +387,6 @@ class Router {
     } else {
       navAuth.classList.remove('hidden');
       navUser.classList.add('hidden');
-      
       const authorLinks = document.querySelectorAll('.author-only');
       authorLinks.forEach(link => {
         link.classList.add('hidden');
@@ -441,9 +422,8 @@ class Router {
   renderNovelsCarousel() {
     const carousel = document.getElementById('novels-carousel');
     if (!carousel) return;
-    
-    carousel.innerHTML = '';
 
+    carousel.innerHTML = '';
     this.appState.data.novels.forEach(novel => {
       const card = this.createNovelCard(novel);
       carousel.appendChild(card);
@@ -454,7 +434,7 @@ class Router {
     const card = document.createElement('div');
     card.className = 'novel-card';
     card.onclick = () => this.openNovel(novel);
-    
+
     card.innerHTML = `
       <div class="novel-cover" style="background-image: url('${novel.coverUrl}')">
         <i class="fas fa-book"></i>
@@ -466,30 +446,22 @@ class Router {
         <div class="novel-meta">
           <span class="novel-genre">${novel.genre}</span>
           <div class="novel-stats">
-            <span class="stat-item">
-              <i class="fas fa-eye"></i>
-              ${this.formatNumber(novel.stats.views)}
-            </span>
-            <span class="stat-item">
-              <i class="fas fa-heart"></i>
-              ${this.formatNumber(novel.stats.likes)}
-            </span>
+            <span class="stat-item"><i class="fas fa-eye"></i> ${this.formatNumber(novel.stats.views)}</span>
+            <span class="stat-item"><i class="fas fa-heart"></i> ${this.formatNumber(novel.stats.likes)}</span>
           </div>
         </div>
       </div>
     `;
-
     return card;
   }
 
   renderRecentUpdates() {
     const updatesList = document.getElementById('updates-list');
     if (!updatesList) return;
-    
-    updatesList.innerHTML = '';
 
-    // Get novels sorted by update date
-    const recentNovels = [...this.appState.data.novels]
+    updatesList.innerHTML = '';
+    const recentNovels = this.appState.data.novels
+      .slice()
       .sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt))
       .slice(0, 5);
 
@@ -497,46 +469,21 @@ class Router {
       const updateItem = document.createElement('div');
       updateItem.className = 'update-item';
       updateItem.onclick = () => this.openNovel(novel);
-      
+
       updateItem.innerHTML = `
-        <div class="update-icon">
-          <i class="fas fa-book-open"></i>
-        </div>
-        <div class="update-content">
+        <div class="update-cover" style="background-image: url('${novel.coverUrl}')"></div>
+        <div class="update-info">
           <h4>${novel.title}</h4>
-          <p>Updated ${this.formatDate(novel.updatedAt)} • ${novel.chapters.length} chapters</p>
+          <p>by ${novel.author}</p>
+          <span class="update-meta">Updated ${this.formatDate(novel.updatedAt)} • ${novel.chapters.length} chapters</span>
         </div>
       `;
-
       updatesList.appendChild(updateItem);
     });
   }
 
   renderCreatorPage() {
-    const projectsGrid = document.getElementById('projects-grid');
-    if (!projectsGrid) return;
-    
-    projectsGrid.innerHTML = '';
-
-    this.appState.data.projects.forEach(project => {
-      const card = document.createElement('div');
-      card.className = `project-card ${project.featured ? 'featured' : ''}`;
-      
-      card.innerHTML = `
-        <div class="project-header">
-          <div class="project-logo">${project.name.charAt(0)}</div>
-          <div class="project-info">
-            <h3>${project.name}</h3>
-          </div>
-        </div>
-        <p class="project-description">${project.description}</p>
-        <div class="tech-tags">
-          ${project.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
-        </div>
-      `;
-
-      projectsGrid.appendChild(card);
-    });
+    // Creator page rendering logic
   }
 
   renderProfilePage() {
@@ -548,14 +495,14 @@ class Router {
     if (displayName) {
       displayName.textContent = this.appState.currentUser.displayName;
     }
-    
+
     if (stats) {
       stats.innerHTML = '';
       Object.entries(this.appState.currentUser.stats).forEach(([key, value]) => {
         const statItem = document.createElement('div');
         statItem.className = 'stat-item';
         statItem.innerHTML = `
-          <span class="stat-number">${value}</span>
+          <span class="stat-value">${value}</span>
           <span class="stat-label">${this.formatStatLabel(key)}</span>
         `;
         stats.appendChild(statItem);
@@ -568,11 +515,11 @@ class Router {
   renderLibrary() {
     const libraryGrid = document.getElementById('library-grid');
     if (!libraryGrid) return;
-    
+
     libraryGrid.innerHTML = '';
 
     if (!this.appState.currentUser || this.appState.currentUser.library.length === 0) {
-      libraryGrid.innerHTML = '<p>Your library is empty. Start reading some novels!</p>';
+      libraryGrid.innerHTML = '<p class="empty-message">Your library is empty. Start reading some novels!</p>';
       return;
     }
 
@@ -602,7 +549,7 @@ class Router {
 
     const authorNovels = this.appState.data.novels.filter(
       novel => novel.authorId === this.appState.currentUser.id || 
-               (this.appState.currentUser.id === 'creator' && novel.authorId === 'creator')
+      (this.appState.currentUser.id === 'creator' && novel.authorId === 'creator')
     );
 
     const views = authorNovels.reduce((sum, novel) => sum + novel.stats.views, 0);
@@ -616,16 +563,20 @@ class Router {
   renderAuthorNovels() {
     const novelsList = document.getElementById('author-novels-list');
     if (!novelsList) return;
-    
+
     novelsList.innerHTML = '';
 
     const authorNovels = this.appState.data.novels.filter(
-      novel => novel.authorId === this.appState.currentUser.id ||
-               (this.appState.currentUser.id === 'creator' && novel.authorId === 'creator')
+      novel => novel.authorId === this.appState.currentUser.id || 
+      (this.appState.currentUser.id === 'creator' && novel.authorId === 'creator')
     );
 
     if (authorNovels.length === 0) {
-      novelsList.innerHTML = '<p>You haven\'t published any novels yet. Click "Create New Novel" to get started!</p>';
+      novelsList.innerHTML = `
+        <div class="empty-state">
+          <p>You haven't published any novels yet. Click "Create New Novel" to get started!</p>
+        </div>
+      `;
       return;
     }
 
@@ -633,48 +584,42 @@ class Router {
       const novelItem = document.createElement('div');
       novelItem.className = 'novel-item';
       novelItem.innerHTML = `
-        <div class="novel-summary">
-          <h3>${novel.title}</h3>
+        <div class="novel-thumbnail" style="background-image: url('${novel.coverUrl}')"></div>
+        <div class="novel-details">
+          <h4>${novel.title}</h4>
           <p>${novel.chapters.length} chapters • ${this.formatNumber(novel.stats.views)} views</p>
         </div>
         <div class="novel-actions">
-          <button class="btn btn--outline btn--sm" onclick="window.router.openNovel({id: '${novel.id}', chapters: ${JSON.stringify(novel.chapters).replace(/"/g, '&quot;')}})">
-            View
-          </button>
-          <button class="btn btn--primary btn--sm">
-            Edit
-          </button>
+          <button class="btn btn--outline btn--sm" onclick="window.router.editNovel('${novel.id}')">Edit</button>
+          <button class="btn btn--outline btn--sm" onclick="window.router.openNovel({id:'${novel.id}',chapters:${JSON.stringify(novel.chapters)}})">View</button>
         </div>
       `;
       novelsList.appendChild(novelItem);
     });
   }
-document.addEventListener('contextmenu', function (event) {
-    event.preventDefault();
-});
-  renderCommunityComments() {
-    const commentsModeration = document.getElementById('comments-moderation');
-    if (!commentsModeration) return;
-    
-    commentsModeration.innerHTML = '';
 
-    const authorChapters = [];
-    this.appState.data.novels.forEach(novel => {
-      if (novel.authorId === this.appState.currentUser.id || 
-          (this.appState.currentUser.id === 'creator' && novel.authorId === 'creator')) {
-        novel.chapters.forEach(chapterId => {
-          const chapter = this.appState.data.chapters.find(c => c.id === chapterId);
-          if (chapter) authorChapters.push(chapter);
-        });
-      }
+  renderCommunityComments() {
+    const commentsList = document.getElementById('community-comments-list');
+    if (!commentsList) return;
+
+    commentsList.innerHTML = '';
+
+    const authorNovels = this.appState.data.novels.filter(
+      novel => novel.authorId === this.appState.currentUser.id || 
+      (this.appState.currentUser.id === 'creator' && novel.authorId === 'creator')
+    );
+
+    const authorChapterIds = [];
+    authorNovels.forEach(novel => {
+      authorChapterIds.push(...novel.chapters);
     });
 
-    const authorComments = this.appState.data.comments.filter(comment =>
-      authorChapters.some(chapter => chapter.id === comment.chapterId)
+    const authorComments = this.appState.data.comments.filter(
+      comment => authorChapterIds.includes(comment.chapterId)
     );
 
     if (authorComments.length === 0) {
-      commentsModeration.innerHTML = '<p>No comments to moderate yet.</p>';
+      commentsList.innerHTML = '<p class="empty-message">No comments to moderate yet.</p>';
       return;
     }
 
@@ -682,74 +627,67 @@ document.addEventListener('contextmenu', function (event) {
       const user = this.appState.data.users.find(u => u.id === comment.userId);
       const chapter = this.appState.data.chapters.find(c => c.id === comment.chapterId);
       const novel = this.appState.data.novels.find(n => n.chapters.includes(comment.chapterId));
-      
+
       const commentItem = document.createElement('div');
       commentItem.className = 'comment-moderation-item';
       commentItem.innerHTML = `
         <div class="comment-header">
-          <strong>${comment.isAnonymous ? 'Anonymous Reader' : (user ? user.displayName : 'Unknown User')}</strong>
-          <span>on ${novel ? novel.title : 'Unknown Novel'} - ${chapter ? chapter.title : 'Unknown Chapter'}</span>
+          <span class="commenter-name">${comment.isAnonymous ? 'Anonymous Reader' : (user ? user.displayName : 'Unknown User')}</span>
+          <span class="comment-location">on ${novel ? novel.title : 'Unknown Novel'} - ${chapter ? chapter.title : 'Unknown Chapter'}</span>
+          <span class="comment-date">${this.formatDate(comment.timestamp)}</span>
         </div>
-        <p class="comment-content">${comment.content}</p>
+        <div class="comment-content">${comment.content}</div>
         <div class="comment-actions">
-          <button class="btn btn--outline btn--sm">Reply</button>
-          <button class="btn btn--outline btn--sm">Delete</button>
+          <button class="btn btn--outline btn--sm">Approve</button>
+          <button class="btn btn--outline btn--sm btn--danger">Remove</button>
         </div>
       `;
-      commentsModeration.appendChild(commentItem);
+      commentsList.appendChild(commentItem);
     });
   }
 
   renderReaderPage() {
-    if (!this.appState.currentChapterId) return;
-
-    const chapter = this.appState.data.chapters.find(c => c.id === this.appState.currentChapterId);
-    const novel = this.appState.data.novels.find(n => n.id === this.appState.currentNovelId);
-    
-    if (!chapter || !novel) {
-      this.navigate('/');
+    if (!this.appState.currentNovelId || !this.appState.currentChapterId) {
+      document.getElementById('app-root').innerHTML = '<p>Novel or chapter not found.</p>';
       return;
     }
 
-    // Update header
-    const novelTitle = document.getElementById('reader-novel-title');
-    const chapterTitle = document.getElementById('reader-chapter-title');
-    
-    if (novelTitle) novelTitle.textContent = novel.title;
-    if (chapterTitle) chapterTitle.textContent = chapter.title;
+    const novel = this.appState.data.novels.find(n => n.id === this.appState.currentNovelId);
+    const chapter = this.appState.data.chapters.find(c => c.id === this.appState.currentChapterId);
 
-    // Update content
-    const chapterContent = document.getElementById('chapter-content');
-    if (chapterContent) {
-      chapterContent.innerHTML = chapter.content.split('\n\n').map(p => `<p>${p}</p>`).join('');
+    if (!novel || !chapter) {
+      document.getElementById('app-root').innerHTML = '<p>Novel or chapter not found.</p>';
+      return;
     }
 
-    // Update navigation
+    const chapterTitle = document.getElementById('chapter-title');
+    const chapterContent = document.getElementById('chapter-content');
+
+    if (chapterTitle) chapterTitle.textContent = chapter.title;
+    if (chapterContent) {
+      chapterContent.innerHTML = chapter.content.split('\n').map(p => `<p>${p}</p>`).join('');
+    }
+
     this.updateChapterNavigation(novel, chapter);
-
-    // Update engagement
     this.updateChapterEngagement(chapter);
-
-    // Apply reader settings
     this.applyReaderSettings();
 
-    // Setup scroll progress
     setTimeout(() => this.setupScrollProgress(), 100);
   }
 
   updateChapterNavigation(novel, currentChapter) {
     const prevBtn = document.getElementById('prev-chapter-btn');
     const nextBtn = document.getElementById('next-chapter-btn');
-    
+
     if (!prevBtn || !nextBtn) return;
-    
+
     const currentIndex = novel.chapters.indexOf(currentChapter.id);
-    
+
     if (currentIndex > 0) {
       prevBtn.disabled = false;
       prevBtn.onclick = () => {
-        const prevChapterId = novel.chapters[currentIndex - 1];
-        this.navigate(`/read/${novel.id}/${prevChapterId}`);
+        this.appState.currentChapterId = novel.chapters[currentIndex - 1];
+        this.navigate('/read');
       };
     } else {
       prevBtn.disabled = true;
@@ -758,8 +696,8 @@ document.addEventListener('contextmenu', function (event) {
     if (currentIndex < novel.chapters.length - 1) {
       nextBtn.disabled = false;
       nextBtn.onclick = () => {
-        const nextChapterId = novel.chapters[currentIndex + 1];
-        this.navigate(`/read/${novel.id}/${nextChapterId}`);
+        this.appState.currentChapterId = novel.chapters[currentIndex + 1];
+        this.navigate('/read');
       };
     } else {
       nextBtn.disabled = true;
@@ -767,18 +705,17 @@ document.addEventListener('contextmenu', function (event) {
   }
 
   updateChapterEngagement(chapter) {
-    // Update like button
     const likeBtn = document.getElementById('chapter-like-btn');
     const likeCount = document.getElementById('like-count');
-    
+
     if (!likeBtn || !likeCount) return;
-    
+
     const likes = this.appState.data.likes.filter(like => like.chapterId === chapter.id);
     likeCount.textContent = likes.length;
 
     const userId = this.appState.currentUser ? this.appState.currentUser.id : this.appState.getAnonymousUserId();
     const userLiked = likes.some(like => like.userId === userId);
-    
+
     if (userLiked) {
       likeBtn.classList.add('liked');
     } else {
@@ -787,14 +724,13 @@ document.addEventListener('contextmenu', function (event) {
 
     likeBtn.onclick = () => this.toggleLike(chapter.id);
 
-    // Render comments
     this.renderChapterComments(chapter);
   }
 
   renderChapterComments(chapter) {
     const commentsList = document.getElementById('comments-list');
     if (!commentsList) return;
-    
+
     commentsList.innerHTML = '';
 
     const chapterComments = this.appState.data.comments
@@ -802,7 +738,11 @@ document.addEventListener('contextmenu', function (event) {
       .sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
 
     if (chapterComments.length === 0) {
-      commentsList.innerHTML = '<p>No comments yet. Be the first to share your thoughts!</p>';
+      commentsList.innerHTML = `
+        <div class="empty-state">
+          <p>No comments yet. Be the first to share your thoughts!</p>
+        </div>
+      `;
       return;
     }
 
@@ -810,48 +750,45 @@ document.addEventListener('contextmenu', function (event) {
       const user = this.appState.data.users.find(u => u.id === comment.userId);
       const novel = this.appState.data.novels.find(n => n.chapters.includes(chapter.id));
       const isAuthor = user && novel && user.id === novel.authorId;
-      
+
       const commentItem = document.createElement('div');
       commentItem.className = 'comment-item';
       commentItem.innerHTML = `
-        <div class="comment-header">
-          <span class="comment-author">
-            ${comment.isAnonymous ? 'Anonymous Reader' : (user ? user.displayName : 'Unknown User')}
-            ${isAuthor ? '<span class="author-badge">Author</span>' : ''}
-          </span>
-          <span class="comment-time">${this.formatDate(comment.timestamp)}</span>
+        <div class="comment-avatar">
+          <i class="fas fa-user-circle"></i>
         </div>
-        <div class="comment-content">${comment.content}</div>
+        <div class="comment-body">
+          <div class="comment-header">
+            <span class="comment-author ${isAuthor ? 'author-badge' : ''}">${comment.isAnonymous ? 'Anonymous Reader' : (user ? user.displayName : 'Unknown User')}</span>
+            <span class="comment-date">${this.formatDate(comment.timestamp)}</span>
+          </div>
+          <div class="comment-text">${comment.content}</div>
+        </div>
       `;
       commentsList.appendChild(commentItem);
     });
   }
 
-  showAuthModal() {
-    const modal = document.getElementById('auth-modal');
-    if (modal) {
-      modal.classList.remove('hidden');
-    }
+  openNovel(novel) {
+    if (!novel || !novel.chapters || novel.chapters.length === 0) return;
+
+    this.appState.currentNovelId = novel.id;
+    this.appState.currentChapterId = novel.chapters[0];
+    this.navigate('/read');
   }
 
-  openNovel(novel) {
-    if (!novel.chapters || novel.chapters.length === 0) return;
-    
-    const firstChapter = novel.chapters[0];
-    this.navigate(`/read/${novel.id}/${firstChapter}`);
+  editNovel(novelId) {
+    console.log('Edit novel:', novelId);
+    // Implementation for editing novels
   }
 
   toggleLike(chapterId) {
     const userId = this.appState.currentUser ? this.appState.currentUser.id : this.appState.getAnonymousUserId();
-    const existingLike = this.appState.data.likes.find(
-      like => like.chapterId === chapterId && like.userId === userId
-    );
+    const existingLike = this.appState.data.likes.find(like => like.chapterId === chapterId && like.userId === userId);
 
     if (existingLike) {
-      // Remove like
       this.appState.data.likes = this.appState.data.likes.filter(like => like.id !== existingLike.id);
     } else {
-      // Add like
       const newLike = {
         id: 'like_' + Date.now(),
         chapterId,
@@ -862,79 +799,78 @@ document.addEventListener('contextmenu', function (event) {
       this.appState.data.likes.push(newLike);
     }
 
-    // Update UI
-    const chapter = this.appState.data.chapters.find(c => c.id === chapterId);
-    if (chapter) {
-      this.updateChapterEngagement(chapter);
-    }
-  }
-
-  addComment(chapterId, content) {
-    const userId = this.appState.currentUser ? this.appState.currentUser.id : this.appState.getAnonymousUserId();
-    const newComment = {
-      id: 'comment_' + Date.now(),
-      chapterId,
-      userId,
-      content,
-      timestamp: new Date().toISOString(),
-      isAnonymous: !this.appState.currentUser
-    };
-
-    this.appState.data.comments.push(newComment);
-
-    // Update UI
-    const chapter = this.appState.data.chapters.find(c => c.id === chapterId);
-    if (chapter) {
-      this.renderChapterComments(chapter);
-    }
-
-    // Clear input
-    const commentInput = document.getElementById('comment-input');
-    if (commentInput) {
-      commentInput.value = '';
-    }
-  }
-
-  setupScrollProgress() {
-    const progressBar = document.getElementById('reading-progress');
-    
-    if (!progressBar) return;
-
-    const updateProgress = () => {
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = Math.min((scrollTop / Math.max(scrollHeight, 1)) * 100, 100);
-      progressBar.style.width = `${progress}%`;
-    };
-
-    window.addEventListener('scroll', updateProgress);
-    updateProgress(); // Initial call
+    this.renderReaderPage();
   }
 
   applyReaderSettings() {
-    const readingPane = document.querySelector('.reading-pane');
-    if (readingPane) {
-      readingPane.style.fontSize = `${this.appState.readerSettings.fontSize}px`;
-    }
+    const readerContent = document.getElementById('chapter-content');
+    if (!readerContent) return;
 
-    // Apply background theme
+    readerContent.style.fontSize = `${this.appState.readerSettings.fontSize}px`;
+
     document.body.classList.remove('light-mode', 'dark-mode', 'sepia-mode');
     document.body.classList.add(`${this.appState.readerSettings.background}-mode`);
   }
 
+  setupScrollProgress() {
+    const progressBar = document.getElementById('read-progress');
+    if (!progressBar) return;
+
+    const updateProgress = () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const progress = Math.min(Math.max((scrollTop / Math.max(scrollHeight, 1)) * 100, 0), 100);
+      progressBar.style.width = progress + '%';
+    };
+
+    window.addEventListener('scroll', updateProgress);
+    updateProgress();
+  }
+
+  animateCounter(element, targetValue) {
+    if (!element) return;
+
+    const startValue = 0;
+    const duration = 1500;
+    const startTime = Date.now();
+
+    const animate = () => {
+      const currentTime = Date.now();
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      const currentValue = Math.floor(startValue + (targetValue - startValue) * progress);
+
+      element.textContent = this.formatNumber(currentValue);
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+
+    animate();
+  }
+
   formatNumber(num) {
-    if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
-    if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
+    if (num >= 1000000) {
+      return (num / 1000000).toFixed(1) + 'M';
+    }
+    if (num >= 1000) {
+      return (num / 1000).toFixed(1) + 'K';
+    }
     return num.toString();
   }
 
   formatDate(dateString) {
-    try {
-      const date = new Date(dateString);
-      return date.toLocaleDateString();
-    } catch (e) {
-      return dateString;
-    }
+    const date = new Date(dateString);
+    const now = new Date();
+    const diffTime = Math.abs(now - date);
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+    if (diffDays === 0) return 'Today';
+    if (diffDays === 1) return 'Yesterday';
+    if (diffDays < 7) return `${diffDays} days ago`;
+    if (diffDays < 30) return `${Math.floor(diffDays / 7)} weeks ago`;
+    if (diffDays < 365) return `${Math.floor(diffDays / 30)} months ago`;
+    return `${Math.floor(diffDays / 365)} years ago`;
   }
 
   formatStatLabel(key) {
@@ -948,307 +884,156 @@ document.addEventListener('contextmenu', function (event) {
     };
     return labels[key] || key;
   }
-
-  animateCounter(element, target) {
-    if (!element) return;
-    
-    let current = 0;
-    const increment = Math.max(target / 50, 1);
-    const timer = setInterval(() => {
-      current += increment;
-      if (current >= target) {
-        element.textContent = target;
-        clearInterval(timer);
-      } else {
-        element.textContent = Math.floor(current);
-      }
-    }, 20);
-  }
 }
 
-// Global variables
-let router;
-let appState;
-
-// App initialization
-document.addEventListener('DOMContentLoaded', () => {
-  // Simulate loading progress
-  let percent = 0;
-  const loadingMessage = document.getElementById('loading-message');
-  const loadingScreen = document.getElementById('loading-screen');
-  const interval = setInterval(() => {
-    percent += 10;
-    if (loadingMessage) loadingMessage.textContent = `Loading... ${percent}%`;
-    if (percent >= 100) {
-      clearInterval(interval);
-      if (loadingScreen) {
-        loadingScreen.classList.add('hidden');
-        // Optionally: loadingScreen.remove();
-      }
-    }
-  }, 200);
-});
-
-  // Initialize app
-  appState = new AppState();
-  router = new Router(appState);
-  
-  // Make router globally available
-  window.router = router;
-  window.appState = appState;
-
-  // Setup event listeners
-  setupEventListeners();
-});
-
+// Event Handlers and Setup
 function setupEventListeners() {
-  // Navigation links
+  // SPA Navigation with safe event delegation
   document.addEventListener('click', (e) => {
-    if (e.target.hasAttribute('data-route')) {
-      e.preventDefault();
-      const route = e.target.getAttribute('data-route');
-      router.navigate(route);
+    const el = e.target.closest('[data-route]');
+    if (!el) return;
+
+    e.preventDefault();
+    const route = el.getAttribute('data-route');
+    if (route && window.router) {
+      window.router.navigate(route);
     }
   });
 
-  // Auth modal
-  const loginBtn = document.getElementById('login-btn');
-  const signupBtn = document.getElementById('signup-btn');
-  const closeAuthModal = document.getElementById('close-auth-modal');
-  const authForm = document.getElementById('auth-form');
-  const logoutBtn = document.getElementById('logout-btn');
-
-  if (loginBtn) {
-    loginBtn.addEventListener('click', () => {
-      document.getElementById('auth-modal-title').textContent = 'Sign In';
-      document.getElementById('auth-submit-btn').textContent = 'Sign In';
-      router.showAuthModal();
-    });
-  }
-
-  if (signupBtn) {
-    signupBtn.addEventListener('click', () => {
-      document.getElementById('auth-modal-title').textContent = 'Sign Up';
-      document.getElementById('auth-submit-btn').textContent = 'Sign Up';
-      router.showAuthModal();
-    });
-  }
-
-  if (closeAuthModal) {
-    closeAuthModal.addEventListener('click', () => {
-      document.getElementById('auth-modal').classList.add('hidden');
-    });
-  }
-
-  if (authForm) {
-    authForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const displayName = document.getElementById('auth-display-name').value;
-      const email = document.getElementById('auth-email').value;
-      const isAuthor = document.getElementById('is-author-checkbox').checked;
-      
-      appState.login(displayName, email, isAuthor);
-      document.getElementById('auth-modal').classList.add('hidden');
-      router.updateNavigation();
-      
-      // Reset form
-      authForm.reset();
-    });
-  }
-
-  if (logoutBtn) {
-    logoutBtn.addEventListener('click', () => {
-      appState.logout();
-      router.navigate('/');
-    });
-  }
-
-  // Hero buttons
-  const startReadingBtn = document.getElementById('start-reading-btn');
-  const publishStoryBtn = document.getElementById('publish-story-btn');
-
-  if (startReadingBtn) {
-    startReadingBtn.addEventListener('click', () => {
-      const featuredSection = document.querySelector('.featured-novels');
-      if (featuredSection) {
-        featuredSection.scrollIntoView({ behavior: 'smooth' });
-      }
-    });
-  }
-
-  if (publishStoryBtn) {
-    publishStoryBtn.addEventListener('click', () => {
-      if (appState.currentUser && appState.currentUser.isAuthor) {
-        router.navigate('/dashboard');
-      } else {
-        router.showAuthModal();
-      }
-    });
-  }
-
-  // Dashboard tabs
-  document.addEventListener('click', (e) => {
-    if (e.target.classList.contains('sidebar-btn')) {
-      const tabName = e.target.getAttribute('data-tab');
-      if (tabName) {
-        showDashboardTab(tabName);
-      }
-    }
-  });
-
-  // Library filters
-  document.addEventListener('click', (e) => {
-    if (e.target.classList.contains('pill')) {
-      document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
-      e.target.classList.add('active');
-    }
-  });
-
-  // Reader controls
-  const readerBackBtn = document.getElementById('reader-back-btn');
-  const focusModeBtn = document.getElementById('focus-mode-btn');
-  const settingsBtn = document.getElementById('settings-btn');
-  const closeSettingsModal = document.getElementById('close-settings-modal');
-
-  if (readerBackBtn) {
-    readerBackBtn.addEventListener('click', () => {
-      router.navigate('/');
-    });
-  }
-
-  if (focusModeBtn) {
-    focusModeBtn.addEventListener('click', () => {
-      appState.focusMode = !appState.focusMode;
-      document.body.classList.toggle('focus-mode', appState.focusMode);
-    });
-  }
-
-  if (settingsBtn) {
-    settingsBtn.addEventListener('click', () => {
-      const modal = document.getElementById('reader-settings-modal');
-      if (modal) {
-        modal.classList.remove('hidden');
-      }
-    });
-  }
-
-  if (closeSettingsModal) {
-    closeSettingsModal.addEventListener('click', () => {
-      document.getElementById('reader-settings-modal').classList.add('hidden');
-    });
-  }
-
-  // Reader settings
+  // Reader Settings
   const decreaseFontBtn = document.getElementById('decrease-font');
   const increaseFontBtn = document.getElementById('increase-font');
 
   if (decreaseFontBtn) {
     decreaseFontBtn.addEventListener('click', () => {
-      if (appState.readerSettings.fontSize > 12) {
-        appState.readerSettings.fontSize -= 2;
-        updateFontSizeDisplay();
-        router.applyReaderSettings();
-        appState.saveReaderSettings();
+      if (window.appState.readerSettings.fontSize > 12) {
+        window.appState.readerSettings.fontSize--;
+        window.appState.saveReaderSettings();
+        window.router.applyReaderSettings();
       }
     });
   }
 
   if (increaseFontBtn) {
     increaseFontBtn.addEventListener('click', () => {
-      if (appState.readerSettings.fontSize < 24) {
-        appState.readerSettings.fontSize += 2;
-        updateFontSizeDisplay();
-        router.applyReaderSettings();
-        appState.saveReaderSettings();
+      if (window.appState.readerSettings.fontSize < 24) {
+        window.appState.readerSettings.fontSize++;
+        window.appState.saveReaderSettings();
+        window.router.applyReaderSettings();
       }
     });
   }
 
-  document.querySelectorAll('.bg-option').forEach(option => {
-    option.addEventListener('click', () => {
-      document.querySelectorAll('.bg-option').forEach(o => o.classList.remove('active'));
-      option.classList.add('active');
-      appState.readerSettings.background = option.getAttribute('data-bg');
-      router.applyReaderSettings();
-      appState.saveReaderSettings();
+  // Background Theme Toggle
+  document.querySelectorAll('input[name="background"]').forEach(input => {
+    input.addEventListener('change', (e) => {
+      window.appState.readerSettings.background = e.target.value;
+      window.appState.saveReaderSettings();
+      window.router.applyReaderSettings();
     });
   });
 
-  // Comment submission
-  const submitCommentBtn = document.getElementById('submit-comment-btn');
-  if (submitCommentBtn) {
-    submitCommentBtn.addEventListener('click', () => {
-      const content = document.getElementById('comment-input').value.trim();
-      if (content && appState.currentChapterId) {
-        router.addComment(appState.currentChapterId, content);
+  // Login/Logout
+  const loginBtn = document.getElementById('login-btn');
+  const signupBtn = document.getElementById('signup-btn');
+  const logoutBtn = document.getElementById('logout-btn');
+
+  if (loginBtn) {
+    loginBtn.addEventListener('click', () => {
+      const displayName = prompt('Enter your display name:');
+      const email = prompt('Enter your email:');
+      if (displayName && email) {
+        window.appState.login(displayName, email, false);
+        window.router.updateNavigation();
       }
     });
   }
 
-  // Create novel button
-  const createNovelBtn = document.getElementById('create-novel-btn');
-  if (createNovelBtn) {
-    createNovelBtn.addEventListener('click', () => {
-      alert('Novel creation feature coming soon!');
+  if (signupBtn) {
+    signupBtn.addEventListener('click', () => {
+      const displayName = prompt('Enter your display name:');
+      const email = prompt('Enter your email:');
+      const isAuthor = confirm('Are you signing up as an author?');
+      if (displayName && email) {
+        window.appState.login(displayName, email, isAuthor);
+        window.router.updateNavigation();
+      }
     });
   }
 
-  // Modal background click to close
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', () => {
+      window.appState.logout();
+      window.router.navigate('/');
+    });
+  }
+
+  // Library Filters
   document.addEventListener('click', (e) => {
-    if (e.target.classList.contains('modal')) {
-      e.target.classList.add('hidden');
+    if (e.target.classList.contains('library-filter-btn')) {
+      document.querySelectorAll('.library-filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      e.target.classList.add('active');
+
+      const filter = e.target.textContent.toLowerCase();
+      console.log('Filter library by:', filter);
+    }
+  });
+
+  // Dashboard Tabs
+  document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('dashboard-tab-btn')) {
+      document.querySelectorAll('.dashboard-tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      e.target.classList.add('active');
+
+      const tab = e.target.getAttribute('data-tab');
+      document.querySelectorAll('.dashboard-tab-content').forEach(content => {
+        content.classList.remove('active');
+      });
+      const targetContent = document.getElementById(`${tab}-tab`);
+      if (targetContent) {
+        targetContent.classList.add('active');
+      }
     }
   });
 }
 
-function showDashboardTab(tabName) {
-  // Update sidebar buttons
-  document.querySelectorAll('.sidebar-btn').forEach(btn => {
-    btn.classList.remove('active');
-  });
-  const activeBtn = document.querySelector(`[data-tab="${tabName}"]`);
-  if (activeBtn) {
-    activeBtn.classList.add('active');
-  }
+// Initialize Application
+document.addEventListener('DOMContentLoaded', () => {
+  const loadingScreen = document.getElementById('loading-screen');
+  const loadingMessage = document.getElementById('loading-message');
 
-  // Update tab content
-  document.querySelectorAll('.dashboard-tab').forEach(tab => {
-    tab.classList.remove('active');
-  });
-  const activeTab = document.getElementById(`dashboard-${tabName}`);
-  if (activeTab) {
-    activeTab.classList.add('active');
-  }
-
-  // Refresh content based on tab
-  if (tabName === 'overview') {
-    router.renderAuthorStats();
-  } else if (tabName === 'novels') {
-    router.renderAuthorNovels();
-  } else if (tabName === 'community') {
-    router.renderCommunityComments();
-  }
-}
-
-function updateFontSizeDisplay() {
-  const display = document.getElementById('font-size-display');
-  if (display) {
-    display.textContent = `${appState.readerSettings.fontSize}px`;
-  }
-}
-
-// Auto-hide reader header on scroll
-let lastScrollTop = 0;
-window.addEventListener('scroll', () => {
-  if (appState && appState.currentRoute === '/read') {
-    const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    const header = document.getElementById('reader-header');
-    
-    if (header && currentScrollTop > lastScrollTop && currentScrollTop > 100) {
-      header.classList.add('hidden');
-    } else if (header) {
-      header.classList.remove('hidden');
+  // Simulate loading progress
+  let percent = 0;
+  const interval = setInterval(() => {
+    percent = Math.min(percent + 10, 100);
+    if (loadingMessage) loadingMessage.textContent = `Loading... ${percent}%`;
+    if (percent === 100) {
+      clearInterval(interval);
+      if (loadingScreen) {
+        loadingScreen.classList.add('hidden');
+        setTimeout(() => {
+          if (loadingScreen) loadingScreen.remove();
+        }, 200);
+      }
     }
-    lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
-  }
+  }, 150);
+
+  // Force hide loading screen after 1.5 seconds
+  setTimeout(() => {
+    if (loadingScreen) {
+      loadingScreen.classList.add('hidden');
+      setTimeout(() => {
+        if (loadingScreen) loadingScreen.remove();
+      }, 200);
+    }
+  }, 1500);
+
+  // Initialize app
+  window.appState = new AppState();
+  window.router = new Router(window.appState);
+  setupEventListeners();
 });

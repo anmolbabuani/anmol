@@ -2250,3 +2250,103 @@ body.focus-mode .chapter-navigation:hover {
   white-space: nowrap;
   border: 0;
 }
+
+
+
+/* Additional fixes for loading screen and reader themes */
+
+/* Fix for loading screen - ensure it hides properly */
+.loading-screen.hidden {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+/* Reader theme modes that JavaScript expects */
+body.light-mode {
+    --color-background: var(--color-cream-50);
+    --color-surface: var(--color-cream-100);
+    --color-text: var(--color-slate-900);
+    --color-text-secondary: var(--color-slate-500);
+}
+
+body.dark-mode {
+    --color-background: var(--anmol-dark);
+    --color-surface: rgba(255, 255, 255, 0.05);
+    --color-text: #ffffff;
+    --color-text-secondary: rgba(255, 255, 255, 0.7);
+}
+
+body.sepia-mode {
+    --color-background: #f4f1ea;
+    --color-surface: #faf8f3;
+    --color-text: #5c4b37;
+    --color-text-secondary: #8b7355;
+}
+
+/* Ensure navigation elements are properly styled */
+#nav-auth, #nav-user {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+#nav-auth.hidden, #nav-user.hidden {
+    display: none !important;
+}
+
+/* Fix for reader content font size control */
+#chapter-content {
+    font-size: var(--reader-font-size, 18px);
+    transition: font-size 0.3s ease;
+}
+
+/* Fix for font size display */
+#font-size-display {
+    min-width: 40px;
+    text-align: center;
+    font-weight: 500;
+    color: var(--color-text);
+}
+
+/* Ensure modals work properly */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    backdrop-filter: blur(5px);
+}
+
+.modal:not(.hidden) {
+    display: flex;
+}
+
+/* Fix for radio options in settings */
+.radio-option {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.radio-option:hover,
+.radio-option:has(input:checked) {
+    border-color: var(--anmol-purple);
+    background: var(--anmol-glass);
+    color: var(--anmol-purple);
+}
+
+.radio-option input[type="radio"] {
+    margin: 0;
+}
