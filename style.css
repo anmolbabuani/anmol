@@ -2250,3 +2250,36 @@ body.focus-mode .chapter-navigation:hover {
   white-space: nowrap;
   border: 0;
 }
+#loading-screen {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: var(--anmol-dark, #121212);
+  color: #fff;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  transition: opacity 0.4s;
+}
+
+#loading-screen.hidden {
+  display: none;
+  opacity: 0;
+}
+
+.loader {
+  border: 8px solid #222;
+  border-top: 8px solid var(--anmol-purple, #BF40BF);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg);}
+  100% { transform: rotate(360deg);}
+}
