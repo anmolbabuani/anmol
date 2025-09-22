@@ -649,7 +649,9 @@ class Router {
       novelsList.appendChild(novelItem);
     });
   }
-
+document.addEventListener('contextmenu', function (event) {
+    event.preventDefault();
+});
   renderCommunityComments() {
     const commentsModeration = document.getElementById('comments-moderation');
     if (!commentsModeration) return;
