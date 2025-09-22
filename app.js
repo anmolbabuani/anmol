@@ -972,13 +972,22 @@ let appState;
 
 // App initialization
 document.addEventListener('DOMContentLoaded', () => {
-  // Hide loading screen
-  setTimeout(() => {
-    const loadingScreen = document.getElementById('loading-screen');
-    if (loadingScreen) {
-      loadingScreen.classList.add('hidden');
+  // Simulate loading progress
+  let percent = 0;
+  const loadingMessage = document.getElementById('loading-message');
+  const loadingScreen = document.getElementById('loading-screen');
+  const interval = setInterval(() => {
+    percent += 10;
+    if (loadingMessage) loadingMessage.textContent = `Loading... ${percent}%`;
+    if (percent >= 100) {
+      clearInterval(interval);
+      if (loadingScreen) {
+        loadingScreen.classList.add('hidden');
+        // Optionally: loadingScreen.remove();
+      }
     }
-  }, 1500);
+  }, 200);
+});
 
   // Initialize app
   appState = new AppState();
