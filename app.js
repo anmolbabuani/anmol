@@ -1235,3 +1235,226 @@ document.addEventListener("DOMContentLoaded", () => {
     clearInterval(interval);
   }, 1500);
 });
+
+
+// Modal Management Functions
+function showLoginModal() {
+  const modal = document.getElementById('login-modal');
+  if (modal) {
+    modal.classList.remove('hidden');
+    modal.style.display = 'flex';
+  }
+}
+
+function hideLoginModal() {
+  const modal = document.getElementById('login-modal');
+  if (modal) {
+    modal.classList.add('hidden');
+    modal.style.display = 'none';
+  }
+}
+
+function showRegisterModal() {
+  const modal = document.getElementById('register-modal');
+  if (modal) {
+    modal.classList.remove('hidden');
+    modal.style.display = 'flex';
+  }
+}
+
+function hideRegisterModal() {
+  const modal = document.getElementById('register-modal');
+  if (modal) {
+    modal.classList.add('hidden');
+    modal.style.display = 'none';
+  }
+}
+
+function showReaderSettings() {
+  const modal = document.getElementById('reader-settings-modal');
+  if (modal) {
+    modal.classList.remove('hidden');
+    modal.style.display = 'flex';
+    updateReaderSettingsDisplay();
+  }
+}
+
+function hideReaderSettings() {
+  const modal = document.getElementById('reader-settings-modal');
+  if (modal) {
+    modal.classList.add('hidden');
+    modal.style.display = 'none';
+  }
+}
+
+// Authentication Functions
+function handleLogin(event) {
+  event.preventDefault();
+
+  const email = document.getElementById('login-email')?.value;
+  const password = document.getElementById('login-password')?.value;
+
+  if (!email || !password) {
+    alert('Please fill in all fields');
+    return;
+  }
+
+  // For demo purposes, we'll use a simple authentication
+  // In a real app, this would validate against a server
+  const displayName = email.split('@')[0]; // Use part before @ as display name
+
+  if (window.appState) {
+    window.appState.login(displayName, email, false);
+    window.router.updateNavigation();
+    hideLoginModal();
+
+    // Show success message
+    alert(`Welcome back, ${displayName}!`);
+  }
+}
+
+function handleRegister(event) {
+  event.preventDefault();
+
+  const displayName = document.getElementById('register-name')?.value;
+  const email = document.getElementById('register-email')?.value;
+  const password = document.getElementById('register-password')?.value;
+  const isAuthor = document.getElementById('register-author')?.checked;
+
+  if (!displayName || !email || !password) {
+    alert('Please fill in all fields');
+    return;
+  }
+
+  if (window.appState) {
+    window.appState.login(displayName, email, isAuthor);
+    window.router.updateNavigation();
+    hideRegisterModal();
+
+    // Show success message
+    alert(`Welcome to Anmol, ${displayName}! ${isAuthor ? 'You can now start publishing your stories.' : 'Happy reading!'}`);
+
+    // Navigate to appropriate page
+    if (isAuthor) {
+      window.router.navigate('/dashboard');
+    } else {
+      window.router.navigate('/browse');
+    }
+  }
+}
+
+// Global logout function
+function logout() {
+  if (window.appState) {
+    window.appState.logout();
+    window.router.navigate('/');
+  }
+}
+
+// Reader Settings Functions
+function updateReaderSettingsDisplay() {
+  const fontSizeDisplay = document.getElementById('font-size-display');
+  if (fontSizeDisplay && window.appState) {
+    fontSizeDisplay.textContent = `${window.appState.readerSettings.fontSize}px`;
+  }
+
+  // Update background radio buttons
+  const bgRadios = document.querySelectorAll('input[name="background"]');
+  bgRadios.forEach(radio => {
+    if (radio.value === window.appState.readerSettings.background) {
+      radio.checked = true;
+    }
+  });
+}
+
+function changeFontSize(delta) {
+  if (window.appState) {
+    const newSize = window.appState.readerSettings.fontSize + delta;
+    if (newSize >= 12 && newSize <= 28) {
+      window.appState.readerSettings.fontSize = newSize;
+      window.appState.saveReaderSettings();
+      updateReaderSettingsDisplay();
+      if (window.router) {
+        window.router.applyReaderSettings();
+      }
+    }
+  }
+}
+
+function changeBackground(background) {
+  if (window.appState) {
+    window.appState.readerSettings.background = background;
+    window.appState.saveReaderSettings();
+    if (window.router) {
+      window.router.applyReaderSettings();
+    }
+  }
+}
+
+// Other Missing Functions
+function createNewNovel() {
+  if (!window.appState.currentUser || !window.appState.currentUser.isAuthor) {
+    alert('You need to be signed in as an author to create novels.');
+    return;
+  }
+
+  const title = prompt('Enter novel title:');
+  if (title) {
+    // For demo purposes, just show a message
+    alert(`Novel "${title}" created! In a full implementation, this would open the novel editor.`);
+  }
+}
+
+function toggleFocusMode() {
+  if (window.appState) {
+    window.appState.focusMode = !window.appState.focusMode;
+    document.body.classList.toggle('focus-mode', window.appState.focusMode);
+
+    const header = document.getElementById('reader-header');
+    if (header) {
+      header.style.display = window.appState.focusMode ? 'none' : 'block';
+    }
+  }
+}
+
+function addComment() {
+  const commentInput = document.getElementById('comment-input');
+  const commentText = commentInput?.value?.trim();
+
+  if (!commentText) {
+    alert('Please enter a comment');
+    return;
+  }
+
+  if (!window.appState.currentUser) {
+    alert('Please sign in to leave comments');
+    return;
+  }
+
+  // For demo purposes, just clear the input and show a message
+  commentInput.value = '';
+  alert('Comment added! In a full implementation, this would save to the database.');
+}
+
+// Modal backdrop click handling
+document.addEventListener('click', (e) => {
+  if (e.target.classList.contains('modal')) {
+    // Close modal when clicking backdrop
+    if (e.target.id === 'login-modal') {
+      hideLoginModal();
+    } else if (e.target.id === 'register-modal') {
+      hideRegisterModal();
+    } else if (e.target.id === 'reader-settings-modal') {
+      hideReaderSettings();
+    }
+  }
+});
+
+// Escape key handling for modals
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    hideLoginModal();
+    hideRegisterModal();
+    hideReaderSettings();
+  }
+});
