@@ -1,1 +1,506 @@
+<!DOCTYPE html>
+<html lang="en" data-color-scheme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 3: Neural Networks - The Digital Dreamer | Anmol</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Georgia:wght@400;700&family=Charter:wght@400;700&family=OpenDyslexic:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="description" content="Chapter 3: Neural Networks from The Digital Dreamer by Sarah Chen. Experience the ultimate reading interface with customization, social features, and immersive storytelling.">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <nav class="top-nav" id="top-nav">
+        <div class="nav-container">
+            <div class="nav-left">
+                <button class="nav-btn" id="back-btn" title="Back to Book">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <div class="book-info">
+                    <span class="book-title">The Digital Dreamer</span>
+                    <span class="chapter-info">Chapter 3 of 15</span>
+                </div>
+            </div>
+            
+            <div class="nav-center">
+                <div class="reading-progress">
+                    <div class="progress-bar" id="reading-progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                    <span class="progress-text" id="progress-text">0%</span>
+                </div>
+            </div>
+            
+            <div class="nav-right">
+                <div class="reader-count" title="Active Readers">
+                    <i class="fas fa-eye"></i>
+                    <span>23</span>
+                </div>
+                <button class="nav-btn" id="settings-btn" title="Reading Settings">
+                    <i class="fas fa-cog"></i>
+                </button>
+                <button class="nav-btn" id="menu-btn" title="Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
 
+    <!-- Side Panel -->
+    <aside class="side-panel" id="side-panel">
+        <div class="panel-header">
+            <div class="panel-tabs">
+                <button class="panel-tab active" data-tab="toc">TOC</button>
+                <button class="panel-tab" data-tab="comments">Comments</button>
+                <button class="panel-tab" data-tab="notes">Notes</button>
+                <button class="panel-tab" data-tab="author">Author</button>
+            </div>
+            <button class="panel-close" id="panel-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <!-- Table of Contents -->
+        <div class="panel-content" id="toc-panel">
+            <div class="toc-list" id="toc-list">
+                <!-- Will be populated by JS -->
+            </div>
+        </div>
+        
+        <!-- Comments Panel -->
+        <div class="panel-content hidden" id="comments-panel">
+            <div class="comments-header">
+                <div class="comments-stats">
+                    <span><i class="fas fa-comments"></i> 142 comments</span>
+                    <span><i class="fas fa-thumbs-up"></i> 756 likes</span>
+                </div>
+                <div class="comment-sort">
+                    <select id="comment-sort">
+                        <option value="newest">Newest</option>
+                        <option value="popular">Most Popular</option>
+                        <option value="oldest">Oldest</option>
+                    </select>
+                </div>
+            </div>
+            <div class="comments-list" id="comments-list">
+                <!-- Will be populated by JS -->
+            </div>
+            <div class="comment-form">
+                <textarea placeholder="Share your thoughts about this chapter..." id="new-comment"></textarea>
+                <div class="comment-actions">
+                    <label class="spoiler-toggle">
+                        <input type="checkbox" id="spoiler-warning"> Contains spoilers
+                    </label>
+                    <button class="btn btn--primary" id="post-comment">Post Comment</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Notes Panel -->
+        <div class="panel-content hidden" id="notes-panel">
+            <div class="notes-header">
+                <h3>My Notes & Highlights</h3>
+                <div class="notes-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="highlights">Highlights</button>
+                    <button class="filter-btn" data-filter="notes">Notes</button>
+                    <button class="filter-btn" data-filter="bookmarks">Bookmarks</button>
+                </div>
+            </div>
+            <div class="notes-list" id="notes-list">
+                <!-- Will be populated by JS -->
+            </div>
+        </div>
+        
+        <!-- Author Panel -->
+        <div class="panel-content hidden" id="author-panel">
+            <div class="author-info">
+                <img src="https://via.placeholder.com/80x80/4A90E2/FFFFFF?text=SC" alt="Sarah Chen" class="author-avatar">
+                <div class="author-details">
+                    <h3>Sarah Chen</h3>
+                    <p class="author-bio">Cyberpunk author exploring the intersection of technology and human consciousness. Former software engineer turned storyteller.</p>
+                    <div class="author-stats">
+                        <span><i class="fas fa-users"></i> 12.5K followers</span>
+                        <span><i class="fas fa-star"></i> 4.6 avg rating</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="author-actions">
+                <button class="btn btn--outline follow-btn">
+                    <i class="fas fa-plus"></i> Follow
+                </button>
+                <button class="btn btn--primary tip-btn">
+                    <i class="fas fa-coffee"></i> Tip Author
+                </button>
+            </div>
+            
+            <div class="author-commentary" id="author-commentary">
+                <h4>Author's Commentary</h4>
+                <p>This chapter was particularly challenging to write. I wanted to capture Maya's internal struggle as she discovers the truth about her origins. The neural interface scenes were inspired by my background in neuroscience...</p>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Reading Area -->
+    <main class="reading-container" id="reading-container">
+        <article class="chapter-content" id="chapter-content">
+            <header class="chapter-header">
+                <div class="chapter-meta">
+                    <div class="breadcrumb">
+                        <a href="#" class="breadcrumb-link">The Digital Dreamer</a>
+                        <i class="fas fa-chevron-right"></i>
+                        <span>Chapter 3</span>
+                    </div>
+                    <div class="chapter-stats">
+                        <span class="reading-time"><i class="fas fa-clock"></i> 12-15 min read</span>
+                        <span class="word-count"><i class="fas fa-file-text"></i> 2,847 words</span>
+                        <span class="chapter-rating">
+                            <i class="fas fa-star"></i>
+                            <span>4.7</span>
+                            <span class="rating-count">(234)</span>
+                        </span>
+                    </div>
+                </div>
+                
+                <h1 class="chapter-title">Neural Networks</h1>
+                
+                <div class="chapter-actions">
+                    <button class="action-btn" id="bookmark-btn" title="Bookmark this position">
+                        <i class="fas fa-bookmark"></i>
+                    </button>
+                    <button class="action-btn" id="highlight-btn" title="Highlight mode">
+                        <i class="fas fa-marker"></i>
+                    </button>
+                    <button class="action-btn" id="share-btn" title="Share this chapter">
+                        <i class="fas fa-share"></i>
+                    </button>
+                    <button class="action-btn" id="tts-btn" title="Text-to-speech">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                </div>
+            </header>
+            
+            <div class="chapter-text" id="chapter-text">
+                <!-- Chapter content will be populated by JS with proper paragraph formatting -->
+            </div>
+            
+            <footer class="chapter-footer">
+                <div class="chapter-reactions">
+                    <button class="reaction-btn" data-reaction="like">
+                        <i class="fas fa-thumbs-up"></i>
+                        <span>756</span>
+                    </button>
+                    <button class="reaction-btn" data-reaction="love">
+                        <i class="fas fa-heart"></i>
+                        <span>234</span>
+                    </button>
+                    <button class="reaction-btn" data-reaction="mind-blown">
+                        <i class="fas fa-brain"></i>
+                        <span>189</span>
+                    </button>
+                    <button class="reaction-btn" data-reaction="sad">
+                        <i class="fas fa-sad-tear"></i>
+                        <span>67</span>
+                    </button>
+                </div>
+                
+                <div class="chapter-rating-section">
+                    <span>Rate this chapter:</span>
+                    <div class="rating-stars" id="rating-stars">
+                        <button class="star-btn" data-rating="1"><i class="fas fa-star"></i></button>
+                        <button class="star-btn" data-rating="2"><i class="fas fa-star"></i></button>
+                        <button class="star-btn" data-rating="3"><i class="fas fa-star"></i></button>
+                        <button class="star-btn" data-rating="4"><i class="fas fa-star"></i></button>
+                        <button class="star-btn" data-rating="5"><i class="fas fa-star"></i></button>
+                    </div>
+                </div>
+            </footer>
+        </article>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav" id="bottom-nav">
+        <div class="nav-container">
+            <button class="nav-btn prev-chapter" id="prev-chapter">
+                <i class="fas fa-chevron-left"></i>
+                <div class="nav-info">
+                    <span class="nav-label">Previous</span>
+                    <span class="nav-title">Corporate Shadows</span>
+                </div>
+            </button>
+            
+            <div class="chapter-nav">
+                <button class="chapter-list-btn" id="chapter-list-btn">
+                    <span class="chapter-current">3</span>
+                    <span class="chapter-divider">/</span>
+                    <span class="chapter-total">15</span>
+                </button>
+            </div>
+            
+            <button class="nav-btn next-chapter" id="next-chapter">
+                <div class="nav-info">
+                    <span class="nav-label">Next</span>
+                    <span class="nav-title">Memory Fragments</span>
+                </div>
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Reading Settings Panel -->
+    <div class="settings-panel hidden" id="settings-panel">
+        <div class="settings-header">
+            <h3>Reading Settings</h3>
+            <button class="settings-close" id="settings-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="settings-content">
+            <div class="settings-section">
+                <h4>Theme</h4>
+                <div class="theme-options">
+                    <button class="theme-btn active" data-theme="dark">
+                        <div class="theme-preview dark-preview"></div>
+                        <span>Dark</span>
+                    </button>
+                    <button class="theme-btn" data-theme="light">
+                        <div class="theme-preview light-preview"></div>
+                        <span>Light</span>
+                    </button>
+                    <button class="theme-btn" data-theme="sepia">
+                        <div class="theme-preview sepia-preview"></div>
+                        <span>Sepia</span>
+                    </button>
+                    <button class="theme-btn" data-theme="contrast">
+                        <div class="theme-preview contrast-preview"></div>
+                        <span>High Contrast</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="settings-section">
+                <h4>Font</h4>
+                <div class="font-controls">
+                    <div class="control-group">
+                        <label>Font Family</label>
+                        <select id="font-family">
+                            <option value="Georgia">Georgia</option>
+                            <option value="Charter">Charter</option>
+                            <option value="Times New Roman">Times New Roman</option>
+                            <option value="Inter">Inter</option>
+                            <option value="OpenDyslexic">OpenDyslexic</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label>Font Size</label>
+                        <div class="font-size-control">
+                            <button class="size-btn" id="decrease-font"><i class="fas fa-minus"></i></button>
+                            <span id="font-size-display">18px</span>
+                            <button class="size-btn" id="increase-font"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label>Line Height</label>
+                        <input type="range" id="line-height" min="1.2" max="2.0" step="0.1" value="1.6">
+                        <span id="line-height-display">1.6</span>
+                    </div>
+                    <div class="control-group">
+                        <label>Letter Spacing</label>
+                        <input type="range" id="letter-spacing" min="-0.05" max="0.1" step="0.01" value="0">
+                        <span id="letter-spacing-display">0em</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="settings-section">
+                <h4>Layout</h4>
+                <div class="layout-controls">
+                    <div class="control-group">
+                        <label>Reading Width</label>
+                        <div class="width-options">
+                            <button class="width-btn" data-width="narrow">Narrow</button>
+                            <button class="width-btn active" data-width="medium">Medium</button>
+                            <button class="width-btn" data-width="wide">Wide</button>
+                            <button class="width-btn" data-width="full">Full</button>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label>Text Alignment</label>
+                        <div class="align-options">
+                            <button class="align-btn active" data-align="left">Left</button>
+                            <button class="align-btn" data-align="justify">Justify</button>
+                            <button class="align-btn" data-align="center">Center</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="settings-section">
+                <h4>Features</h4>
+                <div class="feature-toggles">
+                    <label class="toggle-item">
+                        <input type="checkbox" id="auto-scroll">
+                        <span class="toggle-label">Auto Scroll</span>
+                        <div class="toggle-switch"></div>
+                    </label>
+                    <label class="toggle-item">
+                        <input type="checkbox" id="focus-mode">
+                        <span class="toggle-label">Focus Mode</span>
+                        <div class="toggle-switch"></div>
+                    </label>
+                    <label class="toggle-item">
+                        <input type="checkbox" id="blue-light-filter">
+                        <span class="toggle-label">Blue Light Filter</span>
+                        <div class="toggle-switch"></div>
+                    </label>
+                    <label class="toggle-item">
+                        <input type="checkbox" id="reading-ruler" checked>
+                        <span class="toggle-label">Reading Guide</span>
+                        <div class="toggle-switch"></div>
+                    </label>
+                </div>
+                
+                <div class="control-group" id="auto-scroll-controls" style="display: none;">
+                    <label>Auto Scroll Speed</label>
+                    <input type="range" id="scroll-speed" min="0.5" max="3" step="0.1" value="1">
+                    <span id="scroll-speed-display">1x</span>
+                </div>
+            </div>
+            
+            <div class="settings-section">
+                <h4>Accessibility</h4>
+                <div class="accessibility-controls">
+                    <button class="btn btn--outline" id="tts-controls">
+                        <i class="fas fa-volume-up"></i>
+                        Text-to-Speech Settings
+                    </button>
+                    <button class="btn btn--outline" id="dyslexia-mode">
+                        <i class="fas fa-eye"></i>
+                        Dyslexia-Friendly Mode
+                    </button>
+                    <button class="btn btn--outline" id="magnifier-tool">
+                        <i class="fas fa-search-plus"></i>
+                        Reading Magnifier
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dictionary Popup -->
+    <div class="dictionary-popup hidden" id="dictionary-popup">
+        <div class="dictionary-content">
+            <div class="dictionary-header">
+                <h4 id="dictionary-word">neural</h4>
+                <button class="dictionary-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="dictionary-definition" id="dictionary-definition">
+                <p><strong>adjective</strong> relating to a nerve or the nervous system</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Highlight Tooltip -->
+    <div class="highlight-tooltip hidden" id="highlight-tooltip">
+        <div class="highlight-colors">
+            <button class="color-btn" data-color="#FFD700" style="background: #FFD700" title="Yellow"></button>
+            <button class="color-btn" data-color="#FF6B9D" style="background: #FF6B9D" title="Pink"></button>
+            <button class="color-btn" data-color="#4A90E2" style="background: #4A90E2" title="Blue"></button>
+            <button class="color-btn" data-color="#32CD32" style="background: #32CD32" title="Green"></button>
+            <button class="color-btn" data-color="#FF6B35" style="background: #FF6B35" title="Orange"></button>
+        </div>
+        <div class="highlight-actions">
+            <button class="highlight-action" id="add-note">
+                <i class="fas fa-sticky-note"></i> Note
+            </button>
+            <button class="highlight-action" id="share-quote">
+                <i class="fas fa-share"></i> Share
+            </button>
+        </div>
+    </div>
+
+    <!-- Reading Analytics Panel -->
+    <div class="analytics-panel hidden" id="analytics-panel">
+        <div class="analytics-header">
+            <h3>Reading Analytics</h3>
+            <button class="analytics-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="analytics-content">
+            <div class="stat-card">
+                <i class="fas fa-tachometer-alt"></i>
+                <div class="stat-info">
+                    <span class="stat-value" id="reading-speed">245 WPM</span>
+                    <span class="stat-label">Reading Speed</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-clock"></i>
+                <div class="stat-info">
+                    <span class="stat-value" id="session-time">8:42</span>
+                    <span class="stat-label">Session Time</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-percentage"></i>
+                <div class="stat-info">
+                    <span class="stat-value" id="completion-rate">68%</span>
+                    <span class="stat-label">Chapter Complete</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Reading Controls -->
+    <div class="mobile-controls" id="mobile-controls">
+        <button class="mobile-btn" id="mobile-settings">
+            <i class="fas fa-cog"></i>
+        </button>
+        <button class="mobile-btn" id="mobile-bookmark">
+            <i class="fas fa-bookmark"></i>
+        </button>
+        <button class="mobile-btn" id="mobile-comments">
+            <i class="fas fa-comments"></i>
+        </button>
+        <button class="mobile-btn" id="mobile-analytics">
+            <i class="fas fa-chart-line"></i>
+        </button>
+    </div>
+
+    <!-- Tip Author Modal -->
+    <div class="modal hidden" id="tip-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Support Sarah Chen</h3>
+                <button class="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="tip-amounts">
+                    <button class="tip-amount" data-amount="2">$2</button>
+                    <button class="tip-amount" data-amount="5">$5</button>
+                    <button class="tip-amount active" data-amount="10">$10</button>
+                    <button class="tip-amount" data-amount="25">$25</button>
+                    <input type="number" class="custom-amount" placeholder="Custom amount" min="1">
+                </div>
+                <div class="tip-message">
+                    <textarea placeholder="Leave an encouraging message (optional)"></textarea>
+                </div>
+                <button class="btn btn--primary tip-submit">
+                    <i class="fas fa-coffee"></i>
+                    Send Tip
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
