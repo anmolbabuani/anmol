@@ -1,1460 +1,939 @@
-// Application Data
-const APP_DATA = {
-  novels: [
-    {
-      id: "novel1",
-      title: "The Digital Dreamer",
-      author: "Sarah Chen",
-      authorId: "user2",
-      description:
-        "A cyberpunk tale of a hacker who discovers she can enter dreams through virtual reality.",
-      coverUrl:
-        "https://via.placeholder.com/300x450/BF40BF/FFFFFF?text=The+Digital+Dreamer",
-      genre: "Cyberpunk",
-      status: "published",
-      createdAt: "2024-08-15",
-      updatedAt: "2024-09-20",
-      chapters: ["ch1", "ch2", "ch3"],
-      stats: {
-        views: 12456,
-        likes: 892,
-        comments: 234,
-      },
-    },
-    {
-      id: "novel2",
-      title: "Whispers in the Void",
-      author: "Marcus Rivera",
-      authorId: "user3",
-      description:
-        "Space explorers discover an ancient alien civilization that communicates through silence.",
-      coverUrl:
-        "https://via.placeholder.com/300x450/4A90E2/FFFFFF?text=Whispers+in+Void",
-      genre: "Space Opera",
-      status: "published",
-      createdAt: "2024-07-22",
-      updatedAt: "2024-09-19",
-      chapters: ["ch4", "ch5"],
-      stats: {
-        views: 8934,
-        likes: 567,
-        comments: 123,
-      },
-    },
-    {
-      id: "novel3",
-      title: "The Last Library",
-      author: "Elena Vasquez",
-      authorId: "user4",
-      description:
-        "In a world where books are banned, a secret librarian fights to preserve human knowledge.",
-      coverUrl:
-        "https://via.placeholder.com/300x450/E74C3C/FFFFFF?text=Last+Library",
-      genre: "Dystopian",
-      status: "published",
-      createdAt: "2024-06-10",
-      updatedAt: "2024-09-18",
-      chapters: ["ch6", "ch7", "ch8", "ch9"],
-      stats: {
-        views: 15678,
-        likes: 1234,
-        comments: 456,
-      },
-    },
-    {
-      id: "novel4",
-      title: "Neon Hearts",
-      author: "Alex Kim",
-      authorId: "user5",
-      description:
-        "A romance blooming in the backstreets of a futuristic Tokyo.",
-      coverUrl:
-        "https://via.placeholder.com/300x450/FF6B9D/FFFFFF?text=Neon+Hearts",
-      genre: "Romance",
-      status: "published",
-      createdAt: "2024-09-01",
-      updatedAt: "2024-09-20",
-      chapters: ["ch10", "ch11"],
-      stats: {
-        views: 6789,
-        likes: 445,
-        comments: 89,
-      },
-    },
-    {
-      id: "novel5",
-      title: "Code of Shadows",
-      author: "Anmol Babuani",
-      authorId: "creator",
-      description:
-        "A thriller about a programmer who discovers a conspiracy hidden in open-source code.",
-      coverUrl:
-        "https://via.placeholder.com/300x450/9B59B6/FFFFFF?text=Code+Shadows",
-      genre: "Thriller",
-      status: "published",
-      createdAt: "2024-05-15",
-      updatedAt: "2024-09-15",
-      chapters: ["ch12", "ch13", "ch14"],
-      stats: {
-        views: 23456,
-        likes: 1567,
-        comments: 678,
-      },
-    },
-  ],
-  chapters: [
-    {
-      id: "ch1",
-      novelId: "novel1",
-      title: "The First Dive",
-      content:
-        "Maya's fingers danced across the holographic keyboard, lines of code cascading like digital rain. The neural interface hummed against her temple, a gentle vibration that meant the connection was stable. Tonight was different. Tonight, she would attempt something that existed only in theoretical papers and whispered conversations in underground forums.\n\nThe dream-dive protocol.\n\n\"Are you sure about this?\" Jake's voice crackled through her earpiece, tinged with concern. Her partner had always been the cautious one, but that's what made them such a good team.\n\n\"I've run the simulations a thousand times,\" Maya replied, her eyes never leaving the streams of data flowing across her screens. \"The virtual reality matrix can interface with REM sleep patterns. If I'm right, I can literally enter someone's dreams.\"\n\nThe room fell silent except for the gentle hum of cooling fans and the distant sound of rain against the window. Neo-Tokyo never slept, its neon arteries pulsing with life even at 3 AM. Maya took a deep breath and initialized the connection.\n\nSuddenily, reality dissolved.",
-      chapterNumber: 1,
-      publishedAt: "2024-08-15",
-    },
-    {
-      id: "ch2",
-      novelId: "novel1",
-      title: "Digital Phantoms",
-      content:
-        'Maya found herself standing in a corridor that defied physics. The walls were made of flowing data, constantly shifting between binary code and abstract geometric patterns. This was someone else\'s subconscious mind, rendered in digital form.\n\n"Incredible," she whispered, watching as her own thoughts manifested as small floating orbs of light around her hands. "The neural-VR interface is actually translating dream logic into navigable space."\n\nBut something was wrong. The dream felt too structured, too intentional. Real dreams were chaotic, full of impossible transitions and illogical narratives. This felt... designed.\n\nA figure emerged from the flowing walls—a young man with silver eyes and clothing that seemed to be cut from the fabric of cyberspace itself.\n\n"You\'re not supposed to be here," he said, his voice echoing with digital distortion. "The dream-web is not ready for outsiders."\n\nMaya\'s heart raced as she realized the implications. She wasn\'t the first to discover dream-diving. Someone else had been here long before her, and they had been busy.',
-      chapterNumber: 2,
-      publishedAt: "2024-08-20",
-    },
-    {
-      id: "ch12",
-      novelId: "novel5",
-      title: "The Hidden Message",
-      content:
-        "David Chen had been staring at the same lines of code for three hours. On the surface, it was just another open-source library for image processing—nothing unusual about it. But the commit history told a different story.\n\nEvery seventh commit contained a subtle anomaly. A variable name that was one character off from the standard convention. A comment that seemed innocuous but used specific terminology that triggered his pattern recognition algorithms.\n\n\"Someone's hiding messages in plain sight,\" he muttered, pulling up his analysis tools.\n\nAs a security researcher for Nexus Corporation, David had seen his share of steganography and hidden communications. But this was different. The messages weren't just hidden in the code—they were using the version control system itself as a communication channel.\n\nHis phone buzzed with a notification. An encrypted message from an unknown sender:\n\n\"You're getting close. Meet me at the old server farm. Midnight. Come alone, and bring your findings. Trust no one at Nexus.\"\n\nDavid's blood ran cold. Someone had been watching his investigation. But were they trying to help him... or silence him?",
-      chapterNumber: 1,
-      publishedAt: "2024-05-15",
-    },
-  ],
-  users: [
-    {
-      id: "user1",
-      displayName: "BookLover2024",
-      email: "reader@example.com",
-      joinDate: "2024-03-15",
-      library: ["novel1", "novel3", "novel5"],
-      isAuthor: false,
-      stats: {
-        chaptersRead: 156,
-        commentsMade: 23,
-        likesGiven: 89,
-      },
-    },
-    {
-      id: "user2",
-      displayName: "Sarah Chen",
-      email: "sarah@example.com",
-      joinDate: "2024-02-10",
-      library: ["novel2", "novel3"],
-      isAuthor: true,
-      stats: {
-        novelsPublished: 1,
-        totalViews: 12456,
-        followers: 234,
-      },
-    },
-    {
-      id: "creator",
-      displayName: "Anmol Babuani",
-      email: "anmol@anmolplatform.com",
-      joinDate: "2024-01-01",
-      library: [],
-      isAuthor: true,
-      stats: {
-        novelsPublished: 1,
-        totalViews: 23456,
-        followers: 567,
-      },
-    },
-  ],
-  comments: [
-    {
-      id: "comment1",
-      chapterId: "ch1",
-      userId: "user1",
-      content:
-        "This opening is incredible! The world-building feels so authentic.",
-      timestamp: "2024-09-20T10:30:00Z",
-      isAnonymous: false,
-    },
-    {
-      id: "comment2",
-      chapterId: "ch1",
-      userId: "anonymous_123",
-      content:
-        "I love how you've integrated the technical aspects with the narrative. Can't wait to see where this goes!",
-      timestamp: "2024-09-20T14:15:00Z",
-      isAnonymous: true,
-    },
-    {
-      id: "comment3",
-      chapterId: "ch12",
-      userId: "user2",
-      content:
-        "The tension in this chapter is perfect. Really builds the suspense.",
-      timestamp: "2024-09-19T20:45:00Z",
-      isAnonymous: false,
-    },
-  ],
-  likes: [
-    {
-      id: "like1",
-      chapterId: "ch1",
-      userId: "user1",
-      timestamp: "2024-09-20T10:31:00Z",
-    },
-    {
-      id: "like2",
-      chapterId: "ch1",
-      userId: "anonymous_456",
-      timestamp: "2024-09-20T11:22:00Z",
-      isAnonymous: true,
-    },
-  ],
-  projects: [
-    {
-      id: "anmol-platform",
-      name: "Anmol",
-      description:
-        "Free novel publishing platform for the next generation of authors and readers",
-      technologies: ["Firebase", "JavaScript", "CSS", "HTML"],
-      featured: true,
-      logo: "https://via.placeholder.com/100x100/BF40BF/FFFFFF?text=A",
-    },
-    {
-      id: "code-analyzer",
-      name: "CodeAnalyzer Pro",
-      description: "AI-powered code review and security analysis tool",
-      technologies: ["Python", "TensorFlow", "React"],
-      featured: false,
-    },
-    {
-      id: "dream-tracker",
-      name: "DreamTracker",
-      description: "Mobile app for tracking and analyzing dream patterns",
-      technologies: ["React Native", "Node.js", "MongoDB"],
-      featured: false,
-    },
-  ],
-};
+// Anmol Premium Chapter Reader - Firebase Integration (Fixed Version)
+// Advanced JavaScript with real-time Firebase backend and improved UI
 
-// Application State
-class AppState {
+class AnmolChapterReader {
   constructor() {
-    this.currentUser = null;
-    this.currentRoute = "/";
+    // Application state
+    this.currentTheme = 'dark';
+    this.isLoading = true;
+    this.currentChapter = null;
     this.currentNovelId = null;
     this.currentChapterId = null;
-    this.focusMode = false;
-    this.readerSettings = {
-      fontSize: 18,
-      background: "dark",
+    this.userProgress = {
+      scrollProgress: 0,
+      readingTime: 0,
+      startTime: null,
+      isLiked: false,
+      isBookmarked: false
     };
-    this.data = { ...APP_DATA };
+    this.totalChapters = 0;
+    this.adjacentChapters = { prev: null, next: null };
+    
+    // Firebase configuration from provided data
+    this.firebaseConfig = {
+      apiKey: "AIzaSyDWvWKy0Q0cXpNfwtGSOnE1fpVpUNNIUYo",
+      authDomain: "anmol-52f27.firebaseapp.com",
+      projectId: "anmol-52f27",
+      storageBucket: "anmol-52f27.appspot.com",
+      messagingSenderId: "976948958946",
+      appId: "1:976948958946:web:82be247422eed9bd1130bb",
+      measurementId: "G-76WN0DR9BZ"
+    };
+
+    // Author information
+    this.authorInfo = {
+      name: "Aditya Lallchandani",
+      avatar: "IMG_1906.jpg",
+      bio: "Computer Science student at Institute of Technology, Nirma University. Creator of the Anmol platform."
+    };
+
     this.init();
   }
 
-  init() {
-    this.loadUser();
-    this.loadReaderSettings();
+  async init() {
+    console.log('🚀 Initializing Anmol Chapter Reader...');
+    
+    try {
+      // Initialize Firebase
+      await this.initFirebase();
+      
+      // Initialize theme
+      this.initTheme();
+      
+      // Parse URL and load chapter
+      await this.parseUrlAndLoadChapter();
+      
+      // Setup event listeners
+      this.setupEventListeners();
+      
+      // Initialize reading features
+      this.initReadingFeatures();
+      
+      // Show header and navigation after loading
+      setTimeout(() => {
+        this.showHeader();
+        this.showNavigation();
+      }, 1000);
+      
+      console.log('✅ Anmol Chapter Reader Ready!');
+    } catch (error) {
+      console.error('❌ Initialization Error:', error);
+      this.showError('Failed to initialize the reader. Please try again.');
+    }
   }
 
-  loadUser() {
-    const userData = localStorage.getItem("anmol_user");
-    if (userData) {
-      try {
-        this.currentUser = JSON.parse(userData);
-      } catch (e) {
-        localStorage.removeItem("anmol_user");
+  // Firebase Initialization
+  async initFirebase() {
+    try {
+      // Initialize Firebase
+      firebase.initializeApp(this.firebaseConfig);
+      this.db = firebase.firestore();
+      
+      // Initialize Analytics if available
+      if (firebase.analytics) {
+        this.analytics = firebase.analytics();
       }
+      
+      console.log('✅ Firebase initialized successfully');
+    } catch (error) {
+      console.error('❌ Firebase initialization error:', error);
+      throw new Error('Failed to connect to Firebase');
     }
   }
 
-  saveUser() {
-    if (this.currentUser) {
-      localStorage.setItem("anmol_user", JSON.stringify(this.currentUser));
+  // URL Parsing and Routing
+  async parseUrlAndLoadChapter() {
+    const hash = window.location.hash;
+    console.log('📍 Current URL hash:', hash);
+
+    // Expected format: #/novel/{novelId}/chapter/{chapterId}
+    const routeMatch = hash.match(/#\/novel\/(\d+)\/chapter\/(\d+)/);
+    
+    if (routeMatch) {
+      this.currentNovelId = routeMatch[1];
+      this.currentChapterId = routeMatch[2];
+      
+      console.log(`📖 Loading Novel ${this.currentNovelId}, Chapter ${this.currentChapterId}`);
+      await this.loadChapter(this.currentNovelId, this.currentChapterId);
     } else {
-      localStorage.removeItem("anmol_user");
+      // Default to sample chapter for demo
+      console.log('📖 Loading sample chapter for demo');
+      await this.loadSampleChapter();
     }
   }
 
-  loadReaderSettings() {
-    const settings = localStorage.getItem("anmol_reader_settings");
-    if (settings) {
-      try {
-        this.readerSettings = {
-          ...this.readerSettings,
-          ...JSON.parse(settings),
+  // Load chapter from Firebase
+  async loadChapter(novelId, chapterId) {
+    try {
+      this.showLoading(true);
+      
+      // Fetch chapter from Firestore
+      const chapterRef = this.db.collection('novels').doc(novelId).collection('chapters').doc(chapterId);
+      const chapterDoc = await chapterRef.get();
+      
+      if (chapterDoc.exists) {
+        const chapterData = chapterDoc.data();
+        this.currentChapter = {
+          id: chapterId,
+          novelId: novelId,
+          ...chapterData
         };
-      } catch (e) {
-        localStorage.removeItem("anmol_reader_settings");
+        
+        // Increment view count
+        await this.incrementViewCount(chapterRef);
+        
+        // Load adjacent chapters for navigation
+        await this.loadAdjacentChapters(novelId, parseInt(chapterId));
+        
+        // Render chapter content
+        this.renderChapter();
+        
+        // Track reading session
+        this.startReadingSession();
+        
+        this.showLoading(false);
+      } else {
+        throw new Error('Chapter not found');
       }
+      
+    } catch (error) {
+      console.error('❌ Error loading chapter:', error);
+      this.showError('Chapter not found. Please check the URL or try again.');
+      this.showLoading(false);
     }
   }
 
-  saveReaderSettings() {
-    localStorage.setItem(
-      "anmol_reader_settings",
-      JSON.stringify(this.readerSettings)
-    );
-  }
-
-  login(displayName, email, isAuthor = false) {
-    const userId = "user_" + Date.now();
-    this.currentUser = {
-      id: userId,
-      displayName,
-      email,
-      joinDate: new Date().toISOString().split("T")[0],
-      library: [],
-      isAuthor,
-      stats: isAuthor
-        ? { novelsPublished: 0, totalViews: 0, followers: 0 }
-        : { chaptersRead: 0, commentsMade: 0, likesGiven: 0 },
-    };
-    this.saveUser();
-  }
-
-  logout() {
-    this.currentUser = null;
-    this.saveUser();
-  }
-
-  getAnonymousUserId() {
-    let anonymousId = localStorage.getItem("anmol_anonymous_id");
-    if (!anonymousId) {
-      anonymousId = `anonymous_${Date.now()}`;
-      localStorage.setItem("anmol_anonymous_id", anonymousId);
+  // Load sample chapter for demo purposes
+  async loadSampleChapter() {
+    try {
+      this.showLoading(true);
+      
+      // Sample chapter data from provided JSON
+      this.currentChapter = {
+        id: "1",
+        novelId: "1",
+        chapternumber: 1,
+        title: "The Upload",
+        content: "Maya Chen stood at the threshold between flesh and digital eternity. The neural interface hummed against her temples, its quantum processors preparing to upload her consciousness into the vast digital realm that promised immortality.\n\nThe laboratory around her buzzed with activity—technicians monitoring screens filled with neural patterns, doctors checking her vital signs one final time. Dr. Sarah Mitchell, the lead researcher, approached with a tablet displaying Maya's brain scan.\n\n'Are you ready for this?' Dr. Mitchell asked, her voice barely concealing her own nervousness about the experimental procedure.\n\nMaya nodded, feeling the weight of human history on her shoulders. She would be among the first to successfully transfer human consciousness into a digital format, leaving behind the limitations of biological existence.\n\nThe process began with a gentle humming that seemed to resonate in her bones. Maya felt her awareness expand, stretching beyond the confines of her physical form. Colors became more vivid, thoughts moved like streams of light, and she could sense the vast network of digital consciousness that awaited her.\n\nAs the upload progressed, Maya experienced a strange duality—part of her remained tethered to her physical body, while another part began to explore this new digital frontier. The sensation was both exhilarating and terrifying, like learning to fly while falling from a great height.\n\nDr. Mitchell's voice seemed to come from a great distance. 'Maya, can you hear me? How do you feel?'\n\nMaya tried to respond, but found that communication in this digital space worked differently. Instead of words, she projected thoughts and emotions directly. The reply came not as sound, but as pure meaning: 'I can feel everything. The network, the data streams, the other consciousnesses... it's beautiful and overwhelming.'\n\nThe upload was successful, but Maya soon realized that this digital paradise came with its own set of challenges and dark secrets that would test her humanity in ways she never imagined.\n\nAs days passed in the digital realm, Maya discovered that time moved differently here. What felt like hours could be mere seconds in the physical world, or conversely, a single thought could stretch into what seemed like eternities. The flexibility of digital existence was both liberating and disorienting.\n\nShe learned to navigate the vast networks of information, swimming through data streams like a digital dolphin. Other uploaded consciousnesses appeared as glowing entities, each with their own unique signature. Some welcomed her warmly, sharing their experiences and wisdom gained from their time in this digital paradise. Others seemed distant, lost in their own virtual worlds and pursuits.\n\nBut it was during one of her explorations that Maya first noticed the glitches—small inconsistencies in the code that seemed to hint at something larger and more troubling beneath the surface of this perfect digital world.",
+        datepub: "2024-03-15T00:00:00Z",
+        like: 342,
+        read: 1250,
+        viewers: 2103,
+        word: 2375
+      };
+      
+      // Simulate adjacent chapters
+      this.adjacentChapters = {
+        prev: null,
+        next: { id: "2", title: "Digital Awakening", chapternumber: 2 }
+      };
+      
+      this.totalChapters = 12;
+      
+      this.renderChapter();
+      this.startReadingSession();
+      this.showLoading(false);
+      
+      // Show demo notification
+      setTimeout(() => {
+        this.showToast('Demo mode: Connect to Firebase for full functionality', 'info', 5000);
+      }, 2000);
+      
+    } catch (error) {
+      console.error('❌ Error loading sample chapter:', error);
+      this.showError('Failed to load chapter content.');
+      this.showLoading(false);
     }
-    return anonymousId;
-  }
-}
-
-// Router
-class Router {
-  constructor(appState) {
-    this.appState = appState;
-    this.routes = {
-      "/": "home-template",
-      "/profile": "profile-template",
-      "/creator": "creator-template",
-      "/dashboard": "dashboard-template",
-      "/library": "library-template",
-      "/browse": "browse-template",
-      "/community": "community-template",
-      "/read": "reader-template",
-      "/about": "about-template",
-      "/404": "notfound-template",
-    };
-    this.init();
   }
 
-  init() {
-    this.navigate("/", false);
-  }
-
-  navigate(path, pushState = true) {
-    let route = path;
-    if (!this.routes[route]) route = "/404";
-    this.appState.currentRoute = route;
-    this.render();
-  }
-
-  render() {
-    const templateId =
-      this.routes[this.appState.currentRoute] || "home-template";
-    const template = document.getElementById(templateId);
-    const appRoot = document.getElementById("app-root");
-
-    if (template && appRoot) {
-      appRoot.innerHTML = "";
-      appRoot.appendChild(template.content.cloneNode(true));
+  // Show header and navigation elements
+  showHeader() {
+    const header = document.getElementById('chapter-header');
+    if (header) {
+      header.classList.add('visible');
     }
-
-    this.updateNavigation();
-    this.renderPageContent();
   }
 
-  updateNavigation() {
-    document.querySelectorAll(".nav-link").forEach((link) => {
-      const route = link.getAttribute("data-route");
-      link.classList.remove("active");
-      if (route === this.appState.currentRoute) {
-        link.classList.add("active");
+  showNavigation() {
+    const navigation = document.getElementById('chapter-navigation');
+    if (navigation) {
+      navigation.style.display = 'block';
+    }
+  }
+
+  // Increment view count in Firebase
+  async incrementViewCount(chapterRef) {
+    try {
+      await chapterRef.update({
+        viewers: firebase.firestore.FieldValue.increment(1)
+      });
+      console.log('📊 View count incremented');
+    } catch (error) {
+      console.warn('⚠️ Could not increment view count:', error);
+    }
+  }
+
+  // Load adjacent chapters for navigation
+  async loadAdjacentChapters(novelId, currentChapterNumber) {
+    try {
+      const chaptersRef = this.db.collection('novels').doc(novelId).collection('chapters');
+      
+      // Get previous chapter
+      const prevQuery = await chaptersRef
+        .where('chapternumber', '==', currentChapterNumber - 1)
+        .limit(1)
+        .get();
+      
+      if (!prevQuery.empty) {
+        const prevDoc = prevQuery.docs[0];
+        this.adjacentChapters.prev = {
+          id: prevDoc.id,
+          ...prevDoc.data()
+        };
       }
-    });
+      
+      // Get next chapter
+      const nextQuery = await chaptersRef
+        .where('chapternumber', '==', currentChapterNumber + 1)
+        .limit(1)
+        .get();
+      
+      if (!nextQuery.empty) {
+        const nextDoc = nextQuery.docs[0];
+        this.adjacentChapters.next = {
+          id: nextDoc.id,
+          ...nextDoc.data()
+        };
+      }
+      
+      // Get total chapter count
+      const allChaptersQuery = await chaptersRef.get();
+      this.totalChapters = allChaptersQuery.size;
+      
+      console.log('🔗 Adjacent chapters loaded:', this.adjacentChapters);
+    } catch (error) {
+      console.warn('⚠️ Could not load adjacent chapters:', error);
+    }
+  }
 
-    const navAuth = document.getElementById("nav-auth");
-    const navUser = document.getElementById("nav-user");
+  // Render chapter content
+  renderChapter() {
+    if (!this.currentChapter) return;
 
-    if (!navAuth || !navUser) return; // Safe guard to prevent crashes
+    const chapter = this.currentChapter;
+    
+    // Update document title
+    document.title = `${chapter.title} - Chapter ${chapter.chapternumber} - Anmol`;
+    
+    // Update header
+    this.updateElement('chapter-title-header', chapter.title);
+    this.updateElement('chapter-number-header', `Chapter ${chapter.chapternumber}`);
+    this.updateElement('reading-time-header', this.calculateReadingTime(chapter.word || chapter.content?.length || 0));
+    
+    // Update hero section
+    this.updateElement('chapter-number-badge', `Chapter ${chapter.chapternumber}`);
+    this.updateElement('chapter-title-main', chapter.title);
+    
+    // Update publication info
+    if (chapter.datepub) {
+      const publishDate = new Date(chapter.datepub);
+      this.updateElement('publish-date', `Published ${publishDate.toLocaleDateString('en-US', { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+      })}`);
+    }
+    
+    this.updateElement('word-count', `${(chapter.word || this.estimateWordCount(chapter.content)).toLocaleString()} words`);
+    
+    // Update content
+    this.renderChapterContent(chapter.content);
+    
+    // Update footer stats
+    this.updateElement('like-count', chapter.like?.toLocaleString() || '0');
+    this.updateElement('view-count', `${(chapter.viewers || 0).toLocaleString()} views`);
+    this.updateElement('word-count-footer', `${(chapter.word || this.estimateWordCount(chapter.content)).toLocaleString()} words`);
+    this.updateElement('reading-time-footer', this.calculateReadingTime(chapter.word || this.estimateWordCount(chapter.content)));
+    
+    // Update navigation
+    this.updateChapterNavigation();
+    
+    // Initialize reading progress
+    this.initReadingProgress();
+    
+    console.log('✅ Chapter rendered successfully');
+  }
 
-    if (this.appState.currentUser) {
-      navAuth.classList.add("hidden");
-      navUser.classList.remove("hidden");
-      const userNameEl = document.getElementById("user-name");
-      if (userNameEl)
-        userNameEl.textContent = this.appState.currentUser.displayName;
+  // Render chapter content with proper formatting
+  renderChapterContent(content) {
+    if (!content) return;
 
-      const authorLinks = document.querySelectorAll(".author-only");
-      authorLinks.forEach((link) => {
-        if (this.appState.currentUser.isAuthor) {
-          link.classList.remove("hidden");
-        } else {
-          link.classList.add("hidden");
+    const contentElement = document.getElementById('content-text');
+    if (!contentElement) return;
+
+    // Split content into paragraphs
+    const paragraphs = content.split('\n\n').filter(p => p.trim().length > 0);
+    
+    // Create formatted HTML
+    const formattedContent = paragraphs.map(paragraph => 
+      `<p>${paragraph.trim().replace(/\n/g, ' ')}</p>`
+    ).join('');
+    
+    contentElement.innerHTML = formattedContent;
+  }
+
+  // Update chapter navigation
+  updateChapterNavigation() {
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const currentPosition = document.getElementById('current-position');
+    
+    // Update position indicator
+    if (currentPosition) {
+      currentPosition.textContent = `${this.currentChapter.chapternumber} of ${this.totalChapters}`;
+    }
+    
+    // Update previous button
+    if (prevBtn) {
+      if (this.adjacentChapters.prev) {
+        prevBtn.disabled = false;
+        prevBtn.style.opacity = '1';
+        const prevTitle = document.getElementById('prev-title');
+        if (prevTitle) {
+          prevTitle.textContent = this.adjacentChapters.prev.title || `Chapter ${this.adjacentChapters.prev.chapternumber}`;
         }
-      });
-    } else {
-      navAuth.classList.remove("hidden");
-      navUser.classList.add("hidden");
-      const authorLinks = document.querySelectorAll(".author-only");
-      authorLinks.forEach((link) => {
-        link.classList.add("hidden");
-      });
+      } else {
+        prevBtn.disabled = true;
+        prevBtn.style.opacity = '0.4';
+      }
+    }
+    
+    // Update next button
+    if (nextBtn) {
+      if (this.adjacentChapters.next) {
+        nextBtn.disabled = false;
+        nextBtn.style.opacity = '1';
+        const nextTitle = document.getElementById('next-title');
+        if (nextTitle) {
+          nextTitle.textContent = this.adjacentChapters.next.title || `Chapter ${this.adjacentChapters.next.chapternumber}`;
+        }
+      } else {
+        nextBtn.disabled = true;
+        nextBtn.style.opacity = '0.4';
+      }
     }
   }
 
-  renderPageContent() {
-    switch (this.appState.currentRoute) {
-      case "/":
-        this.renderHomePage();
-        break;
-      case "/creator":
-        this.renderCreatorPage();
-        break;
-      case "/profile":
-        this.renderProfilePage();
-        break;
-      case "/dashboard":
-        this.renderDashboardPage();
-        break;
-      case "/read":
-        this.renderReaderPage();
-        break;
-    }
+  // Theme Management
+  initTheme() {
+    const savedTheme = localStorage.getItem('anmol-reader-theme') || 'dark';
+    this.currentTheme = savedTheme;
+    this.applyTheme(savedTheme);
   }
 
-  renderHomePage() {
-    this.renderNovelsCarousel();
-    this.renderRecentUpdates();
+  toggleTheme() {
+    this.currentTheme = this.currentTheme === 'dark' ? 'light' : 'dark';
+    this.applyTheme(this.currentTheme);
+    localStorage.setItem('anmol-reader-theme', this.currentTheme);
+    
+    this.showToast(`Switched to ${this.currentTheme} reading mode`, 'info');
   }
 
-  renderNovelsCarousel() {
-    const carousel = document.getElementById("novels-carousel");
-    if (!carousel) return;
+  applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+  }
 
-    carousel.innerHTML = "";
-    this.appState.data.novels.forEach((novel) => {
-      const card = this.createNovelCard(novel);
-      carousel.appendChild(card);
+  // Reading Features
+  initReadingFeatures() {
+    this.setupScrollTracking();
+    this.setupReadingProgress();
+    this.setupKeyboardShortcuts();
+    this.setupReadingFocus();
+  }
+
+  startReadingSession() {
+    this.userProgress.startTime = Date.now();
+    this.userProgress.readingTime = 0;
+    
+    // Track reading time
+    this.readingTimer = setInterval(() => {
+      if (this.userProgress.startTime) {
+        this.userProgress.readingTime = Math.floor((Date.now() - this.userProgress.startTime) / 1000);
+      }
+    }, 1000);
+  }
+
+  setupScrollTracking() {
+    let ticking = false;
+    
+    const updateProgress = () => {
+      const scrollTop = window.pageYOffset;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? Math.min(Math.max(scrollTop / docHeight, 0), 1) : 0;
+      
+      this.userProgress.scrollProgress = progress;
+      this.updateReadingProgress(progress);
+      
+      ticking = false;
+    };
+    
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(updateProgress);
+        ticking = true;
+      }
+    });
+    
+    // Initial progress update
+    setTimeout(updateProgress, 500);
+  }
+
+  setupReadingProgress() {
+    // Show header when scrolling up
+    let lastScrollTop = 0;
+    const header = document.getElementById('chapter-header');
+    
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.pageYOffset;
+      
+      if (scrollTop > 100) {
+        if (scrollTop < lastScrollTop) {
+          // Scrolling up
+          header?.classList.add('visible');
+        } else {
+          // Scrolling down
+          header?.classList.remove('visible');
+        }
+      } else {
+        header?.classList.add('visible');
+      }
+      
+      lastScrollTop = scrollTop;
+    });
+    
+    // Show progress indicator
+    const progressIndicator = document.getElementById('reading-progress-indicator');
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 200) {
+        progressIndicator?.classList.add('visible');
+      } else {
+        progressIndicator?.classList.remove('visible');
+      }
     });
   }
 
-  createNovelCard(novel) {
-    const card = document.createElement("div");
-    card.className = "novel-card";
-    card.onclick = () => this.openNovel(novel);
+  updateReadingProgress(progress) {
+    const percentage = Math.round(progress * 100);
+    
+    // Update header progress
+    const headerFill = document.getElementById('progress-fill-header');
+    const headerText = document.getElementById('progress-text-header');
+    
+    if (headerFill) headerFill.style.width = `${percentage}%`;
+    if (headerText) headerText.textContent = `${percentage}%`;
+    
+    // Update circular progress
+    const progressArc = document.getElementById('progress-arc');
+    const progressPercent = document.getElementById('progress-percent-indicator');
+    
+    if (progressArc) {
+      const circumference = 2 * Math.PI * 25;
+      const offset = circumference - (progress * circumference);
+      progressArc.style.strokeDashoffset = offset;
+    }
+    
+    if (progressPercent) {
+      progressPercent.textContent = `${percentage}%`;
+    }
+  }
 
-    card.innerHTML = `
-      <div class="novel-cover" style="background-image: url('${
-        novel.coverUrl
-      }')">
-        <i class="fas fa-book"></i>
-      </div>
-      <div class="novel-info">
-        <h3>${novel.title}</h3>
-        <div class="novel-author">${novel.author}</div>
-        <p class="novel-description">${novel.description}</p>
-        <div class="novel-meta">
-          <span class="novel-genre">${novel.genre}</span>
-          <div class="novel-stats">
-            <span class="stat-item"><i class="fas fa-eye"></i> ${this.formatNumber(
-              novel.stats.views
-            )}</span>
-            <span class="stat-item"><i class="fas fa-heart"></i> ${this.formatNumber(
-              novel.stats.likes
-            )}</span>
-          </div>
-        </div>
+  initReadingProgress() {
+    // Initialize progress indicators
+    const progressArc = document.getElementById('progress-arc');
+    if (progressArc) {
+      const circumference = 2 * Math.PI * 25;
+      progressArc.style.strokeDasharray = circumference;
+      progressArc.style.strokeDashoffset = circumference;
+    }
+    
+    // Force initial progress update
+    setTimeout(() => {
+      this.updateReadingProgress(0);
+    }, 100);
+  }
+
+  setupKeyboardShortcuts() {
+    document.addEventListener('keydown', (e) => {
+      // Only handle shortcuts when not typing
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+        return;
+      }
+      
+      switch (e.key) {
+        case 'ArrowLeft':
+          e.preventDefault();
+          this.navigateChapter('prev');
+          break;
+        case 'ArrowRight':
+          e.preventDefault();
+          this.navigateChapter('next');
+          break;
+        case ' ':
+          e.preventDefault();
+          this.scrollPage();
+          break;
+        case 'Home':
+          e.preventDefault();
+          this.scrollToTop();
+          break;
+        case 'End':
+          e.preventDefault();
+          this.scrollToBottom();
+          break;
+        case 't':
+          if (e.ctrlKey || e.metaKey) {
+            e.preventDefault();
+            this.toggleTheme();
+          }
+          break;
+        case 'l':
+          if (e.ctrlKey || e.metaKey) {
+            e.preventDefault();
+            this.toggleLike();
+          }
+          break;
+        case 'b':
+          if (e.ctrlKey || e.metaKey) {
+            e.preventDefault();
+            this.toggleBookmark();
+          }
+          break;
+        case 'Escape':
+          this.closeMobileMenu();
+          break;
+      }
+    });
+  }
+
+  setupReadingFocus() {
+    let focusTimer;
+    
+    const enterFocusMode = () => {
+      document.body.classList.add('reading-focus');
+    };
+    
+    const exitFocusMode = () => {
+      document.body.classList.remove('reading-focus');
+    };
+    
+    // Enter focus mode after 3 seconds of no mouse movement
+    document.addEventListener('mousemove', () => {
+      exitFocusMode();
+      clearTimeout(focusTimer);
+      focusTimer = setTimeout(enterFocusMode, 3000);
+    });
+    
+    // Exit focus mode on any interaction
+    document.addEventListener('click', exitFocusMode);
+    document.addEventListener('keydown', exitFocusMode);
+    document.addEventListener('scroll', exitFocusMode);
+  }
+
+  // Chapter Actions
+  async toggleLike() {
+    if (!this.currentChapter) return;
+    
+    try {
+      const isLiked = this.userProgress.isLiked;
+      const newLikeState = !isLiked;
+      const increment = newLikeState ? 1 : -1;
+      
+      // Update UI immediately
+      this.userProgress.isLiked = newLikeState;
+      this.currentChapter.like += increment;
+      
+      const likeBtn = document.getElementById('like-btn');
+      const likeCount = document.getElementById('like-count');
+      
+      if (likeBtn) {
+        likeBtn.classList.toggle('active', newLikeState);
+      }
+      
+      if (likeCount) {
+        likeCount.textContent = this.currentChapter.like.toLocaleString();
+      }
+      
+      // Update Firebase
+      if (this.db && this.currentNovelId && this.currentChapterId) {
+        const chapterRef = this.db.collection('novels').doc(this.currentNovelId).collection('chapters').doc(this.currentChapterId);
+        await chapterRef.update({
+          like: firebase.firestore.FieldValue.increment(increment)
+        });
+      }
+      
+      this.showToast(newLikeState ? 'Chapter liked! ❤️' : 'Like removed', newLikeState ? 'success' : 'info');
+      
+    } catch (error) {
+      console.error('❌ Error toggling like:', error);
+      this.showToast('Failed to update like status', 'error');
+    }
+  }
+
+  toggleBookmark() {
+    this.userProgress.isBookmarked = !this.userProgress.isBookmarked;
+    
+    const bookmarkBtn = document.getElementById('bookmark-btn');
+    if (bookmarkBtn) {
+      bookmarkBtn.classList.toggle('active', this.userProgress.isBookmarked);
+    }
+    
+    // Store in localStorage for persistence
+    const bookmarks = JSON.parse(localStorage.getItem('anmol-bookmarks') || '[]');
+    const chapterKey = `${this.currentNovelId}-${this.currentChapterId}`;
+    
+    if (this.userProgress.isBookmarked) {
+      if (!bookmarks.includes(chapterKey)) {
+        bookmarks.push(chapterKey);
+      }
+      this.showToast('Chapter bookmarked! 📖', 'success');
+    } else {
+      const index = bookmarks.indexOf(chapterKey);
+      if (index > -1) {
+        bookmarks.splice(index, 1);
+      }
+      this.showToast('Bookmark removed', 'info');
+    }
+    
+    localStorage.setItem('anmol-bookmarks', JSON.stringify(bookmarks));
+  }
+
+  async shareChapter() {
+    if (!this.currentChapter) return;
+    
+    const shareData = {
+      title: `${this.currentChapter.title} - Chapter ${this.currentChapter.chapternumber}`,
+      text: `Read "${this.currentChapter.title}" on Anmol - Premium digital storytelling experience`,
+      url: window.location.href
+    };
+    
+    try {
+      if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+        await navigator.share(shareData);
+        this.showToast('Chapter shared successfully! 📤', 'success');
+      } else {
+        // Fallback to clipboard
+        await navigator.clipboard.writeText(window.location.href);
+        this.showToast('Chapter link copied to clipboard! 📋', 'success');
+      }
+    } catch (error) {
+      console.error('❌ Error sharing chapter:', error);
+      this.showToast('Failed to share chapter', 'error');
+    }
+  }
+
+  // Navigation
+  navigateChapter(direction) {
+    let targetChapter = null;
+    
+    if (direction === 'prev' && this.adjacentChapters.prev) {
+      targetChapter = this.adjacentChapters.prev;
+    } else if (direction === 'next' && this.adjacentChapters.next) {
+      targetChapter = this.adjacentChapters.next;
+    }
+    
+    if (targetChapter) {
+      const newUrl = `#/novel/${this.currentNovelId}/chapter/${targetChapter.id}`;
+      window.location.hash = newUrl;
+      
+      // Scroll to top for new chapter
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      
+      this.showToast(`Loading ${targetChapter.title}...`, 'info');
+    } else {
+      this.showToast('No more chapters in that direction', 'info');
+    }
+  }
+
+  goBack() {
+    if (window.history.length > 1) {
+      window.history.back();
+    } else {
+      // Fallback to chapter list or home
+      window.location.href = '/';
+    }
+  }
+
+  goToChapterList() {
+    window.location.href = `#/novel/${this.currentNovelId}/chapters`;
+  }
+
+  scrollPage() {
+    const scrollAmount = window.innerHeight * 0.8;
+    window.scrollBy({ top: scrollAmount, behavior: 'smooth' });
+  }
+
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  scrollToBottom() {
+    window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
+  }
+
+  // UI Management
+  setupEventListeners() {
+    // Theme toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+      themeToggle.addEventListener('click', () => this.toggleTheme());
+    }
+    
+    // Progress circle click to scroll to top
+    const progressIndicator = document.getElementById('reading-progress-indicator');
+    if (progressIndicator) {
+      progressIndicator.addEventListener('click', () => this.scrollToTop());
+    }
+    
+    // Handle hash changes for navigation
+    window.addEventListener('hashchange', () => {
+      this.parseUrlAndLoadChapter();
+    });
+    
+    // Handle page visibility for reading time tracking
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        // Pause reading timer
+        if (this.readingTimer) {
+          clearInterval(this.readingTimer);
+        }
+      } else {
+        // Resume reading timer
+        this.userProgress.startTime = Date.now() - (this.userProgress.readingTime * 1000);
+        this.startReadingSession();
+      }
+    });
+  }
+
+  showLoading(show) {
+    const loadingScreen = document.getElementById('loading-screen');
+    if (loadingScreen) {
+      if (show) {
+        loadingScreen.classList.remove('hidden');
+        this.isLoading = true;
+      } else {
+        setTimeout(() => {
+          loadingScreen.classList.add('hidden');
+          this.isLoading = false;
+        }, 500);
+      }
+    }
+  }
+
+  showError(message) {
+    const errorModal = document.getElementById('error-modal');
+    const errorMessage = document.getElementById('error-message');
+    
+    if (errorModal && errorMessage) {
+      errorMessage.textContent = message;
+      errorModal.classList.add('show');
+    }
+  }
+
+  hideError() {
+    const errorModal = document.getElementById('error-modal');
+    if (errorModal) {
+      errorModal.classList.remove('show');
+    }
+  }
+
+  retryLoad() {
+    this.hideError();
+    this.parseUrlAndLoadChapter();
+  }
+
+  // Mobile Menu
+  toggleMobileMenu() {
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileMenu) {
+      mobileMenu.classList.toggle('open');
+    }
+  }
+
+  closeMobileMenu() {
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileMenu) {
+      mobileMenu.classList.remove('open');
+    }
+  }
+
+  // Toast Notifications
+  showToast(message, type = 'info', duration = 3000) {
+    const container = document.getElementById('toast-container');
+    if (!container) return;
+
+    const toast = document.createElement('div');
+    toast.className = `toast toast-${type}`;
+    toast.innerHTML = `
+      <div class="toast-content">
+        <span class="toast-message">${this.escapeHtml(message)}</span>
+        <button class="toast-close" onclick="this.parentElement.parentElement.remove()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+          </svg>
+        </button>
       </div>
     `;
-    return card;
-  }
 
-  renderRecentUpdates() {
-    const updatesList = document.getElementById("updates-list");
-    if (!updatesList) return;
-
-    updatesList.innerHTML = "";
-    const recentNovels = this.appState.data.novels
-      .slice()
-      .sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt))
-      .slice(0, 5);
-
-    recentNovels.forEach((novel) => {
-      const updateItem = document.createElement("div");
-      updateItem.className = "update-item";
-      updateItem.onclick = () => this.openNovel(novel);
-
-      updateItem.innerHTML = `
-        <div class="update-cover" style="background-image: url('${
-          novel.coverUrl
-        }')"></div>
-        <div class="update-info">
-          <h4>${novel.title}</h4>
-          <p>by ${novel.author}</p>
-          <span class="update-meta">Updated ${this.formatDate(
-            novel.updatedAt
-          )} • ${novel.chapters.length} chapters</span>
-        </div>
-      `;
-      updatesList.appendChild(updateItem);
-    });
-  }
-
-  renderCreatorPage() {
-    // Creator page rendering logic
-  }
-
-  renderProfilePage() {
-    if (!this.appState.currentUser) return;
-
-    const displayName = document.getElementById("profile-display-name");
-    const stats = document.getElementById("profile-stats");
-
-    if (displayName) {
-      displayName.textContent = this.appState.currentUser.displayName;
-    }
-
-    if (stats) {
-      stats.innerHTML = "";
-      Object.entries(this.appState.currentUser.stats).forEach(
-        ([key, value]) => {
-          const statItem = document.createElement("div");
-          statItem.className = "stat-item";
-          statItem.innerHTML = `
-          <span class="stat-value">${value}</span>
-          <span class="stat-label">${this.formatStatLabel(key)}</span>
-        `;
-          stats.appendChild(statItem);
-        }
-      );
-    }
-
-    this.renderLibrary();
-  }
-
-  renderLibrary() {
-    const libraryGrid = document.getElementById("library-grid");
-    if (!libraryGrid) return;
-
-    libraryGrid.innerHTML = "";
-
-    if (
-      !this.appState.currentUser ||
-      this.appState.currentUser.library.length === 0
-    ) {
-      libraryGrid.innerHTML =
-        '<p class="empty-message">Your library is empty. Start reading some novels!</p>';
-      return;
-    }
-
-    this.appState.currentUser.library.forEach((novelId) => {
-      const novel = this.appState.data.novels.find((n) => n.id === novelId);
-      if (novel) {
-        const card = this.createNovelCard(novel);
-        libraryGrid.appendChild(card);
-      }
-    });
-  }
-
-  renderDashboardPage() {
-    if (!this.appState.currentUser || !this.appState.currentUser.isAuthor)
-      return;
-
-    this.renderAuthorStats();
-    this.renderAuthorNovels();
-    this.renderCommunityComments();
-  }
-
-  renderAuthorStats() {
-    const totalViews = document.getElementById("total-views");
-    const totalFollowers = document.getElementById("total-followers");
-    const totalChapters = document.getElementById("total-chapters");
-
-    if (!totalViews || !totalFollowers || !totalChapters) return;
-
-    const authorNovels = this.appState.data.novels.filter(
-      (novel) =>
-        novel.authorId === this.appState.currentUser.id ||
-        (this.appState.currentUser.id === "creator" &&
-          novel.authorId === "creator")
-    );
-
-    const views = authorNovels.reduce(
-      (sum, novel) => sum + novel.stats.views,
-      0
-    );
-    const chapters = authorNovels.reduce(
-      (sum, novel) => sum + novel.chapters.length,
-      0
-    );
-
-    this.animateCounter(totalViews, views);
-    this.animateCounter(
-      totalFollowers,
-      this.appState.currentUser.stats.followers || 0
-    );
-    this.animateCounter(totalChapters, chapters);
-  }
-
-  renderAuthorNovels() {
-    const novelsList = document.getElementById("author-novels-list");
-    if (!novelsList) return;
-
-    novelsList.innerHTML = "";
-
-    const authorNovels = this.appState.data.novels.filter(
-      (novel) =>
-        novel.authorId === this.appState.currentUser.id ||
-        (this.appState.currentUser.id === "creator" &&
-          novel.authorId === "creator")
-    );
-
-    if (authorNovels.length === 0) {
-      novelsList.innerHTML = `
-        <div class="empty-state">
-          <p>You haven't published any novels yet. Click "Create New Novel" to get started!</p>
-        </div>
-      `;
-      return;
-    }
-
-    authorNovels.forEach((novel) => {
-      const novelItem = document.createElement("div");
-      novelItem.className = "novel-item";
-      novelItem.innerHTML = `
-        <div class="novel-thumbnail" style="background-image: url('${
-          novel.coverUrl
-        }')"></div>
-        <div class="novel-details">
-          <h4>${novel.title}</h4>
-          <p>${novel.chapters.length} chapters • ${this.formatNumber(
-        novel.stats.views
-      )} views</p>
-        </div>
-        <div class="novel-actions">
-          <button class="btn btn--outline btn--sm" onclick="window.router.editNovel('${
-            novel.id
-          }')">Edit</button>
-          <button class="btn btn--outline btn--sm" onclick="window.router.openNovel({id:'${
-            novel.id
-          }',chapters:${JSON.stringify(novel.chapters)}})">View</button>
-        </div>
-      `;
-      novelsList.appendChild(novelItem);
-    });
-  }
-
-  renderCommunityComments() {
-    const commentsList = document.getElementById("community-comments-list");
-    if (!commentsList) return;
-
-    commentsList.innerHTML = "";
-
-    const authorNovels = this.appState.data.novels.filter(
-      (novel) =>
-        novel.authorId === this.appState.currentUser.id ||
-        (this.appState.currentUser.id === "creator" &&
-          novel.authorId === "creator")
-    );
-
-    const authorChapterIds = [];
-    authorNovels.forEach((novel) => {
-      authorChapterIds.push(...novel.chapters);
-    });
-
-    const authorComments = this.appState.data.comments.filter((comment) =>
-      authorChapterIds.includes(comment.chapterId)
-    );
-
-    if (authorComments.length === 0) {
-      commentsList.innerHTML =
-        '<p class="empty-message">No comments to moderate yet.</p>';
-      return;
-    }
-
-    authorComments.forEach((comment) => {
-      const user = this.appState.data.users.find(
-        (u) => u.id === comment.userId
-      );
-      const chapter = this.appState.data.chapters.find(
-        (c) => c.id === comment.chapterId
-      );
-      const novel = this.appState.data.novels.find((n) =>
-        n.chapters.includes(comment.chapterId)
-      );
-
-      const commentItem = document.createElement("div");
-      commentItem.className = "comment-moderation-item";
-      commentItem.innerHTML = `
-        <div class="comment-header">
-          <span class="commenter-name">${
-            comment.isAnonymous
-              ? "Anonymous Reader"
-              : user
-              ? user.displayName
-              : "Unknown User"
-          }</span>
-          <span class="comment-location">on ${
-            novel ? novel.title : "Unknown Novel"
-          } - ${chapter ? chapter.title : "Unknown Chapter"}</span>
-          <span class="comment-date">${this.formatDate(
-            comment.timestamp
-          )}</span>
-        </div>
-        <div class="comment-content">${comment.content}</div>
-        <div class="comment-actions">
-          <button class="btn btn--outline btn--sm">Approve</button>
-          <button class="btn btn--outline btn--sm btn--danger">Remove</button>
-        </div>
-      `;
-      commentsList.appendChild(commentItem);
-    });
-  }
-
-  renderReaderPage() {
-    if (!this.appState.currentNovelId || !this.appState.currentChapterId) {
-      document.getElementById("app-root").innerHTML =
-        "<p>Novel or chapter not found.</p>";
-      return;
-    }
-
-    const novel = this.appState.data.novels.find(
-      (n) => n.id === this.appState.currentNovelId
-    );
-    const chapter = this.appState.data.chapters.find(
-      (c) => c.id === this.appState.currentChapterId
-    );
-
-    if (!novel || !chapter) {
-      document.getElementById("app-root").innerHTML =
-        "<p>Novel or chapter not found.</p>";
-      return;
-    }
-
-    const chapterTitle = document.getElementById("chapter-title");
-    const chapterContent = document.getElementById("chapter-content");
-
-    if (chapterTitle) chapterTitle.textContent = chapter.title;
-    if (chapterContent) {
-      chapterContent.innerHTML = chapter.content
-        .split("\n")
-        .map((p) => `<p>${p}</p>`)
-        .join("");
-    }
-
-    this.updateChapterNavigation(novel, chapter);
-    this.updateChapterEngagement(chapter);
-    this.applyReaderSettings();
-
-    setTimeout(() => this.setupScrollProgress(), 100);
-  }
-
-  updateChapterNavigation(novel, currentChapter) {
-    const prevBtn = document.getElementById("prev-chapter-btn");
-    const nextBtn = document.getElementById("next-chapter-btn");
-
-    if (!prevBtn || !nextBtn) return;
-
-    const currentIndex = novel.chapters.indexOf(currentChapter.id);
-
-    if (currentIndex > 0) {
-      prevBtn.disabled = false;
-      prevBtn.onclick = () => {
-        this.appState.currentChapterId = novel.chapters[currentIndex - 1];
-        this.navigate("/read");
-      };
-    } else {
-      prevBtn.disabled = true;
-    }
-
-    if (currentIndex < novel.chapters.length - 1) {
-      nextBtn.disabled = false;
-      nextBtn.onclick = () => {
-        this.appState.currentChapterId = novel.chapters[currentIndex + 1];
-        this.navigate("/read");
-      };
-    } else {
-      nextBtn.disabled = true;
-    }
-  }
-
-  updateChapterEngagement(chapter) {
-    const likeBtn = document.getElementById("chapter-like-btn");
-    const likeCount = document.getElementById("like-count");
-
-    if (!likeBtn || !likeCount) return;
-
-    const likes = this.appState.data.likes.filter(
-      (like) => like.chapterId === chapter.id
-    );
-    likeCount.textContent = likes.length;
-
-    const userId = this.appState.currentUser
-      ? this.appState.currentUser.id
-      : this.appState.getAnonymousUserId();
-    const userLiked = likes.some((like) => like.userId === userId);
-
-    if (userLiked) {
-      likeBtn.classList.add("liked");
-    } else {
-      likeBtn.classList.remove("liked");
-    }
-
-    likeBtn.onclick = () => this.toggleLike(chapter.id);
-
-    this.renderChapterComments(chapter);
-  }
-
-  renderChapterComments(chapter) {
-    const commentsList = document.getElementById("comments-list");
-    if (!commentsList) return;
-
-    commentsList.innerHTML = "";
-
-    const chapterComments = this.appState.data.comments
-      .filter((comment) => comment.chapterId === chapter.id)
-      .sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
-
-    if (chapterComments.length === 0) {
-      commentsList.innerHTML = `
-        <div class="empty-state">
-          <p>No comments yet. Be the first to share your thoughts!</p>
-        </div>
-      `;
-      return;
-    }
-
-    chapterComments.forEach((comment) => {
-      const user = this.appState.data.users.find(
-        (u) => u.id === comment.userId
-      );
-      const novel = this.appState.data.novels.find((n) =>
-        n.chapters.includes(chapter.id)
-      );
-      const isAuthor = user && novel && user.id === novel.authorId;
-
-      const commentItem = document.createElement("div");
-      commentItem.className = "comment-item";
-      commentItem.innerHTML = `
-        <div class="comment-avatar">
-          <i class="fas fa-user-circle"></i>
-        </div>
-        <div class="comment-body">
-          <div class="comment-header">
-            <span class="comment-author ${isAuthor ? "author-badge" : ""}">${
-        comment.isAnonymous
-          ? "Anonymous Reader"
-          : user
-          ? user.displayName
-          : "Unknown User"
-      }</span>
-            <span class="comment-date">${this.formatDate(
-              comment.timestamp
-            )}</span>
-          </div>
-          <div class="comment-text">${comment.content}</div>
-        </div>
-      `;
-      commentsList.appendChild(commentItem);
-    });
-  }
-
-  openNovel(novel) {
-    if (!novel || !novel.chapters || novel.chapters.length === 0) return;
-
-    this.appState.currentNovelId = novel.id;
-    this.appState.currentChapterId = novel.chapters[0];
-    this.navigate("/read");
-  }
-
-  editNovel(novelId) {
-    console.log("Edit novel:", novelId);
-    // Implementation for editing novels
-  }
-
-  toggleLike(chapterId) {
-    const userId = this.appState.currentUser
-      ? this.appState.currentUser.id
-      : this.appState.getAnonymousUserId();
-    const existingLike = this.appState.data.likes.find(
-      (like) => like.chapterId === chapterId && like.userId === userId
-    );
-
-    if (existingLike) {
-      this.appState.data.likes = this.appState.data.likes.filter(
-        (like) => like.id !== existingLike.id
-      );
-    } else {
-      const newLike = {
-        id: "like_" + Date.now(),
-        chapterId,
-        userId,
-        timestamp: new Date().toISOString(),
-        isAnonymous: !this.appState.currentUser,
-      };
-      this.appState.data.likes.push(newLike);
-    }
-
-    this.renderReaderPage();
-  }
-
-  applyReaderSettings() {
-    const readerContent = document.getElementById("chapter-content");
-    if (!readerContent) return;
-
-    readerContent.style.fontSize = `${this.appState.readerSettings.fontSize}px`;
-
-    document.body.classList.remove("light-mode", "dark-mode", "sepia-mode");
-    document.body.classList.add(
-      `${this.appState.readerSettings.background}-mode`
-    );
-  }
-
-  setupScrollProgress() {
-    const progressBar = document.getElementById("read-progress");
-    if (!progressBar) return;
-
-    const updateProgress = () => {
-      const scrollTop =
-        window.pageYOffset || document.documentElement.scrollTop;
-      const scrollHeight =
-        document.documentElement.scrollHeight -
-        document.documentElement.clientHeight;
-      const progress = Math.min(
-        Math.max((scrollTop / Math.max(scrollHeight, 1)) * 100, 0),
-        100
-      );
-      progressBar.style.width = progress + "%";
-    };
-
-    window.addEventListener("scroll", updateProgress);
-    updateProgress();
-  }
-
-  animateCounter(element, targetValue) {
-    if (!element) return;
-
-    const startValue = 0;
-    const duration = 1500;
-    const startTime = Date.now();
-
-    const animate = () => {
-      const currentTime = Date.now();
-      const progress = Math.min((currentTime - startTime) / duration, 1);
-      const currentValue = Math.floor(
-        startValue + (targetValue - startValue) * progress
-      );
-
-      element.textContent = this.formatNumber(currentValue);
-
-      if (progress < 1) {
-        requestAnimationFrame(animate);
-      }
-    };
-
-    animate();
-  }
-
-  formatNumber(num) {
-    if (num >= 1000000) {
-      return (num / 1000000).toFixed(1) + "M";
-    }
-    if (num >= 1000) {
-      return (num / 1000).toFixed(1) + "K";
-    }
-    return num.toString();
-  }
-
-  formatDate(dateString) {
-    const date = new Date(dateString);
-    const now = new Date();
-    const diffTime = Math.abs(now - date);
-    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-
-    if (diffDays === 0) return "Today";
-    if (diffDays === 1) return "Yesterday";
-    if (diffDays < 7) return `${diffDays} days ago`;
-    if (diffDays < 30) return `${Math.floor(diffDays / 7)} weeks ago`;
-    if (diffDays < 365) return `${Math.floor(diffDays / 30)} months ago`;
-    return `${Math.floor(diffDays / 365)} years ago`;
-  }
-
-  formatStatLabel(key) {
-    const labels = {
-      chaptersRead: "Chapters Read",
-      commentsMade: "Comments Made",
-      likesGiven: "Likes Given",
-      novelsPublished: "Novels Published",
-      totalViews: "Total Views",
-      followers: "Followers",
-    };
-    return labels[key] || key;
-  }
-}
-
-// Event Handlers and Setup
-function setupEventListeners() {
-  // SPA Navigation with safe event delegation
-  document.addEventListener("click", (e) => {
-    const el = e.target.closest("[data-route]");
-    if (!el) return;
-
-    e.preventDefault();
-    const route = el.getAttribute("data-route");
-    if (route && window.router) {
-      window.router.navigate(route);
-    }
-  });
-
-  // Reader Settings
-  const decreaseFontBtn = document.getElementById("decrease-font");
-  const increaseFontBtn = document.getElementById("increase-font");
-
-  if (decreaseFontBtn) {
-    decreaseFontBtn.addEventListener("click", () => {
-      if (window.appState.readerSettings.fontSize > 12) {
-        window.appState.readerSettings.fontSize--;
-        window.appState.saveReaderSettings();
-        window.router.applyReaderSettings();
-      }
-    });
-  }
-
-  if (increaseFontBtn) {
-    increaseFontBtn.addEventListener("click", () => {
-      if (window.appState.readerSettings.fontSize < 24) {
-        window.appState.readerSettings.fontSize++;
-        window.appState.saveReaderSettings();
-        window.router.applyReaderSettings();
-      }
-    });
-  }
-
-  // Background Theme Toggle
-  document.querySelectorAll('input[name="background"]').forEach((input) => {
-    input.addEventListener("change", (e) => {
-      window.appState.readerSettings.background = e.target.value;
-      window.appState.saveReaderSettings();
-      window.router.applyReaderSettings();
-    });
-  });
-
-  // Login/Logout
-  const loginBtn = document.getElementById("login-btn");
-  const signupBtn = document.getElementById("signup-btn");
-  const logoutBtn = document.getElementById("logout-btn");
-
-  if (loginBtn) {
-    loginBtn.addEventListener("click", () => {
-      const displayName = prompt("Enter your display name:");
-      const email = prompt("Enter your email:");
-      if (displayName && email) {
-        window.appState.login(displayName, email, false);
-        window.router.updateNavigation();
-      }
-    });
-  }
-
-  if (signupBtn) {
-    signupBtn.addEventListener("click", () => {
-      const displayName = prompt("Enter your display name:");
-      const email = prompt("Enter your email:");
-      const isAuthor = confirm("Are you signing up as an author?");
-      if (displayName && email) {
-        window.appState.login(displayName, email, isAuthor);
-        window.router.updateNavigation();
-      }
-    });
-  }
-
-  if (logoutBtn) {
-    logoutBtn.addEventListener("click", () => {
-      window.appState.logout();
-      window.router.navigate("/");
-    });
-  }
-
-  // Library Filters
-  document.addEventListener("click", (e) => {
-    if (e.target.classList.contains("library-filter-btn")) {
-      document.querySelectorAll(".library-filter-btn").forEach((btn) => {
-        btn.classList.remove("active");
-      });
-      e.target.classList.add("active");
-
-      const filter = e.target.textContent.toLowerCase();
-      console.log("Filter library by:", filter);
-    }
-  });
-
-  // Dashboard Tabs
-  document.addEventListener("click", (e) => {
-    if (e.target.classList.contains("dashboard-tab-btn")) {
-      document.querySelectorAll(".dashboard-tab-btn").forEach((btn) => {
-        btn.classList.remove("active");
-      });
-      e.target.classList.add("active");
-
-      const tab = e.target.getAttribute("data-tab");
-      document.querySelectorAll(".dashboard-tab-content").forEach((content) => {
-        content.classList.remove("active");
-      });
-      const targetContent = document.getElementById(`${tab}-tab`);
-      if (targetContent) {
-        targetContent.classList.add("active");
-      }
-    }
-  });
-}
-// Reader Settings modal open/close
-function setupReaderSettingsModal() {
-  const modal = document.getElementById("reader-settings-modal");
-  const openBtn = document.getElementById("reader-settings-btn");
-  const closeBtn = modal ? modal.querySelector(".modal-close") : null;
-
-  if (openBtn && modal) {
-    openBtn.addEventListener("click", () => {
-      modal.classList.remove("hidden");
-    });
-  }
-  if (closeBtn && modal) {
-    closeBtn.addEventListener("click", () => {
-      modal.classList.add("hidden");
-    });
-  }
-  // Optional: close on backdrop click
-  if (modal) {
-    modal.addEventListener("click", (e) => {
-      if (e.target === modal) modal.classList.add("hidden");
-    });
-  }
-}
-document.addEventListener("DOMContentLoaded", () => {
-  // ...existing loading screen code...
-  // Initialize app
-
-  // Initialize Application
-  document.addEventListener("DOMContentLoaded", () => {
-    const loadingScreen = document.getElementById("loading-screen");
-    const loadingMessage = document.getElementById("loading-message");
-    window.appState = new AppState();
-    window.router = new Router(window.appState);
-    setupEventListeners();
-    setupReaderSettingsModal();
-  });
-  // Simulate loading progress
-  let percent = 0;
-  const interval = setInterval(() => {
-    percent = Math.min(percent + 10, 100);
-    if (loadingMessage) loadingMessage.textContent = `Loading... ${percent}%`;
-    if (percent === 100) {
-      clearInterval(interval);
-      if (loadingScreen) {
-        loadingScreen.classList.add("hidden");
-        setTimeout(() => {
-          if (loadingScreen) loadingScreen.remove();
-        }, 200);
-      }
-    }
-  }, 150);
-
-  // Force hide loading screen after 1.5 seconds
-  setTimeout(() => {
-    if (loadingScreen) {
-      loadingScreen.classList.add("hidden");
+    container.appendChild(toast);
+    
+    setTimeout(() => toast.classList.add('show'), 100);
+    
+    if (duration > 0) {
       setTimeout(() => {
-        if (loadingScreen) loadingScreen.remove();
-      }, 200);
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 300);
+      }, duration);
     }
-  }, 1500);
+  }
 
-  // Initialize app
-  window.appState = new AppState();
-  window.router = new Router(window.appState);
-  setupEventListeners();
+  // Utility Functions
+  updateElement(id, content) {
+    const element = document.getElementById(id);
+    if (element) {
+      element.textContent = content;
+    }
+  }
+
+  calculateReadingTime(wordCount) {
+    const wordsPerMinute = 200;
+    const minutes = Math.ceil(wordCount / wordsPerMinute);
+    return `${minutes} min read`;
+  }
+
+  estimateWordCount(text) {
+    if (!text) return 0;
+    return text.trim().split(/\s+/).length;
+  }
+
+  escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
+  // Cleanup
+  destroy() {
+    if (this.readingTimer) {
+      clearInterval(this.readingTimer);
+    }
+    
+    // Remove event listeners
+    window.removeEventListener('hashchange', this.parseUrlAndLoadChapter);
+    document.removeEventListener('visibilitychange', this.handleVisibilityChange);
+  }
+}
+
+// Global functions for onclick handlers
+function toggleLike() {
+  if (window.chapterReader) window.chapterReader.toggleLike();
+}
+
+function toggleBookmark() {
+  if (window.chapterReader) window.chapterReader.toggleBookmark();
+}
+
+function shareChapter() {
+  if (window.chapterReader) window.chapterReader.shareChapter();
+}
+
+function navigateChapter(direction) {
+  if (window.chapterReader) window.chapterReader.navigateChapter(direction);
+}
+
+function goBack() {
+  if (window.chapterReader) window.chapterReader.goBack();
+}
+
+function goToChapterList() {
+  if (window.chapterReader) window.chapterReader.goToChapterList();
+}
+
+function toggleMobileMenu() {
+  if (window.chapterReader) window.chapterReader.toggleMobileMenu();
+}
+
+function retryLoad() {
+  if (window.chapterReader) window.chapterReader.retryLoad();
+}
+
+// Initialize the application
+document.addEventListener('DOMContentLoaded', () => {
+  window.chapterReader = new AnmolChapterReader();
 });
 
-// --- Single init + loader control ---
-// --- Single init + loader control ---
-
-let initialized = false;
-
-function initAppOnce() {
-  if (initialized) return;
-  initialized = true;
-
-  window.appState = new AppState();
-  window.router = new Router(window.appState);
-  setupEventListeners();
-  setupReaderSettingsModal();
-}
-
-function hideLoader() {
-  const loadingScreen = document.getElementById("loading-screen");
-  if (!loadingScreen) return;
-  loadingScreen.classList.add("hidden");
-  setTimeout(() => loadingScreen.remove(), 200);
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  const loadingMessage = document.getElementById("loading-message");
-
-  // Simulated loading progress
-  let percent = 0;
-  const interval = setInterval(() => {
-    percent = Math.min(percent + 10, 100);
-    if (loadingMessage) loadingMessage.textContent = `Loading... ${percent}%`;
-    if (percent === 100) {
-      clearInterval(interval);
-      initAppOnce();
-      hideLoader();
-    }
-  }, 150);
-
-  // Hard fallback
-  setTimeout(() => {
-    initAppOnce();
-    hideLoader();
-    clearInterval(interval);
-  }, 1500);
+// Handle page unload
+window.addEventListener('beforeunload', () => {
+  if (window.chapterReader) {
+    window.chapterReader.destroy();
+  }
 });
 
-
-// Modal Management Functions
-function showLoginModal() {
-  const modal = document.getElementById('login-modal');
-  if (modal) {
-    modal.classList.remove('hidden');
-    modal.style.display = 'flex';
-  }
-}
-
-function hideLoginModal() {
-  const modal = document.getElementById('login-modal');
-  if (modal) {
-    modal.classList.add('hidden');
-    modal.style.display = 'none';
-  }
-}
-
-function showRegisterModal() {
-  const modal = document.getElementById('register-modal');
-  if (modal) {
-    modal.classList.remove('hidden');
-    modal.style.display = 'flex';
-  }
-}
-
-function hideRegisterModal() {
-  const modal = document.getElementById('register-modal');
-  if (modal) {
-    modal.classList.add('hidden');
-    modal.style.display = 'none';
-  }
-}
-
-function showReaderSettings() {
-  const modal = document.getElementById('reader-settings-modal');
-  if (modal) {
-    modal.classList.remove('hidden');
-    modal.style.display = 'flex';
-    updateReaderSettingsDisplay();
-  }
-}
-
-function hideReaderSettings() {
-  const modal = document.getElementById('reader-settings-modal');
-  if (modal) {
-    modal.classList.add('hidden');
-    modal.style.display = 'none';
-  }
-}
-
-// Authentication Functions
-function handleLogin(event) {
-  event.preventDefault();
-
-  const email = document.getElementById('login-email')?.value;
-  const password = document.getElementById('login-password')?.value;
-
-  if (!email || !password) {
-    alert('Please fill in all fields');
-    return;
-  }
-
-  // For demo purposes, we'll use a simple authentication
-  // In a real app, this would validate against a server
-  const displayName = email.split('@')[0]; // Use part before @ as display name
-
-  if (window.appState) {
-    window.appState.login(displayName, email, false);
-    window.router.updateNavigation();
-    hideLoginModal();
-
-    // Show success message
-    alert(`Welcome back, ${displayName}!`);
-  }
-}
-
-function handleRegister(event) {
-  event.preventDefault();
-
-  const displayName = document.getElementById('register-name')?.value;
-  const email = document.getElementById('register-email')?.value;
-  const password = document.getElementById('register-password')?.value;
-  const isAuthor = document.getElementById('register-author')?.checked;
-
-  if (!displayName || !email || !password) {
-    alert('Please fill in all fields');
-    return;
-  }
-
-  if (window.appState) {
-    window.appState.login(displayName, email, isAuthor);
-    window.router.updateNavigation();
-    hideRegisterModal();
-
-    // Show success message
-    alert(`Welcome to Anmol, ${displayName}! ${isAuthor ? 'You can now start publishing your stories.' : 'Happy reading!'}`);
-
-    // Navigate to appropriate page
-    if (isAuthor) {
-      window.router.navigate('/dashboard');
-    } else {
-      window.router.navigate('/browse');
-    }
-  }
-}
-
-// Global logout function
-function logout() {
-  if (window.appState) {
-    window.appState.logout();
-    window.router.navigate('/');
-  }
-}
-
-// Reader Settings Functions
-function updateReaderSettingsDisplay() {
-  const fontSizeDisplay = document.getElementById('font-size-display');
-  if (fontSizeDisplay && window.appState) {
-    fontSizeDisplay.textContent = `${window.appState.readerSettings.fontSize}px`;
-  }
-
-  // Update background radio buttons
-  const bgRadios = document.querySelectorAll('input[name="background"]');
-  bgRadios.forEach(radio => {
-    if (radio.value === window.appState.readerSettings.background) {
-      radio.checked = true;
-    }
+// Service Worker for offline functionality
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    // Register service worker for offline reading
+    // navigator.serviceWorker.register('/sw.js');
   });
 }
 
-function changeFontSize(delta) {
-  if (window.appState) {
-    const newSize = window.appState.readerSettings.fontSize + delta;
-    if (newSize >= 12 && newSize <= 28) {
-      window.appState.readerSettings.fontSize = newSize;
-      window.appState.saveReaderSettings();
-      updateReaderSettingsDisplay();
-      if (window.router) {
-        window.router.applyReaderSettings();
-      }
-    }
-  }
-}
-
-function changeBackground(background) {
-  if (window.appState) {
-    window.appState.readerSettings.background = background;
-    window.appState.saveReaderSettings();
-    if (window.router) {
-      window.router.applyReaderSettings();
-    }
-  }
-}
-
-// Other Missing Functions
-function createNewNovel() {
-  if (!window.appState.currentUser || !window.appState.currentUser.isAuthor) {
-    alert('You need to be signed in as an author to create novels.');
-    return;
-  }
-
-  const title = prompt('Enter novel title:');
-  if (title) {
-    // For demo purposes, just show a message
-    alert(`Novel "${title}" created! In a full implementation, this would open the novel editor.`);
-  }
-}
-
-function toggleFocusMode() {
-  if (window.appState) {
-    window.appState.focusMode = !window.appState.focusMode;
-    document.body.classList.toggle('focus-mode', window.appState.focusMode);
-
-    const header = document.getElementById('reader-header');
-    if (header) {
-      header.style.display = window.appState.focusMode ? 'none' : 'block';
-    }
-  }
-}
-
-function addComment() {
-  const commentInput = document.getElementById('comment-input');
-  const commentText = commentInput?.value?.trim();
-
-  if (!commentText) {
-    alert('Please enter a comment');
-    return;
-  }
-
-  if (!window.appState.currentUser) {
-    alert('Please sign in to leave comments');
-    return;
-  }
-
-  // For demo purposes, just clear the input and show a message
-  commentInput.value = '';
-  alert('Comment added! In a full implementation, this would save to the database.');
-}
-
-// Modal backdrop click handling
-document.addEventListener('click', (e) => {
-  if (e.target.classList.contains('modal')) {
-    // Close modal when clicking backdrop
-    if (e.target.id === 'login-modal') {
-      hideLoginModal();
-    } else if (e.target.id === 'register-modal') {
-      hideRegisterModal();
-    } else if (e.target.id === 'reader-settings-modal') {
-      hideReaderSettings();
-    }
-  }
-});
-
-// Escape key handling for modals
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
-    hideLoginModal();
-    hideRegisterModal();
-    hideReaderSettings();
-  }
-});
+console.log('🌟 Anmol Chapter Reader - Premium Firebase-Integrated Reading Experience Loaded!');

@@ -1,696 +1,288 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Anmol - Free Novel Platform</title>
-    <link rel="stylesheet" href="style.css" />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter Reader - Anmol Premium Reading Experience</title>
+    <meta name="description" content="Premium chapter reading experience on Anmol - immersive, distraction-free digital storytelling">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-analytics-compat.js"></script>
+</head>
+<body>
     <!-- Loading Screen -->
-    <div id="loading-screen" class="loading-screen">
-      <div class="loading-logo">
-        <div class="logo-circle">A</div>
-        <h2>Anmol</h2>
-        <div class="loading-dots">
-          <span></span>
-          <span></span>
-          <span></span>
+    <div class="loading-screen" id="loading-screen">
+        <div class="loading-content">
+            <div class="anmol-logo-loading">
+                <span class="logo-text">Anmol</span>
+                <div class="logo-glow"></div>
+            </div>
+            <div class="loading-spinner">
+                <div class="spinner-ring"></div>
+                <div class="spinner-ring"></div>
+                <div class="spinner-ring"></div>
+            </div>
+            <p class="loading-text">Loading your reading experience...</p>
         </div>
-      </div>
     </div>
 
-    <!-- Navigation -->
-    <nav class="main-nav" id="main-nav">
-      <div class="nav-container">
-        <div class="nav-brand" onclick="router.navigate('/')">
-          <div class="logo">A</div>
-          <span class="brand-name">Anmol</span>
+    <!-- Navigation Header -->
+    <header class="chapter-header" id="chapter-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="header-left">
+                    <button class="nav-btn back-btn" onclick="goBack()" aria-label="Go back">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 12H5"/>
+                            <path d="M12 19l-7-7 7-7"/>
+                        </svg>
+                    </button>
+                    <div class="chapter-info">
+                        <h1 class="chapter-title-header" id="chapter-title-header">Loading...</h1>
+                        <div class="chapter-meta-header">
+                            <span class="chapter-number" id="chapter-number-header">Chapter --</span>
+                            <span class="separator">•</span>
+                            <span class="reading-time" id="reading-time-header">-- min read</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="header-right">
+                    <div class="reading-progress-header">
+                        <div class="progress-bar-header">
+                            <div class="progress-fill-header" id="progress-fill-header"></div>
+                        </div>
+                        <span class="progress-text-header" id="progress-text-header">0%</span>
+                    </div>
+                    
+                    <button class="nav-btn theme-toggle" id="theme-toggle" aria-label="Toggle reading mode">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                        </svg>
+                    </button>
+                    
+                    <button class="nav-btn menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="3" y1="6" x2="21" y2="6"/>
+                            <line x1="3" y1="12" x2="21" y2="12"/>
+                            <line x1="3" y1="18" x2="21" y2="18"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
         </div>
+    </header>
 
-        <div class="nav-links">
-          <a
-            href="#"
-            class="nav-link"
-            data-route="/"
-            onclick="router.navigate('/')"
-          >
-            <i class="fas fa-home"></i> Home
-          </a>
-          <a
-            href="#"
-            class="nav-link"
-            data-route="/browse"
-            onclick="router.navigate('/browse')"
-          >
-            Browse
-          </a>
-          <a href="#" class="nav-link" data-route="/library">Library</a>
-          <a href="#" class="nav-link" data-route="/community">Community</a>
-          <a href="#" class="nav-link author-only" data-route="/dashboard"
-            >Dashboard</a
-          >
-          <a
-            href="#"
-            class="nav-link"
-            data-route="/creator"
-            onclick="router.navigate('/creator')"
-          >
-            <i class="fas fa-user"></i> Creator
-          </a>
-          <a
-            href="#"
-            class="nav-link author-only hidden"
-            data-route="/dashboard"
-            onclick="router.navigate('/dashboard')"
-          >
-            <i class="fas fa-tachometer-alt"></i> Dashboard
-          </a>
+    <!-- Chapter Content -->
+    <main class="chapter-main" id="chapter-main">
+        <div class="container">
+            <article class="chapter-article">
+                <!-- Chapter Header -->
+                <header class="chapter-hero" id="chapter-hero">
+                    <div class="author-info">
+                        <div class="author-avatar">
+                            <img src="IMG_1906.jpg" alt="Aditya Lallchandani" class="avatar-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div class="avatar-fallback" style="display:none;">
+                                <span>AL</span>
+                            </div>
+                        </div>
+                        <div class="author-details">
+                            <h2 class="author-name">Aditya Lallchandani</h2>
+                            <p class="author-bio">Computer Science Student & Digital Storyteller</p>
+                            <div class="chapter-publication">
+                                <time class="publish-date" id="publish-date">Published --</time>
+                                <span class="separator">•</span>
+                                <span class="word-count" id="word-count">-- words</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chapter-title-section">
+                        <div class="chapter-number-badge" id="chapter-number-badge">Chapter --</div>
+                        <h1 class="chapter-title-main" id="chapter-title-main">Loading Chapter...</h1>
+                    </div>
+                </header>
+
+                <!-- Chapter Content -->
+                <section class="chapter-content" id="chapter-content">
+                    <div class="content-text" id="content-text">
+                        <!-- Dynamic content will be loaded here -->
+                    </div>
+                </section>
+
+                <!-- Chapter Actions -->
+                <footer class="chapter-footer">
+                    <div class="chapter-actions">
+                        <button class="action-btn like-btn" id="like-btn" onclick="toggleLike()">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                            </svg>
+                            <span id="like-count">--</span>
+                        </button>
+                        
+                        <button class="action-btn bookmark-btn" id="bookmark-btn" onclick="toggleBookmark()">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>
+                            </svg>
+                            <span>Bookmark</span>
+                        </button>
+                        
+                        <button class="action-btn share-btn" onclick="shareChapter()">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                                <polyline points="16,6 12,2 8,6"/>
+                                <line x1="12" y1="2" x2="12" y2="15"/>
+                            </svg>
+                            <span>Share</span>
+                        </button>
+                    </div>
+                    
+                    <div class="chapter-stats">
+                        <div class="stat-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                            <span id="view-count">-- views</span>
+                        </div>
+                        <div class="stat-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z"/>
+                                <polyline points="14,2 14,8 20,8"/>
+                            </svg>
+                            <span id="word-count-footer">-- words</span>
+                        </div>
+                        <div class="stat-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12,6 12,12 16,14"/>
+                            </svg>
+                            <span id="reading-time-footer">-- min read</span>
+                        </div>
+                    </div>
+                </footer>
+            </article>
         </div>
-
-        <div id="nav-auth" class="nav-auth hidden">
-          <button class="btn btn--outline btn--sm" onclick="showLoginModal()">
-            Sign In
-          </button>
-          <button
-            class="btn btn--primary btn--sm"
-            onclick="showRegisterModal()"
-          >
-            Join Free
-          </button>
-        </div>
-
-        <div id="nav-user" class="nav-user hidden">
-          <a
-            href="#"
-            class="nav-link"
-            data-route="/profile"
-            onclick="router.navigate('/profile')"
-          >
-            <i class="fas fa-user-circle"></i>
-            <span id="user-name">User</span>
-          </a>
-          <button class="btn btn--outline btn--sm" onclick="logout()">
-            <i class="fas fa-sign-out-alt"></i>
-          </button>
-        </div>
-      </div>
-    </nav>
-
-    <!-- Main App Container -->
-    <main id="app-root" class="page active">
-      <!-- Content will be dynamically loaded here -->
     </main>
 
-    <!-- Templates -->
-    <template id="home-template">
-      <div class="page-content">
-        <!-- Hero Section -->
-        <section class="hero">
-          <div class="hero-background"></div>
-          <div class="container">
-            <div class="hero-content">
-              <h1 class="hero-title">Where New Worlds Are Written</h1>
-              <p class="hero-subtitle">
-                The free platform for the next generation of authors and readers
-              </p>
-              <div class="hero-actions">
-                <button
-                  class="btn btn--primary btn--lg"
-                  onclick="showRegisterModal()"
-                >
-                  Start Writing for Free
+    <!-- Chapter Navigation -->
+    <nav class="chapter-navigation" id="chapter-navigation">
+        <div class="container">
+            <div class="nav-content">
+                <button class="nav-chapter-btn prev-btn" id="prev-btn" onclick="navigateChapter('prev')" disabled>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 18l-6-6 6-6"/>
+                    </svg>
+                    <div class="nav-btn-content">
+                        <span class="nav-btn-label">Previous</span>
+                        <span class="nav-btn-title" id="prev-title">Chapter --</span>
+                    </div>
                 </button>
-                <button
-                  class="btn btn--outline btn--lg"
-                  onclick="router.navigate('/browse')"
-                >
-                  Discover Stories
+                
+                <div class="chapter-position">
+                    <span id="current-position">-- of --</span>
+                </div>
+                
+                <button class="nav-chapter-btn next-btn" id="next-btn" onclick="navigateChapter('next')" disabled>
+                    <div class="nav-btn-content">
+                        <span class="nav-btn-label">Next</span>
+                        <span class="nav-btn-title" id="next-title">Chapter --</span>
+                    </div>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 18l6-6-6-6"/>
+                    </svg>
                 </button>
-              </div>
             </div>
-          </div>
-        </section>
-
-        <!-- Featured Novels -->
-        <section class="featured-novels">
-          <div class="container">
-            <h2 class="section-title">Featured Novels</h2>
-            <div id="novels-carousel" class="novels-carousel">
-              <!-- Novels will be loaded here -->
-            </div>
-          </div>
-        </section>
-
-        <!-- For Writers Section -->
-        <section class="for-writers">
-          <div class="container">
-            <h2 class="section-title">Why Choose Anmol?</h2>
-            <div class="features-grid">
-              <div class="feature-card">
-                <div class="feature-icon">
-                  <i class="fas fa-feather-alt"></i>
-                </div>
-                <h3>Free to Use</h3>
-                <p>
-                  No subscription fees, no hidden costs. Your creativity
-                  shouldn't be limited by your budget.
-                </p>
-              </div>
-              <div class="feature-card">
-                <div class="feature-icon">
-                  <i class="fas fa-copyright"></i>
-                </div>
-                <h3>You Own Your Work</h3>
-                <p>
-                  Full intellectual property rights remain with you. Your
-                  stories, your rules.
-                </p>
-              </div>
-              <div class="feature-card">
-                <div class="feature-icon">
-                  <i class="fas fa-users"></i>
-                </div>
-                <h3>Build Community</h3>
-                <p>
-                  Connect directly with readers, build a following, and engage
-                  with your audience.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Recently Updated -->
-        <section class="recently-updated">
-          <div class="container">
-            <h2 class="section-title">Recently Updated</h2>
-            <div id="recent-updates" class="updates-list">
-              <!-- Recent updates will be loaded here -->
-            </div>
-          </div>
-        </section>
-      </div>
-    </template>
-
-    <template id="creator-template">
-      <div class="page-content">
-        <section class="creator-hero">
-          <div class="container">
-            <div class="creator-header">
-              <div class="creator-portrait">
-                <div class="portrait-placeholder">
-                  <i class="fas fa-user"></i>
-                </div>
-              </div>
-              <div class="creator-info">
-                <h1>Anmol Babuani</h1>
-                <p class="creator-title">Developer, Creator, Storyteller</p>
-                <div class="social-links">
-                  <a href="#" class="social-link">
-                    <i class="fab fa-github"></i> GitHub
-                  </a>
-                  <a href="#" class="social-link">
-                    <i class="fab fa-linkedin"></i> LinkedIn
-                  </a>
-                  <a href="mailto:anmol@anmolplatform.com" class="social-link">
-                    <i class="fas fa-envelope"></i> Contact
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="projects-section">
-          <div class="container">
-            <h2 class="section-title">My Projects</h2>
-            <div id="projects-grid" class="projects-grid">
-              <!-- Projects will be loaded here -->
-            </div>
-          </div>
-        </section>
-
-        <section class="creator-bio">
-          <div class="container">
-            <div class="bio-grid">
-              <div class="bio-portrait">
-                <div class="portrait-placeholder">
-                  <i class="fas fa-user"></i>
-                </div>
-              </div>
-              <div class="bio-content">
-                <h2>Welcome to my corner of the internet!</h2>
-                <p>
-                  I'm a passionate developer and storyteller who believes in the
-                  power of technology to democratize creativity.
-                </p>
-                <p>
-                  Anmol was created to address the challenges that independent
-                  authors face in today's publishing landscape. Too many
-                  platforms prioritize profit over creativity, creating barriers
-                  between writers and their audiences.
-                </p>
-                <p>
-                  This platform is my contribution to changing that narrative—a
-                  place where stories come first, where authors retain ownership
-                  of their work, and where readers can discover authentic voices
-                  without algorithmic interference.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
-    </template>
-
-    <template id="profile-template">
-      <div class="page-content">
-        <div class="profile-header">
-          <div class="container">
-            <div class="profile-info">
-              <div class="profile-avatar">
-                <i class="fas fa-user-circle"></i>
-              </div>
-              <div class="profile-details">
-                <h1 id="profile-name">Profile</h1>
-                <p id="profile-email">your.email@example.com</p>
-                <div class="profile-stats">
-                  <div class="stat-item">
-                    <span class="stat-number" id="profile-chapters-read"
-                      >0</span
-                    >
-                    <span class="stat-label">Chapters Read</span>
-                  </div>
-                  <div class="stat-item">
-                    <span class="stat-number" id="profile-comments">0</span>
-                    <span class="stat-label">Comments</span>
-                  </div>
-                  <div class="stat-item">
-                    <span class="stat-number" id="profile-likes">0</span>
-                    <span class="stat-label">Likes Given</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
+    </nav>
 
-        <section class="library-section">
-          <div class="container">
-            <div class="library-header">
-              <h2>My Library</h2>
-              <div class="filter-pills">
-                <button class="pill active" data-filter="all">All</button>
-                <button class="pill" data-filter="reading">Reading</button>
-                <button class="pill" data-filter="completed">Completed</button>
-              </div>
-            </div>
-            <div id="library-grid" class="library-grid">
-              <p>This is your library content.</p>
-              <p>Browse and discover new novels.</p>
-              <p>Connect with other readers and writers.</p>
-            </div>
-          </div>
-        </section>
-      </div>
-    </template>
-
-    <template id="dashboard-template">
-      <div class="page-content">
-        <div class="dashboard-layout">
-          <aside class="dashboard-sidebar">
-            <nav class="sidebar-nav">
-              <button class="sidebar-btn active" data-tab="overview">
-                <i class="fas fa-chart-line"></i>
-                <span>Overview</span>
-              </button>
-              <button class="sidebar-btn" data-tab="novels">
-                <i class="fas fa-book"></i>
-                <span>My Novels</span>
-              </button>
-              <button class="sidebar-btn" data-tab="analytics">
-                <i class="fas fa-analytics"></i>
-                <span>Analytics</span>
-              </button>
-              <button class="sidebar-btn" data-tab="settings">
-                <i class="fas fa-cog"></i>
-                <span>Settings</span>
-              </button>
-            </nav>
-          </aside>
-
-          <main class="dashboard-main">
-            <div id="dashboard-overview" class="dashboard-tab active">
-              <h1>Dashboard Overview</h1>
-              <p>This is the creator dashboard content.</p>
-
-              <div class="stats-bar">
-                <div class="stat-item">
-                  <span class="stat-number">0</span>
-                  <span class="stat-label">Total Views</span>
-                </div>
-                <div class="stat-item">
-                  <span class="stat-number">0</span>
-                  <span class="stat-label">Followers</span>
-                </div>
-                <div class="stat-item">
-                  <span class="stat-number">0</span>
-                  <span class="stat-label">Total Chapters</span>
-                </div>
-              </div>
-            </div>
-
-            <div id="dashboard-novels" class="dashboard-tab">
-              <div class="tab-header">
-                <h1>My Novels</h1>
-                <button class="btn btn--primary" onclick="createNewNovel()">
-                  <i class="fas fa-plus"></i> Create New Novel
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-menu-content">
+            <div class="mobile-menu-header">
+                <h3>Chapter Options</h3>
+                <button class="close-menu-btn" onclick="toggleMobileMenu()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                    </svg>
                 </button>
-              </div>
-              <div id="author-novels-grid" class="novels-grid">
-                <!-- Author's novels will be loaded here -->
-              </div>
             </div>
-
-            <div id="dashboard-analytics" class="dashboard-tab">
-              <h1>Analytics</h1>
-              <p>Analytics and insights coming soon...</p>
-            </div>
-
-            <div id="dashboard-settings" class="dashboard-tab">
-              <h1>Settings</h1>
-              <p>Account settings and preferences...</p>
-            </div>
-          </main>
-        </div>
-      </div>
-    </template>
-
-    <template id="reader-template">
-      <div class="page-content reader-page">
-        <header class="reader-header" id="reader-header">
-          <div class="container">
-            <button
-              class="reader-back-btn"
-              onclick="router.navigate('/')"
-              title="Back to Home"
-            >
-              <i class="fas fa-arrow-left"></i>
-            </button>
-
-            <div class="reader-info">
-              <span id="novel-title" class="novel-title">Novel Title</span>
-              <span id="chapter-title" class="chapter-title"
-                >Chapter Title</span
-              >
-            </div>
-
-            <div class="reader-controls">
-              <button
-                class="reader-btn"
-                onclick="toggleFocusMode()"
-                title="Focus Mode"
-              >
-                <i class="fas fa-eye"></i>
-              </button>
-              <button
-                class="reader-btn"
-                onclick="showReaderSettings()"
-                title="Settings"
-              >
-                <i class="fas fa-cog"></i>
-              </button>
-            </div>
-          </div>
-          <div class="progress-bar">
-            <div class="progress-fill" id="reading-progress"></div>
-          </div>
-        </header>
-
-        <div class="reader-content">
-          <div class="reading-pane">
-            <div id="chapter-content" class="chapter-content">
-              <!-- Chapter content will be loaded here -->
-            </div>
-          </div>
-
-          <nav class="chapter-navigation">
-            <button id="prev-chapter-btn" class="nav-btn" disabled>
-              <i class="fas fa-chevron-left"></i>
-              <span>Previous</span>
-            </button>
-            <button id="next-chapter-btn" class="nav-btn" disabled>
-              <span>Next</span>
-              <i class="fas fa-chevron-right"></i>
-            </button>
-          </nav>
-
-          <div class="engagement-section">
-            <div class="engagement-actions">
-              <button id="chapter-like-btn" class="like-btn">
-                <i class="fas fa-heart"></i>
-                <span id="like-count">0</span> likes
-              </button>
-            </div>
-
-            <div class="comments-section">
-              <h3>Comments</h3>
-              <div class="comment-form">
-                <textarea
-                  id="comment-input"
-                  placeholder="Share your thoughts about this chapter..."
-                  maxlength="500"
-                ></textarea>
-                <button class="btn btn--primary" onclick="addComment()">
-                  Post Comment
+            
+            <div class="mobile-menu-actions">
+                <button class="mobile-action-btn" onclick="toggleLike(); toggleMobileMenu();">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                    <span>Like Chapter</span>
                 </button>
-              </div>
-              <div id="comments-list" class="comments-list">
-                <!-- Comments will be loaded here -->
-              </div>
+                
+                <button class="mobile-action-btn" onclick="toggleBookmark(); toggleMobileMenu();">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>
+                    </svg>
+                    <span>Bookmark</span>
+                </button>
+                
+                <button class="mobile-action-btn" onclick="shareChapter(); toggleMobileMenu();">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                        <polyline points="16,6 12,2 8,6"/>
+                        <line x1="12" y1="2" x2="12" y2="15"/>
+                    </svg>
+                    <span>Share Chapter</span>
+                </button>
+                
+                <button class="mobile-action-btn" onclick="goToChapterList(); toggleMobileMenu();">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 3h18v18H3V3z"/>
+                        <path d="M8 9l3 3-3 3"/>
+                    </svg>
+                    <span>All Chapters</span>
+                </button>
             </div>
-          </div>
         </div>
-      </div>
-    </template>
-
-    <template id="about-template">
-      <div class="page-content">
-        <section class="about-hero">
-          <div class="container">
-            <h1>About Anmol</h1>
-            <p class="mission-text">
-              We believe every story deserves to be heard. Anmol provides a
-              platform where writers can share their creativity without
-              barriers, where readers can discover new worlds, and where
-              communities form around the love of storytelling.
-            </p>
-          </div>
-        </section>
-      </div>
-    </template>
-
-    <template id="notfound-template">
-      <div class="page-content">
-        <div class="error-page">
-          <div class="error-content">
-            <h1 class="error-code">404</h1>
-            <h2>Page Not Found</h2>
-            <p>The page you're looking for doesn't exist.</p>
-            <button class="btn btn--primary" onclick="router.navigate('/')">
-              <i class="fas fa-home"></i> Back to Home
-            </button>
-          </div>
-        </div>
-      </div>
-    </template>
-
-    <!-- Modals -->
-    <div id="login-modal" class="modal hidden">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3>Sign In to Anmol</h3>
-          <button class="modal-close" onclick="hideLoginModal()">
-            <i class="fas fa-times"></i>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form id="login-form" onsubmit="handleLogin(event)">
-            <div class="form-group">
-              <label class="form-label" for="login-email">Email</label>
-              <input
-                type="email"
-                id="login-email"
-                class="form-control"
-                required
-              />
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="login-password">Password</label>
-              <input
-                type="password"
-                id="login-password"
-                class="form-control"
-                required
-              />
-            </div>
-            <button type="submit" class="btn btn--primary btn--full-width">
-              Sign In
-            </button>
-          </form>
-        </div>
-      </div>
     </div>
 
-    <div id="register-modal" class="modal hidden">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3>Join Anmol</h3>
-          <button class="modal-close" onclick="hideRegisterModal()">
-            <i class="fas fa-times"></i>
-          </button>
+    <!-- Reading Progress Indicator -->
+    <div class="reading-progress-indicator" id="reading-progress-indicator">
+        <div class="progress-circle">
+            <svg width="60" height="60" viewBox="0 0 60 60">
+                <circle cx="30" cy="30" r="25" stroke="rgba(255,255,255,0.1)" stroke-width="4" fill="none"/>
+                <circle cx="30" cy="30" r="25" stroke="#8A00C4" stroke-width="4" fill="none" 
+                        stroke-dasharray="157" stroke-dashoffset="157" class="progress-arc" id="progress-arc"/>
+            </svg>
+            <div class="progress-percent-indicator" id="progress-percent-indicator">0%</div>
         </div>
-        <div class="modal-body">
-          <form id="register-form" onsubmit="handleRegister(event)">
-            <div class="form-group">
-              <label class="form-label" for="register-name">Display Name</label>
-              <input
-                type="text"
-                id="register-name"
-                class="form-control"
-                required
-              />
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="register-email">Email</label>
-              <input
-                type="email"
-                id="register-email"
-                class="form-control"
-                required
-              />
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="register-password">Password</label>
-              <input
-                type="password"
-                id="register-password"
-                class="form-control"
-                required
-              />
-            </div>
-            <div class="form-group">
-              <label class="form-label">
-                <input type="checkbox" id="register-author" /> I want to publish
-                stories
-              </label>
-            </div>
-            <button type="submit" class="btn btn--primary btn--full-width">
-              Join Free
-            </button>
-          </form>
-        </div>
-      </div>
     </div>
 
-    <div id="reader-settings-modal" class="modal hidden">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3>Reading Settings</h3>
-          <button class="modal-close" onclick="hideReaderSettings()">
-            <i class="fas fa-times"></i>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="setting-group">
-            <label>Font Size</label>
-            <div class="font-size-controls">
-              <button
-                type="button"
-                class="btn btn--outline btn--sm"
-                onclick="changeFontSize(-2)"
-              >
-                <i class="fas fa-minus"></i>
-              </button>
-              <span id="font-size-display">18px</span>
-              <button
-                type="button"
-                class="btn btn--outline btn--sm"
-                onclick="changeFontSize(2)"
-              >
-                <i class="fas fa-plus"></i>
-              </button>
-            </div>
-          </div>
-          <div class="setting-group">
-            <label>Background</label>
-            <div class="background-options">
-              <div class="radio-option">
-                <input
-                  type="radio"
-                  name="background"
-                  value="light"
-                  id="bg-light"
-                  onchange="changeBackground('light')"
-                />
-                <label for="bg-light">Light</label>
-              </div>
-              <div class="radio-option">
-                <input
-                  type="radio"
-                  name="background"
-                  value="dark"
-                  id="bg-dark"
-                  onchange="changeBackground('dark')"
-                  checked
-                />
-                <label for="bg-dark">Dark</label>
-              </div>
-              <div class="radio-option">
-                <input
-                  type="radio"
-                  name="background"
-                  value="sepia"
-                  id="bg-sepia"
-                  onchange="changeBackground('sepia')"
-                />
-                <label for="bg-sepia">Sepia</label>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <!-- Toast Container -->
+    <div class="toast-container" id="toast-container"></div>
 
-    <!-- Footer -->
-    <footer class="main-footer">
-      <div class="container">
-        <div class="footer-content">
-          <div class="footer-brand">
-            <div class="logo">A</div>
-            <span>Anmol</span>
-          </div>
-          <div class="footer-links">
-            <a href="#" onclick="router.navigate('/about')">About</a>
-            <a href="#" onclick="router.navigate('/creator')">Creator</a>
-            <a href="mailto:anmol@anmolplatform.com">Contact</a>
-          </div>
+    <!-- Error Modal -->
+    <div class="modal-overlay" id="error-modal">
+        <div class="modal-content error-modal">
+            <div class="error-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="15" y1="9" x2="9" y2="15"/>
+                    <line x1="9" y1="9" x2="15" y2="15"/>
+                </svg>
+            </div>
+            <h3 class="error-title">Chapter Not Found</h3>
+            <p class="error-message" id="error-message">We couldn't load this chapter. Please check the URL or try again later.</p>
+            <div class="error-actions">
+                <button class="btn btn-primary" onclick="retryLoad()">Try Again</button>
+                <button class="btn btn-outline" onclick="goBack()">Go Back</button>
+            </div>
         </div>
-        <div class="footer-bottom">
-          <p>&copy; 2024 Anmol Platform. Made with ❤️ for storytellers.</p>
-        </div>
-      </div>
-    </footer>
+    </div>
 
     <script src="app.js"></script>
-  </body>
+</body>
 </html>
